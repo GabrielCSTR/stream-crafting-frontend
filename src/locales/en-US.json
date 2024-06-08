@@ -1,0 +1,36 @@
+{
+  "code": "en-US",
+  "buttons": {
+    "signin": "Signin",
+    "enter_with": "Enter with {target}"
+  },
+  "languages": {
+    "pt-BR": "Portuguese",
+    "es": "Spanish",
+    "en-US": "English"
+  },
+  "pages": {
+    "signin": {
+      "title": "Enter your credentials",
+      "labels": {
+        "email": "Email",
+        "password": "Password"
+      }
+    },
+    "signup": {
+      "title": "Don't have an account?"
+    },
+    "forgot": {
+      "title": "Forgot your password?"
+    }
+  },
+  "messages": {
+    "required": "{target} is a required field",
+    "email": "{target} must be a valid email"
+  },
+  "components": {
+    "separator": {
+      "text": "Or"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "lang": "pt-BR",
+  "buttons": {
+    "signin": "Entrar",
+    "enter_with": "Entrar com {target}"
+  },
+  "languages": {
+    "pt-BR": "Português",
+    "es": "Espanhol",
+    "en-US": "Inglês"
+  },
+  "pages": {
+    "signin": {
+      "title": "Digite suas credenciais",
+      "labels": {
+        "email": "E-mail",
+        "password": "Senha"
+      }
+    },
+    "signup": {
+      "title": "Não possui conta?"
+    },
+    "forgot": {
+      "title": "Esqueceu sua senha?"
+    }
+  },
+  "messages": {
+    "required": "{target} é um campo obrigatório",
+    "email": "{target} deve ser um e-mail válido"
+  },
+  "components": {
+    "separator": {
+      "text": "Ou"
+    }
+  }
+}

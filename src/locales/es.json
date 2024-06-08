@@ -1,0 +1,36 @@
+{
+  "code": "pt-BR",
+  "buttons": {
+    "signin": "Ingresar",
+    "enter_with": "Ingresar com {target}"
+  },
+  "languages": {
+    "pt-BR": "Portugués",
+    "es": "Español",
+    "en-US": "Inglés"
+  },
+  "pages": {
+    "signin": {
+      "title": "Ingrese sus credenciales",
+      "labels": {
+        "email": "Correo electrónico",
+        "password": "Contraseña"
+      }
+    },
+    "signup": {
+      "title": "¿No tienes una cuenta?"
+    },
+    "forgot": {
+      "title": "¿Olvidaste tu contraseña?"
+    }
+  },
+  "messages": {
+    "required": "{target} es un campo obligatorio",
+    "email": "{target} debe ser un correo electrónico válido"
+  },
+  "components": {
+    "separator": {
+      "text": "O"
+    }
+  }
+}
