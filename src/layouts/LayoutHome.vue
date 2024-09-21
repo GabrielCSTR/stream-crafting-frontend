@@ -4,7 +4,7 @@ import LanguageSelector from '@/components/LanguageSelector.vue'
 </script>
 
 <template>
-  <div class="stream-crafting-layout-home flex w-full h-full">
+  <Fluid class="stream-crafting-layout-home flex">
     <div class="stream-crafting-layout-home__container">
       <!-- header -->
       <HomeHeader class="stream-crafting-layout-home__header"></HomeHeader>
@@ -15,11 +15,11 @@ import LanguageSelector from '@/components/LanguageSelector.vue'
       </main>
 
       <!-- footer -->
-      <footer class="stream-crafting-layout-home__footer flex align-items-center mt-8 px-5">
+      <footer class="stream-crafting-layout-home__footer flex items-center mt-20 px-8">
         <LanguageSelector />
       </footer>
     </div>
-  </div>
+  </Fluid>
 </template>
 
 <style lang="scss">

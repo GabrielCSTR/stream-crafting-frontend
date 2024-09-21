@@ -1,6 +1,6 @@
-import type { RouteLocationAsString } from 'unplugin-vue-router'
+import type { RouteLocationRaw } from 'vue-router'
 
 export interface IHeaderLink {
   i18nKey: string
-  to: RouteLocationAsString
+  to: RouteLocationRaw
 }

@@ -33,8 +33,13 @@ export default function useCrypt(encryptionKey: string) {
     return dec
   }
 
+  function genUUID() {
+    return crypto.randomBytes(20).toString('hex')
+  }
+
   return {
     encrypt,
-    decrypt
+    decrypt,
+    genUUID
   }
 }

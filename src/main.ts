@@ -1,4 +1,4 @@
-import './assets/main.scss'
+import './css/index.scss'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -11,7 +11,7 @@ const app = createApp(App)
 const pinia = createPinia()
 
 // Plugins call
-const plugins = ['axios', 'i18n', 'prime'] as const
+const plugins = ['axios', 'i18n', 'globals', 'primevue'] as const
 
 Promise.all(
   plugins.map(async (plugin) => {

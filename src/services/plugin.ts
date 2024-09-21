@@ -1,4 +1,4 @@
-import type { Router } from 'unplugin-vue-router'
+import type { Router } from 'vue-router'
 import * as Endpoints from './endpoints'
 import { OAuth } from './oauth'
 import { Endpoint } from './rest'

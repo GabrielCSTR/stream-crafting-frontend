@@ -13,17 +13,17 @@ const onSubmit = props.dynamicFormProps.formContext.handleSubmit((form: GenericO
 </script>
 
 <template>
-  <section class="stream-crafting-auth-base flex flex-column justify-content-center w-full">
+  <section class="stream-crafting-auth-base flex flex-col justify-center w-full">
     <!-- title -->
     <h2 class="stream-crafting-auth-base__title text-center mt-0">{{ props.title }}</h2>
 
     <!-- form -->
-    <div class="stream-crafting-auth-base__container flex flex-column w-full">
-      <form class="flex flex-column gap-5" @submit="onSubmit">
+    <div class="stream-crafting-auth-base__container flex flex-col w-full">
+      <form class="flex flex-col gap-8" @submit="onSubmit">
         <!-- DynamicForm -->
-        <DynamicForm v-bind="props.dynamicFormProps" :loading="loading" class="gap-5" />
+        <DynamicForm v-bind="props.dynamicFormProps" :loading="loading" class="gap-8" />
 
-        <div class="flex flex-column">
+        <div class="flex flex-col">
           <!-- Button -->
           <p-button
             class="w-full"
@@ -36,7 +36,7 @@ const onSubmit = props.dynamicFormProps.formContext.handleSubmit((form: GenericO
           <!-- Post button -->
           <div
             v-if="!!slots.links"
-            class="stream-crafting-auth-base__container__links flex justify-content-between mt-2"
+            class="stream-crafting-auth-base__container__links flex justify-between mt-2"
           >
             <slot name="links"></slot>
           </div>

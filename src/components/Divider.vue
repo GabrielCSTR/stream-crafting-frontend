@@ -17,13 +17,13 @@ const computedText = computed(() => props.text || t('components.separator.text')
 <template>
   <div
     :class="[
-      'splitter-or flex align-items-center justify-content-center',
+      'splitter-or flex items-center justify-center',
       props.variation === 'horizontal' ? 'splitter-or--horizontal' : 'splitter-or--vertical'
     ]"
   >
     <div
       v-if="props.showText"
-      class="splitter-or__text p-panel flex justify-content-center align-items-center px-2"
+      class="splitter-or__text p-panel flex justify-center items-center px-2"
     >
       {{ computedText }}
     </div>
@@ -38,15 +38,15 @@ const computedText = computed(() => props.text || t('components.separator.text')
     position: absolute;
     min-height: 50px;
     min-width: 50px;
-    border: 1px solid surface;
+    border: 1px solid var(--p-form-field-border-color);
     text-transform: uppercase;
     border-radius: 5px;
-    background: var(--surface-ground);
+    background: var(--p-form-field-background);
   }
 
   &::before {
     content: '';
-    background-color: var(--gray-700);
+    background-color: var(--p-form-field-border-color);
     position: absolute;
   }
 

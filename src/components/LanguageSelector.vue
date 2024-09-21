@@ -27,16 +27,16 @@ function normalizeFlagCode(code: string) {
 </script>
 
 <template>
-  <Dropdown
+  <PSelect
     v-model="sessionStore.language"
     :options="languages"
     :option-label="optionLabel"
     placeholder="[Selecione um idioma]"
-    class="w-14rem"
+    class="w-56"
     @update:modelValue="setI18nLanguage"
   >
     <template #value="{ value, placeholder }">
-      <div v-if="value" class="flex align-items-center">
+      <div v-if="value" class="flex items-center">
         <img
           :alt="value.label"
           src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
@@ -52,7 +52,7 @@ function normalizeFlagCode(code: string) {
 
     <!-- option -->
     <template #option="{ option }">
-      <div class="flex align-items-center">
+      <div class="flex items-center">
         <img
           :alt="option.label"
           src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
@@ -62,5 +62,5 @@ function normalizeFlagCode(code: string) {
         <div>{{ optionLabel(option) }}</div>
       </div>
     </template>
-  </Dropdown>
+  </PSelect>
 </template>

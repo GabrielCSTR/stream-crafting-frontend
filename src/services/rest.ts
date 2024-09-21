@@ -4,7 +4,7 @@ import type { AxiosRequestConfig, AxiosInstance, AxiosStatic } from 'axios'
 import { ACCESS_DENIED, OAuth, UNAUTHORIZED } from './oauth'
 import { type IPagination } from './pagination'
 import type { Entity } from './extendables'
-import type { Router } from 'unplugin-vue-router'
+import type { Router } from 'vue-router'
 
 declare module 'axios' {
   interface AxiosRequestConfig {

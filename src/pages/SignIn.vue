@@ -2,7 +2,7 @@
 import { useForm } from 'vee-validate'
 import type { DynamicFormProps } from '@/types'
 import type { PasswordProps } from 'primevue/password'
-import InputText from 'primevue/inputtext'
+import InputText, { type InputTextProps } from 'primevue/inputtext'
 import Password from 'primevue/password'
 import * as yup from 'yup'
 import { ref } from 'vue'
@@ -37,8 +37,9 @@ const dynamicFormProps: DynamicFormProps<'email' | 'password'> = {
       label: t('pages.signin.labels.email'),
       component: InputText,
       bind: {
-        type: 'email'
-      }
+        type: 'email',
+        autocomplete: 'email'
+      } as InputTextProps
     },
     password: {
       label: t('pages.signin.labels.password'),
@@ -51,7 +52,8 @@ const dynamicFormProps: DynamicFormProps<'email' | 'password'> = {
         },
         feedback: false,
         toggleMask: true,
-        invalid: true
+        invalid: true,
+        autocomplete: 'current-password'
       } as PasswordProps
     }
   },
@@ -81,7 +83,7 @@ async function onSubmit({ email, password }: { email: string; password: string }
 <template>
   <div class="stream-crafting-signin">
     <SignBase
-      class="h-25rem"
+      class="h-[25rem]"
       :dynamic-form-props="dynamicFormProps"
       :submit-btn-text="t('buttons.signin')"
       :handle-submit="onSubmit"

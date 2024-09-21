@@ -4,7 +4,7 @@ import { parseJWT } from '@/utils'
 import type { IToken } from '@/types'
 import type { NavigationGuardWithThis } from 'vue-router'
 
-export const beforeEnterHome: NavigationGuardWithThis<undefined> = async (_to, __from, next) => {
+export const beforeEnterHome: NavigationGuardWithThis<void> = async (_to, __from, next) => {
   /* const token = storage.get()
 
   if (token?.accessToken) {
@@ -14,7 +14,7 @@ export const beforeEnterHome: NavigationGuardWithThis<undefined> = async (_to, _
   return next()
 }
 
-export const beforeEnterAuth: NavigationGuardWithThis<undefined> = (_to, __from, next) => {
+export const beforeEnterAuth: NavigationGuardWithThis<void> = (_to, __from, next) => {
   const token = storage.get()
 
   if (token?.accessToken) {
@@ -24,12 +24,16 @@ export const beforeEnterAuth: NavigationGuardWithThis<undefined> = (_to, __from,
   return next()
 }
 
-export const beforeEnterApp: NavigationGuardWithThis<undefined> = async (_to, __from, next) => {
+export const beforeEnterApp: NavigationGuardWithThis<void> = async (to, __from, next) => {
   const sessionStore = useSessionStore()
 
   let location: string | boolean = '/signin'
 
   if (sessionStore.user?._id) {
+    if (to.path === '/app') {
+      return next('/app/welcome')
+    }
+
     return next()
   }
 

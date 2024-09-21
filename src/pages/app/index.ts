@@ -1,15 +1,11 @@
-import {
-  createRouter,
-  createWebHistory,
-  type NavigationGuardWithThis,
-  type RouteRecordRaw
-} from 'vue-router'
-import { beforeEnterApp, beforeEnterAuth } from './middlewares'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { beforeEnterApp, beforeEnterAuth, beforeEnterHome } from './middlewares'
 
 export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('@/layouts/LayoutHome.vue'),
+    beforeEnter: beforeEnterHome,
     children: [
       {
         path: '',
@@ -26,9 +22,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/app',
     component: () => import('@/layouts/LayoutApp.vue'),
-    meta: {
-      // middleware: beforeEnterApp
-    },
+    beforeEnter: beforeEnterApp,
     children: [
       {
         path: '',
@@ -42,25 +36,8 @@ export const routes: RouteRecordRaw[] = [
       },
       {
         path: 'huds',
-        name: 'huds-page',
-        component: () => import('@/pages/app/Huds/Index.vue'),
-        children: [
-          {
-            path: '',
-            name: 'huds-list',
-            component: () => import('@/pages/app/Huds/List.vue')
-          },
-          {
-            path: 'new',
-            name: 'huds-create',
-            component: () => import('@/pages/app/Huds/New.vue')
-          },
-          {
-            path: ':id',
-            name: 'huds-edit',
-            component: () => import('@/pages/app/Huds/Edit.vue')
-          }
-        ]
+        name: 'app-huds',
+        component: () => import('@/pages/app/Huds.vue')
       },
       {
         path: 'profile',
@@ -72,9 +49,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/forgot',
     component: () => import('@/layouts/LayoutAuth.vue'),
-    meta: {
-      middleware: beforeEnterAuth
-    },
+    beforeEnter: beforeEnterAuth,
     children: [
       {
         path: '',
@@ -86,9 +61,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/signin',
     component: () => import('@/layouts/LayoutAuth.vue'),
-    meta: {
-      middleware: beforeEnterAuth
-    },
+    beforeEnter: beforeEnterAuth,
     children: [
       {
         path: '',
@@ -100,9 +73,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/signup',
     component: () => import('@/layouts/LayoutAuth.vue'),
-    meta: {
-      middleware: beforeEnterAuth
-    },
+    beforeEnter: beforeEnterAuth,
     children: [
       {
         path: '',
@@ -133,30 +104,6 @@ const router = createRouter({
       return { top: 0 }
     }
   }
-})
-
-router.beforeEach(async (to, from, next) => {
-  if (to.meta.middleware) {
-    const middlewaresQueue: NavigationGuardWithThis<void>[] = Array.isArray(to.meta.middleware)
-      ? to.meta.middleware
-      : [to.meta.middleware]
-
-    for (const middleware of middlewaresQueue) {
-      try {
-        await new Promise((resolve) => {
-          resolve(middleware(to, from, next))
-        })
-      } catch (error) {
-        console.error('Middleware execution failed:', error)
-
-        return next('/error')
-      }
-    }
-
-    return
-  }
-
-  return next()
 })
 
 export default router

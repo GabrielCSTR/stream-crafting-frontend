@@ -24,11 +24,11 @@ for (const k of Object.keys(props.fields)) {
 </script>
 
 <template>
-  <div class="dynamic-form flex flex-column w-full">
+  <div class="dynamic-form flex flex-col w-full">
     <div
       v-for="(v, k) in props.fields"
       :key="k"
-      :class="['dynamic-form__field flex flex-column gap-2', v.classes]"
+      :class="['dynamic-form__field flex flex-col gap-2', v.classes]"
     >
       <FloatLabel>
         <component

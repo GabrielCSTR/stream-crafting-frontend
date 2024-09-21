@@ -24,9 +24,9 @@ const links: IHeaderLink[] = [
 
 <template>
   <header class="stream-crafting-header fixed top-0 w-full">
-    <nav class="flex align-items-center gap-4 p-3">
+    <nav class="flex items-center gap-6 p-4">
       <!-- main content -->
-      <main class="stream-crafting-header__main flex align-items-center w-full gap-2">
+      <main class="stream-crafting-header__main flex items-center w-full gap-2">
         <!-- logo -->
         <Logo></Logo>
 
@@ -39,7 +39,7 @@ const links: IHeaderLink[] = [
       <!-- aside content -->
       <aside class="stream-crafting-header__aside">
         <RouterLink to="/signin">
-          <p-button :label="t('buttons.signin')" outlined text />
+          <p-button :label="t('buttons.signin')" outlined />
         </RouterLink>
       </aside>
     </nav>

@@ -42,13 +42,13 @@ export interface OAuthToken {
 }
 
 export interface OAuthStorage {
-  get(): Promise<OAuthToken | undefined | null> | OAuthToken | undefined | null
-  set(token: OAuthToken): Promise<OAuthToken> | OAuthToken
-  del(): Promise<void> | void
+  get(): OAuthToken | undefined | null
+  set(token: OAuthToken): OAuthToken
+  del(): void
 }
 
-export interface OAuthGrantType<OAuthTokenData> {
-  handle(request: AxiosRequestConfig, oauth: OAuth<OAuthTokenData>): AxiosRequestConfig
+export interface OAuthGrantType<OAuthTokenData, Request = AxiosRequestConfig> {
+  handle(request: Request, oauth: OAuth<OAuthTokenData>): Request
 }
 
 export interface UserToken {
@@ -88,6 +88,16 @@ export class RefreshTokenGrant implements OAuthGrantType<AuthenticationResponse>
   }
 }
 
+export class SSOGrant
+  implements OAuthGrantType<AuthenticationResponse, AxiosResponse<AuthenticationResponse>>
+{
+  constructor(public readonly authenticationResponse: AuthenticationResponse) {}
+
+  handle(): AxiosResponse<AuthenticationResponse> {
+    return { data: this.authenticationResponse } as AxiosResponse
+  }
+}
+
 export class OAuthLocalStorage implements OAuthStorage {
   constructor(
     public readonly key: string = DEFAULT_STORAGE_KEY,
@@ -114,8 +124,6 @@ export class OAuthLocalStorage implements OAuthStorage {
     const { encrypt } = useCrypt(this.encryptionKey)
 
     const tokenEncrypted = encrypt(tokenStringified)
-
-    console.log(tokenEncrypted)
 
     localStorage.setItem(this.key, tokenEncrypted)
 
@@ -165,10 +173,8 @@ export class OAuth<OAuthTokenData> {
     return this.config.storage!.set(token)
   }
 
-  async sso(authenticationResponse: AuthenticationResponse) {
-    const token = await this.config.extractor!({
-      data: authenticationResponse
-    } as AxiosResponse)
+  async sso(grant: SSOGrant) {
+    const token = await this.config.extractor!(grant.handle())
 
     return this.config.storage!.set(token)
   }

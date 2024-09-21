@@ -3,12 +3,12 @@ import Logo from '@/components/Logo.vue'
 </script>
 
 <template>
-  <div class="stream-crafting-layout-auth flex align-items-center w-full h-full">
+  <div class="stream-crafting-layout-auth flex items-center w-full h-full">
     <div
-      class="stream-crafting-layout-auth__card flex align-items-center justify-content-center w-full h-full"
+      class="stream-crafting-layout-auth__card flex items-center justify-center w-full h-full"
     >
       <div class="stream-crafting-layout-auth__card__body w-full">
-        <div class="stream-crafting-layout-auth__card__logo flex justify-content-center pb-5">
+        <div class="stream-crafting-layout-auth__card__logo flex justify-center pb-8">
           <router-link to="/">
             <Logo :width="150" :height="75" />
           </router-link>
@@ -25,7 +25,7 @@ import Logo from '@/components/Logo.vue'
 <style lang="scss">
 .stream-crafting-layout-auth {
   &__card {
-    background: var(--surface-card);
+    background: var(--p-surface-800);
     border-radius: 0;
     max-width: 75vw;
 

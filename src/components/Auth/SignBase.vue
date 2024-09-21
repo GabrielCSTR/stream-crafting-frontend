@@ -66,14 +66,12 @@ const btns = markRaw<
     </AuthBase>
 
     <!-- splitter -->
-    <Divider class="mx-5" />
+    <Divider class="mx-8" />
 
     <!-- with -->
-    <section
-      class="stream-crafting-sign-base__with flex flex-column justify-content-center w-full gap-5"
-    >
+    <section class="stream-crafting-sign-base__with flex flex-col justify-center w-full gap-8">
       <p-button
-        class="stream-crafting-sign-base__with__btns align-items-center justify-content-center"
+        class="stream-crafting-sign-base__with__btns items-center justify-center"
         v-for="btn in btns"
         :key="btn.id"
         :label="btnsText(btn.text)"
@@ -85,7 +83,7 @@ const btns = markRaw<
         @click="btn.click"
       >
         <template #icon>
-          <div class="p-button-icon p-button-left flex align-items-center mr-2">
+          <div class="p-button-icon p-button-left flex items-center mr-2">
             <component :is="btn.icon" :color="btn.colors['--text-color']" />
           </div>
         </template>
@@ -104,20 +102,20 @@ const btns = markRaw<
 
   &__with {
     &__btns {
-      --p-focus-ring-color: var(--text-color);
+      --p-button-primary-focus-ring-color: var(--text-color);
 
-      background: var(--bg-color);
-      border-color: var(--bg-color);
-      color: var(--text-color);
+      background: var(--bg-color) !important;
+      border-color: var(--bg-color) !important;
+      color: var(--text-color) !important;
 
       &:not(:disabled) {
         &:hover {
-          background: var(--hover-color);
+          background: var(--hover-color) !important;
         }
 
         &:active,
         &:focus-visible {
-          background: var(--active-color);
+          background: var(--active-color) !important;
         }
       }
     }

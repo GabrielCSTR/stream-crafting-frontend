@@ -2,6 +2,7 @@ import type { PluginContext } from '@/types'
 import { nextTick, type WritableComputedRef } from 'vue'
 import { createI18n, type I18n, type I18nOptions } from 'vue-i18n'
 import { setLocale } from 'yup'
+import { setLocale as setDayJsLocale } from './dayjs'
 
 const SUPPORT_LOCALES = ['pt-BR', 'es', 'en-US']
 
@@ -31,12 +32,7 @@ function setI18nLanguageWithInstance(i18nInstance: I18n, locale: string) {
 }
 
 async function loadLocaleMessages(i18n: I18n, locale: string) {
-  const [messages] = await Promise.all([
-    await import(
-      /* @vite-ignore */
-      `../locales/${locale}.json`
-    ).then((i) => i.default)
-  ])
+  const messages = await import(`../locales/${locale}.json`).then((i) => i.default)
 
   const t = i18n.global.t as any
 
@@ -50,6 +46,8 @@ async function loadLocaleMessages(i18n: I18n, locale: string) {
       email: ({ path }) => t('messages.email', { target: path })
     }
   })
+
+  await setDayJsLocale(locale.toLowerCase())
 
   return nextTick()
 }

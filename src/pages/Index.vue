@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="flex flex-column">
+  <div class="flex flex-col">
     <section v-for="n in 3" :key="n" :id="`area-${n}`">
       <h2>Area {{ n }}</h2>
 
