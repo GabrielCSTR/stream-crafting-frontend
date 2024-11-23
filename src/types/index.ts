@@ -23,6 +23,16 @@ export interface IToken {
   email: string
 }
 
-export * from './links'
+export type EmitsFunction<T extends Record<string, [any]>> = <K extends keyof T>(
+  event: K,
+  ...args: T[K]
+) => void
+
+export type ListenersType<Emits extends Record<string, [any]>> = Record<
+  keyof Emits,
+  (...args: Emits[keyof Emits]) => void
+>
 
 export * from './components'
+export * from './hud'
+export * from './links'

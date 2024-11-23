@@ -12,7 +12,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Page class="stream-crafter-hud-page flex flex-column w-full h-full">
+  <Page class="stream-crafter-hud-page">
     <HUDCanvas v-model="list" />
   </Page>
 </template>

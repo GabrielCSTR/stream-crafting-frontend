@@ -4,7 +4,9 @@ export default function useColor() {
     genRandomColorsBySeed,
     getLuminance,
     genColors,
-    hexToRgb
+    hexToRgb,
+    rgbaToHex,
+    changeAlpha
   }
 }
 
@@ -26,6 +28,35 @@ function hexToRgb(hex: string) {
         b: parseInt(result[3], 16)
       }
     : null
+}
+
+function changeAlpha(hex: string, alpha: number) {
+  const hexToRgbResult = hexToRgb(hex)
+
+  if (!hexToRgbResult) {
+    throw new Error('Cor não está no formato hexadecimal')
+  }
+
+  const { r, g, b } = hexToRgbResult
+
+  return rgbaToHex(r, g, b, alpha)
+}
+
+function rgbaToHex(r: number, g: number, b: number, a: number) {
+  if (a < 0 || a > 1) {
+    throw new Error('Alfa não está no intervalo aceito')
+  }
+
+  const red = r.toString(16).padStart(2, '0').toUpperCase()
+  const green = g.toString(16).padStart(2, '0').toUpperCase()
+  const blue = b.toString(16).padStart(2, '0').toUpperCase()
+
+  const alpha = Math.round(a * 255)
+    .toString(16)
+    .padStart(2, '0')
+    .toUpperCase()
+
+  return `${red}${green}${blue}${alpha}`
 }
 
 function getLuminance(color: number) {
@@ -52,6 +83,6 @@ function genRandomColors() {
 function genColors(color: string) {
   return {
     color: '#' + color,
-    luminance: Math.ceil(getLuminance(parseInt(color, 16))) >= 128 ? '#000000' : '#ffffff'
+    luminance: Math.ceil(getLuminance(parseInt(color, 16))) >= 128 ? '#2d2d2d' : '#ffffff'
   } as const
 }

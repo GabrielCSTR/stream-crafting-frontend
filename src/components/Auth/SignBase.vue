@@ -44,7 +44,7 @@ const btns = markRaw<
 </script>
 
 <template>
-  <div class="stream-crafting-sign-base flex">
+  <div class="stream-crafting-sign-base flex w-full h-full">
     <!-- AuthBase -->
     <AuthBase
       :dynamic-form-props="props.dynamicFormProps"

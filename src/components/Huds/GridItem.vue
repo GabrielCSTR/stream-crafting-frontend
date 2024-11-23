@@ -22,7 +22,7 @@ const list = computed(() => [
 </script>
 
 <template>
-  <router-link class="stream-crafting-hud-grid-item" :to="`/app/huds/${props.hud._id}`">
+  <router-link class="stream-crafting-hud-grid-item" :to="`/app/huds/${props.hud._id}/editor`">
     <Card>
       <template #header>
         <PImage :alt="`${props.hud.name} preview`" :src="props.hud.src" width="200" />

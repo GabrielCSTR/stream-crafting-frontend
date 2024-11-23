@@ -40,7 +40,7 @@ export default function ({ app }: PluginContext) {
       preset: Aura,
       cssLayer: {
         name: 'primevue',
-        order: 'tailwind-base, primevue, tailwind-utilities'
+        order: 'tailwind-base, primeui, primevue, tailwind-utilities'
       }
     }
   })

@@ -3,35 +3,25 @@ import Logo from '@/components/Logo.vue'
 </script>
 
 <template>
-  <div class="stream-crafting-layout-auth flex items-center w-full h-full">
+  <div class="stream-crafting-layout-auth flex items-center w-full h-full rounded-none">
+    <!-- card -->
     <div
-      class="stream-crafting-layout-auth__card flex items-center justify-center w-full h-full"
+      class="stream-crafting-layout-auth__card flex flex-col items-center justify-center w-full h-full px-8 bg-surface-800"
     >
-      <div class="stream-crafting-layout-auth__card__body w-full">
-        <div class="stream-crafting-layout-auth__card__logo flex justify-center pb-8">
-          <router-link to="/">
-            <Logo :width="150" :height="75" />
-          </router-link>
-        </div>
+      <!-- header -->
+      <div class="stream-crafting-layout-auth__card__header flex justify-center pt-8">
+        <router-link to="/">
+          <Logo :width="150" :height="75" />
+        </router-link>
+      </div>
 
+      <!-- body -->
+      <div class="stream-crafting-layout-auth__card__body w-full h-full">
         <router-view></router-view>
       </div>
     </div>
 
-    <div class="stream-crafting-layout-auth__banner"></div>
+    <!-- banner -->
+    <div class="stream-crafting-layout-auth__banner min-w-[20%]">banner</div>
   </div>
 </template>
-
-<style lang="scss">
-.stream-crafting-layout-auth {
-  &__card {
-    background: var(--p-surface-800);
-    border-radius: 0;
-    max-width: 75vw;
-
-    &__body {
-      max-width: 60rem;
-    }
-  }
-}
-</style>

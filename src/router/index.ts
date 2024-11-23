@@ -27,7 +27,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/app',
     component: () => import('@/layouts/LayoutApp.vue'),
     meta: {
-      // middleware: beforeEnterApp
+      middleware: beforeEnterApp
     },
     children: [
       {
@@ -52,13 +52,33 @@ export const routes: RouteRecordRaw[] = [
           },
           {
             path: 'new',
-            name: 'huds-create',
+            name: 'huds-new',
+            meta: {
+              hideSidebar: true
+            },
             component: () => import('@/pages/app/Huds/New.vue')
           },
           {
-            path: ':id',
-            name: 'huds-edit',
-            component: () => import('@/pages/app/Huds/Edit.vue')
+            path: ':hudId',
+            component: () => import('@/pages/app/Huds/Item.vue'),
+            meta: {
+              hideSidebar: true
+            },
+            children: [
+              {
+                path: '',
+                name: 'huds-item',
+                component: () => import('@/pages/app/Huds/Item/Index.vue')
+              },
+              {
+                path: 'editor',
+                name: 'huds-item-edit',
+                meta: {
+                  hideSidebar: true
+                },
+                component: () => import('@/pages/app/Huds/Item/Editor.vue')
+              }
+            ]
           }
         ]
       },

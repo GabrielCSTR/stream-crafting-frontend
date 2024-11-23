@@ -13,15 +13,17 @@ const pinia = createPinia()
 // Plugins call
 const plugins = ['axios', 'i18n', 'globals', 'primevue'] as const
 
-Promise.all(
-  plugins.map(async (plugin) => {
+async function loadPlugins() {
+  for (const plugin of plugins) {
     const { default: defaultImport } = await import(`./plugins/${plugin}.ts`)
 
     const fn = defaultImport || (() => Promise.resolve(undefined))
 
-    return fn({ app, pinia, router })
-  })
-).finally(() => {
+    await fn({ app, pinia, router })
+  }
+}
+
+loadPlugins().finally(() => {
   // Default plugins use
   app.use(pinia)
 

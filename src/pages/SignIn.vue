@@ -38,7 +38,9 @@ const dynamicFormProps: DynamicFormProps<'email' | 'password'> = {
       component: InputText,
       bind: {
         type: 'email',
-        autocomplete: 'email'
+        autocomplete: 'email',
+        id: 'email',
+        name: 'email'
       } as InputTextProps
     },
     password: {
@@ -53,7 +55,9 @@ const dynamicFormProps: DynamicFormProps<'email' | 'password'> = {
         feedback: false,
         toggleMask: true,
         invalid: true,
-        autocomplete: 'current-password'
+        autocomplete: 'current-password',
+        id: 'password',
+        name: 'password'
       } as PasswordProps
     }
   },
@@ -81,9 +85,8 @@ async function onSubmit({ email, password }: { email: string; password: string }
 </script>
 
 <template>
-  <div class="stream-crafting-signin">
+  <Page class="stream-crafting-signin flex py-8">
     <SignBase
-      class="h-[25rem]"
       :dynamic-form-props="dynamicFormProps"
       :submit-btn-text="t('buttons.signin')"
       :handle-submit="onSubmit"
@@ -92,5 +95,5 @@ async function onSubmit({ email, password }: { email: string; password: string }
       :links="links"
       :title="t('pages.signin.title')"
     ></SignBase>
-  </div>
+  </Page>
 </template>

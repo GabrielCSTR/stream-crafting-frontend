@@ -49,7 +49,7 @@ const profileBind = computed<PanelMenuProps>(() => ({
 </script>
 
 <template>
-  <div class="stream-crafting-sidebar flex flex-col w-2/12 h-full px-2">
+  <div class="stream-crafting-sidebar flex flex-col w-2/12 h-full min-w-[20%] px-2">
     <!-- header -->
     <div class="stream-crafting-sidebar__header flex justify-center py-4">
       <router-link to="/app">

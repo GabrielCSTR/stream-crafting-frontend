@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 
-const showSidebar = computed(() => !/\/app\/huds\/?(new|(\w)+)/gm.test(route.path))
+const showSidebar = computed(() => !route.meta.hideSidebar)
 </script>
 
 <template>
