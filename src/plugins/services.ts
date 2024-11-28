@@ -3,7 +3,7 @@ import { type ApiType, createApi } from '@/services/plugin'
 import { type AuthenticationResponse, OAuth, OAuthLocalStorage } from '@/services/oauth'
 import type { PluginContext } from '@/types'
 
-const baseURL = `http://localhost:3000/api/v1`
+const baseURL = `${import.meta.env.VITE_API_URL}/api/v1`
 
 let api: ApiType
 

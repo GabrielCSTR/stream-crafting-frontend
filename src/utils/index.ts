@@ -1,4 +1,4 @@
-import { storage } from '@/plugins/axios'
+import { storage } from '@/plugins/services'
 import { useSessionStore } from '@/stores/session'
 import router from '@/router'
 import type { EmitsFunction, ListenersType } from '@/types'

@@ -11,7 +11,7 @@ const app = createApp(App)
 const pinia = createPinia()
 
 // Plugins call
-const plugins = ['axios', 'i18n', 'globals', 'primevue'] as const
+const plugins = ['services', 'i18n', 'globals', 'primevue'] as const
 
 async function loadPlugins() {
   for (const plugin of plugins) {

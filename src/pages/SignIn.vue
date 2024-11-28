@@ -9,7 +9,7 @@ import { ref } from 'vue'
 import SignBase from '@/components/Auth/SignBase.vue'
 import { markRaw } from 'vue'
 import { useRouter } from 'vue-router'
-import { oauth } from '@/plugins/axios'
+import { oauth } from '@/plugins/services'
 import { PasswordGrant } from '@/services/oauth'
 import { useI18n } from 'vue-i18n'
 
