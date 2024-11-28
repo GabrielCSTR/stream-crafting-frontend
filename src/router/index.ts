@@ -1,10 +1,11 @@
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import {
-  createRouter,
-  createWebHistory,
-  type NavigationGuardWithThis,
-  type RouteRecordRaw
-} from 'vue-router'
-import { beforeEnterApp, beforeEnterAuth } from './middlewares'
+  beforeEnterApp,
+  beforeEnterAuth,
+  createMiddlewarePipeline,
+  type NavigationGuard,
+  type NavigationGuardContext
+} from './middlewares'
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -157,26 +158,16 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.middleware) {
-    const middlewaresQueue: NavigationGuardWithThis<void>[] = Array.isArray(to.meta.middleware)
+    const middlewaresQueue: NavigationGuard[] = Array.isArray(to.meta.middleware)
       ? to.meta.middleware
       : [to.meta.middleware]
 
-    for (const middleware of middlewaresQueue) {
-      try {
-        await new Promise((resolve) => {
-          resolve(middleware(to, from, next))
-        })
-      } catch (error) {
-        console.error('Middleware execution failed:', error)
+    const context: NavigationGuardContext = { to, from, next }
 
-        return next('/error')
-      }
-    }
-
-    return
+    await createMiddlewarePipeline(context, middlewaresQueue)
+  } else {
+    next()
   }
-
-  return next()
 })
 
 export default router

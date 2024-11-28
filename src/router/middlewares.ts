@@ -1,10 +1,49 @@
 import { useSessionStore } from '@/stores/session'
-import { api, storage } from '@/plugins/axios'
+import { api, storage } from '@/plugins/services'
 import { parseJWT } from '@/utils'
 import type { IToken } from '@/types'
-import type { NavigationGuardWithThis } from 'vue-router'
+import type {
+  NavigationGuardNext,
+  RouteLocationNormalizedGeneric,
+  RouteLocationNormalizedLoadedGeneric
+} from 'vue-router'
 
-export const beforeEnterHome: NavigationGuardWithThis<void> = async (_to, __from, next) => {
+export interface NavigationGuardContext {
+  to: RouteLocationNormalizedGeneric
+  from: RouteLocationNormalizedLoadedGeneric
+  next: NavigationGuardNext
+}
+
+export type NavigationGuard = (ctx: NavigationGuardContext) => Promise<any> | any
+
+export async function createMiddlewarePipeline(
+  context: NavigationGuardContext,
+  middlewares: NavigationGuard[]
+) {
+  const routerNext = context.next
+
+  const executeMiddleware = async (index: number) => {
+    if (index >= middlewares.length) {
+      return routerNext()
+    }
+
+    const currentMiddleware = middlewares[index]
+
+    context.next = (args?: any) => {
+      if (args) {
+        return routerNext(args)
+      }
+
+      return executeMiddleware(index + 1)
+    }
+
+    await currentMiddleware(context)
+  }
+
+  await executeMiddleware(0)
+}
+
+export const beforeEnterHome: NavigationGuard = async ({ next }) => {
   /* const token = storage.get()
 
   if (token?.accessToken) {
@@ -14,7 +53,7 @@ export const beforeEnterHome: NavigationGuardWithThis<void> = async (_to, __from
   return next()
 }
 
-export const beforeEnterAuth: NavigationGuardWithThis<void> = (_to, __from, next) => {
+export const beforeEnterAuth: NavigationGuard = ({ next }) => {
   const token = storage.get()
 
   if (token?.accessToken) {
@@ -24,7 +63,7 @@ export const beforeEnterAuth: NavigationGuardWithThis<void> = (_to, __from, next
   return next()
 }
 
-export const beforeEnterApp: NavigationGuardWithThis<void> = async (to, __from, next) => {
+export const beforeEnterApp: NavigationGuard = async ({ to, next }) => {
   const sessionStore = useSessionStore()
 
   let location: string | boolean = '/signin'
@@ -49,7 +88,7 @@ export const beforeEnterApp: NavigationGuardWithThis<void> = async (to, __from, 
       .then((user) => {
         sessionStore.user = user
 
-        return true
+        return false
       })
       .catch(() => {
         return '/signin'
