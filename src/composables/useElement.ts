@@ -291,5 +291,25 @@ export const LIST: IHUDElement[] = [
     data: {
       text: 'ELEMENTO TESTE 8'
     }
+  },
+  {
+    id: 'c912a849bdbbea78644081e2d81d3ffde94fea34',
+    isShowed: true,
+    layer: 0,
+    component: 'image',
+    backgroundColor: '#badad0',
+    color: '#2d2d2d',
+    maintainAspectRatio: true,
+    position: {
+      x: 90,
+      y: 600
+    },
+    size: {
+      width: 250,
+      height: 250
+    },
+    data: {
+      src: 'https://placehold.co/1250x1250'
+    }
   }
 ]

@@ -1,6 +1,6 @@
 import { generateListeners } from '../utils'
 
-export type IHUDElementComponents = 'text'
+export type IHUDElementComponents = 'text' | 'image'
 
 interface IHUDElementData {
   id: string
@@ -54,3 +54,5 @@ export type HUDElementBaseEmits = {
 }
 
 export type HUDElementTextProps = HUDElementBaseProps<{ text: string }>
+
+export type HUDElementImageProps = HUDElementBaseProps<{ src: string }>

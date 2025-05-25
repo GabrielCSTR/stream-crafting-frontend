@@ -1,9 +1,11 @@
 
-- Escolher tipo da página, sendo opções: draft, tela de carregamento, em jogo (seguir modelo do excel)
+1. - [ ] Escolher tipo da página, sendo opções: draft, tela de carregamento, em jogo (seguir modelo do excel)
+<br /><br />
 
-- Gatilhos de webhook (ver se será uma funcionalidade disponível apenas para os pagantes)
+2. - [ ] Gatilhos de webhook (ver se será uma funcionalidade disponível apenas para os pagantes)
+<br /><br />
 
-0. - [ ]  Nós globais
+3. - [ ]  Nós globais
 	- [ ] Básico
 		- [x] Mover grupo
 		- [x] Redimensionar grupo
@@ -11,12 +13,13 @@
 		- [x] Alterar camada do grupo
 		- [ ] Ajustar tudo para que seja feito a partir do Nó de seleção
 	- [x] Texto¹
-	- [ ] Imagem
+	- [x] Imagem
 	- [ ] Carrosel de imagens
 	- [ ] Vídeo
 	- [ ] Carrosel de vídeos
 <br /><br />
-1. - [ ] Draft
+
+4. - [ ] Draft
 	- [ ] 1.1. Time
 		- [ ] Heróis selecionados (bloquear redimensionamento horizontal e vertical)
 		- [ ] Imagem do fundo do herói
@@ -33,13 +36,15 @@
 		- [ ] Tempo restante para seleção de héroi do time B;
 		- [ ] Tempo atual de seleção do héroi atual restante da rodada
 <br /><br />
-2. - [ ] Tela de carregamento
+
+5. - [ ] Tela de carregamento
 	- [ ] Time
 	- [ ] Direção
 	- [ ] Cor de fundo
 	- [ ] Imagem de fundo
 	- [ ] Borda
 <br /><br />
-3. - [ ] Em jogo
+
+6. - [ ] Em jogo
 	- [ ] Times
 	- [ ] Estatíticas da partida (KDA/Ouro/Diferença de ouro e etc.)

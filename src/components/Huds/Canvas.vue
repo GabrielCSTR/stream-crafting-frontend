@@ -7,7 +7,7 @@ import type {
 } from '@/types/hud'
 import useColor from '@/composables/useColor'
 import useCrypt from '@/composables/useCrypt'
-import { HudText } from './elements'
+import { HudText, HudImage } from './elements'
 import isEqual from 'lodash.isequal'
 import { computed, ref, toRaw, watch } from 'vue'
 import { PrimeIcons } from '@primevue/core'
@@ -32,18 +32,24 @@ const { genUUID } = useCrypt('HUD')
 
 const lazyList = ref<IHUDElement[]>([])
 
-const { selecteds, selectedsIds, boundingBox, clearSelection } = useElementSelection(
-  lazyList,
-  '.stream-crafter-hud-canvas__content',
-  '.stream-crafter-hud-element-base'
-)
+const { selecteds, selectedsIds, boundingBox, clearSelection } = useElementSelection({
+  list: lazyList,
+  container: '.stream-crafter-hud-canvas__content',
+  selectable: '.stream-crafter-hud-element-base',
+  disable: computed(() => props.disable)
+})
 
 const normalizedList = ref<INormalizedHUDElement[]>([])
 
 const activeNode = ref<string>()
 
-const componentsMap = toRaw<any>({
-  text: HudText
+const componentsMap = toRaw({
+  text: {
+    component: HudText
+  },
+  image: {
+    component: HudImage
+  }
 })
 
 const selectedNormalizedElements = computed(() =>
@@ -151,7 +157,7 @@ function addText() {
     maintainAspectRatio: false,
     layer: 0,
     data: {
-      text: `ELEMENTO TESTE ${lazyList.value.length + 1}`
+      text: 'Elemento de texto'
     }
   })
 }
@@ -216,6 +222,11 @@ function showPreview() {
   router.push(`/app/huds/${route.params.hudId}`)
 }
 
+function onDoubleClick() {
+  clearSelection()
+  activeNode.value = undefined
+}
+
 watch(
   () => props.modelValue,
   (newValue) => {
@@ -250,7 +261,7 @@ watch(
 <template>
   <div
     class="stream-crafter-hud-canvas flex flex-col h-full overflow-hidden"
-    @dblclick.prevent="clearSelection"
+    @dblclick.prevent="onDoubleClick"
   >
     <!-- content -->
     <div class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full">
@@ -267,7 +278,7 @@ watch(
 
       <component
         v-for="item in normalizedList"
-        :is="componentsMap[item.component]"
+        :is="componentsMap[item.component].component"
         :key="item.id"
         v-bind="item.bind"
         v-on="item.on"
@@ -276,9 +287,10 @@ watch(
 
     <!-- bounding box -->
     <BoundingBox
-      v-if="selectedsIds.length > 0"
+      v-if="selectedsIds.length > 0 && !props.disable"
       ref="boundingBoxRef"
       v-bind="boundingBox"
+      :disable="props.disable"
       @on-change-size="updateSelectedsSize"
       @on-change-layer="updateSelectedsLayer"
       @on-change-is-showed="updateSelectedsIsShowed"
