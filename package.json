@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@primeuix/themes": "^1.1.1",
     "@primevue/core": "^4.0.7",
     "@primevue/themes": "^4.0.7",
     "@viselect/vanilla": "^3.7.0",

@@ -1,11 +1,25 @@
 <script setup lang="ts">
 import type { Hud } from '@/services/models/hud'
 import dayjs from 'dayjs'
-import { computed } from 'vue'
+import type { CardPassThroughOptions } from 'primevue/card'
+import type { ImagePassThroughOptions } from 'primevue/image'
+import { computed, markRaw } from 'vue'
 
 const props = defineProps<{
   hud: Hud
 }>()
+
+const cardPT = markRaw<CardPassThroughOptions>({
+  header: {
+    class: 'flex justify-center items-center'
+  }
+})
+
+const imagePT = markRaw<ImagePassThroughOptions>({
+  image: {
+    class: 'rounded-lg'
+  }
+})
 
 const list = computed(() => [
   {
@@ -23,9 +37,15 @@ const list = computed(() => [
 
 <template>
   <router-link class="stream-crafting-hud-grid-item" :to="`/app/huds/${props.hud._id}/editor`">
-    <Card>
+    <Card class="w-full max-w-72 py-5" :pt="cardPT">
       <template #header>
-        <PImage :alt="`${props.hud.name} preview`" :src="props.hud.src" width="200" />
+        <PImage
+          class="rounded-lg"
+          :alt="`${props.hud.name} preview`"
+          :src="props.hud.src"
+          width="250"
+          :pt="imagePT"
+        />
       </template>
 
       <template #title>{{ props.hud.name }}</template>

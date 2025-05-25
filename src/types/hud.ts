@@ -3,6 +3,7 @@ import { generateListeners } from '../utils'
 export type IHUDElementComponents = 'text'
 
 interface IHUDElementData {
+  id: string
   isShowed: boolean
   backgroundColor: string
   color: string
@@ -19,7 +20,6 @@ interface IHUDElementData {
 }
 
 export interface IHUDElementBase extends IHUDElementData {
-  id: string
   component: IHUDElementComponents
 }
 
@@ -30,6 +30,7 @@ export interface IHUDElement<D = any> extends IHUDElementBase {
 export interface INormalizedHUDElementBind<D = any> extends IHUDElementData {
   active: boolean
   disable: boolean
+  isInsideBoundingBox: boolean
   data: D
 }
 
@@ -48,6 +49,7 @@ export type HUDElementBaseEmits = {
   'update:size': [payload: INormalizedHUDElementBind['size']]
   'update:is-showed': [payload: INormalizedHUDElementBind['isShowed']]
   'update:layer': [payload: INormalizedHUDElementBind['layer']]
+  'delta:position': [payload: { dx: number; dy: number }]
   click: [payload: MouseEvent]
 }
 

@@ -23,12 +23,12 @@ export interface IToken {
   email: string
 }
 
-export type EmitsFunction<T extends Record<string, [any]>> = <K extends keyof T>(
+export type EmitsFunction<T extends Record<string, any[]>> = <K extends keyof T>(
   event: K,
   ...args: T[K]
 ) => void
 
-export type ListenersType<Emits extends Record<string, [any]>> = Record<
+export type ListenersType<Emits extends Record<string, any[]>> = Record<
   keyof Emits,
   (...args: Emits[keyof Emits]) => void
 >

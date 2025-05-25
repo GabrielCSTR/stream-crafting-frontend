@@ -3,14 +3,20 @@
 
 - Gatilhos de webhook (ver se será uma funcionalidade disponível apenas para os pagantes)
 
-0. Nós globais
+0. - [ ]  Nós globais
+	- [ ] Básico
+		- [x] Mover grupo
+		- [x] Redimensionar grupo
+		- [x] Mostrar/esconder grupo
+		- [x] Alterar camada do grupo
+		- [ ] Ajustar tudo para que seja feito a partir do Nó de seleção
 	- [x] Texto¹
 	- [ ] Imagem
 	- [ ] Carrosel de imagens
 	- [ ] Vídeo
 	- [ ] Carrosel de vídeos
-<br />
-1. Draft
+<br /><br />
+1. - [ ] Draft
 	- [ ] 1.1. Time
 		- [ ] Heróis selecionados (bloquear redimensionamento horizontal e vertical)
 		- [ ] Imagem do fundo do herói
@@ -26,14 +32,14 @@
 		- [ ] Tempo restante para seleção de héroi do time A;
 		- [ ] Tempo restante para seleção de héroi do time B;
 		- [ ] Tempo atual de seleção do héroi atual restante da rodada
-<br />
+<br /><br />
 2. - [ ] Tela de carregamento
 	- [ ] Time
 	- [ ] Direção
 	- [ ] Cor de fundo
 	- [ ] Imagem de fundo
 	- [ ] Borda
-<br />
+<br /><br />
 3. - [ ] Em jogo
 	- [ ] Times
 	- [ ] Estatíticas da partida (KDA/Ouro/Diferença de ouro e etc.)

@@ -5,6 +5,8 @@ import { computed, onMounted, ref, useTemplateRef } from 'vue'
 
 export const DEFAULT_SNAP = 30
 
+export const DEFAULT_MIN_SIZE = 120
+
 export default function useElement(
   props: INormalizedHUDElementBind,
   emits: EmitsFunction<HUDElementBaseEmits>
@@ -53,9 +55,7 @@ export default function useElement(
             ],
 
             listeners: {
-              start(event) {
-                console.log(event.type, event.target)
-
+              start() {
                 isDragging.value = true
               },
 
@@ -65,6 +65,7 @@ export default function useElement(
                 const y = props.position.y + dy
 
                 emits('update:position', { x, y })
+                emits('delta:position', { dx, dy })
               },
 
               end() {
@@ -82,15 +83,18 @@ export default function useElement(
                 isResizing.value = true
               },
               move(event) {
-                const x = props.position.x + event.deltaRect.left
-                const y = props.position.y + event.deltaRect.top
+                const dx = event.deltaRect.left
+                const dy = event.deltaRect.top
+                const x = props.position.x + dx
+                const y = props.position.y + dy
 
                 const width = event.rect.width
                 const height = event.rect.height
 
                 emits('update:position', { x, y })
-
                 emits('update:size', { width, height })
+
+                emits('delta:position', { dx, dy })
               },
               end() {
                 isResizing.value = false
@@ -102,9 +106,9 @@ export default function useElement(
                 outer: 'parent'
               }),
 
-              // Restringe o tamanho do redimensionamento até 100x100
+              // Restringe o tamanho do redimensionamento
               interact.modifiers.restrictSize({
-                min: { width: 100, height: 100 }
+                min: { width: DEFAULT_MIN_SIZE, height: DEFAULT_MIN_SIZE }
               }),
 
               // Preserva o aspecto original do elemento

@@ -8,7 +8,7 @@ const props = defineProps<HUDElementTextProps>()
 const emits = defineEmits<HUDElementBaseEmits>()
 
 const on = generateListeners<HUDElementBaseEmits>(
-  ['update:position', 'update:size', 'update:is-showed', 'update:layer', 'click'],
+  ['update:position', 'update:size', 'update:is-showed', 'update:layer', 'delta:position', 'click'],
   emits
 )
 </script>

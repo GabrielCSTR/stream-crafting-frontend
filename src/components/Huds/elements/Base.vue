@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import useElement from '@/composables/useElement'
+import { BOUNDING_BOX_ID, CONTEXT_MENU_Z_INDEX } from '@/composables/useElementSelection'
 import type { HUDElementBaseEmits, HUDElementBaseProps } from '@/types'
 import { PrimeIcons } from '@primevue/core'
 import ContextMenu, { type ContextMenuMethods } from 'primevue/contextmenu'
@@ -12,16 +13,13 @@ const emits = defineEmits<HUDElementBaseEmits>()
 
 const { elementRef, styles, isResizing } = useElement(props, emits)
 
-// const isFocused = ref(false)--
+// const isFocused = ref(false)
 
 const contextMenuRef = ref<ContextMenuMethods>()
 
 const contextMenuItems = markRaw<MenuItem[]>([
-  {
-    icon: (() => (props.isShowed ? PrimeIcons.EYE_SLASH : PrimeIcons.EYE)) as any,
-    label: () => (props.isShowed ? '[Esconder nó]' : '[Mostrar nó]'),
-    command: () => emits('update:is-showed', !props.isShowed)
-  },
+  generateShowOrHideAction(true),
+  generateShowOrHideAction(false),
   {
     separator: true
   },
@@ -42,9 +40,45 @@ const currentDimensions = computed(
   () => `${Math.ceil(props.size.width)} \u00D7 ${Math.ceil(props.size.height)}`
 )
 
-function onContextMenu(event: MouseEvent) {
-  contextMenuRef.value?.show(event)
+function generateShowOrHideAction(show: boolean): MenuItem {
+  const data = show
+    ? {
+        icon: PrimeIcons.EYE,
+        label: () => (props.id === BOUNDING_BOX_ID ? '[Mostrar nós]' : '[Mostrar nó]')
+      }
+    : {
+        icon: PrimeIcons.EYE_SLASH,
+        label: () => (props.id === BOUNDING_BOX_ID ? '[Esconder nós]' : '[Esconder nó]')
+      }
+
+  return {
+    ...data,
+    visible: () => {
+      if (props.id === BOUNDING_BOX_ID) {
+        return true
+      }
+
+      return show ? !props.isShowed : props.isShowed
+    },
+    command: () => {
+      emits('update:is-showed', show)
+    }
+  }
 }
+
+function onContextMenu(event: MouseEvent) {
+  if (!props.isInsideBoundingBox) {
+    contextMenuRef.value?.show(event)
+  }
+}
+
+function getBoundingClientRect() {
+  return elementRef.value?.getBoundingClientRect()
+}
+
+defineExpose({
+  getBoundingClientRect
+})
 
 /* function onFocus() {
   isFocused.value = true
@@ -99,11 +133,16 @@ function onKeydown(event: KeyboardEvent) {
       }
     ]"
     tabindex="0"
+    :data-key="props.id"
     :style="styles"
     @contextmenu.prevent="onContextMenu"
     @click="emits('click', $event)"
   >
-    <ContextMenu ref="contextMenuRef" :model="contextMenuItems" />
+    <ContextMenu
+      ref="contextMenuRef"
+      :model="contextMenuItems"
+      :base-z-index="CONTEXT_MENU_Z_INDEX"
+    />
 
     <div v-if="isResizing">
       {{ currentDimensions }}
@@ -127,7 +166,11 @@ function onKeydown(event: KeyboardEvent) {
   }
 
   &--active {
-    border-color: white;
+    border-color: var(--p-primary-color);
   }
 }
+
+// .p-contextmenu {
+//   z-index: 10000 !important;
+// }
 </style>

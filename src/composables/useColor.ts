@@ -19,7 +19,7 @@ function hexToRgb(hex: string) {
 
   hex = hex.replace(shorthandRegex, (_, r: string, g: string, b: string) => r + r + g + g + b + b)
 
-  const result = /^([a-f\d]{2}){3}$/i.exec(hex)
+  const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
 
   return result
     ? {
