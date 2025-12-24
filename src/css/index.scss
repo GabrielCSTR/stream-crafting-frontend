@@ -2,11 +2,33 @@
 @import './flags.scss';
 @import './tailwind.css';
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
-body,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 #app {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+// Aplicar tema dark por padrão
+// A classe 'dark' deve estar no elemento html (já configurado no index.html)
+html {
+  background-color: #020617;
+  color: #CBD5E1;
+}
+
+body {
+  background-color: #020617;
+  color: #CBD5E1;
 }
 
 .a-full {
@@ -18,5 +40,159 @@ body,
 
   &-label {
     flex: none;
+  }
+}
+
+// Global input styles for auth pages
+.radiantcast-layout-auth {
+  .p-inputtext,
+  .p-password-input {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid #1E293B !important;
+    color: #CBD5E1 !important;
+    border-radius: 12px;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+
+    &:focus {
+      border-color: #34F5A3 !important;
+      box-shadow: 0 0 0 3px rgba(52, 245, 163, 0.1) !important;
+      background: rgba(15, 23, 42, 0.8) !important;
+      outline: none;
+    }
+
+    &:hover:not(:disabled):not(:focus) {
+      border-color: rgba(52, 245, 163, 0.5) !important;
+    }
+
+    &::placeholder {
+      color: #64748B;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .p-password {
+    width: 100%;
+
+    .p-inputwrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .p-password-input {
+      padding-right: 3rem;
+    }
+
+    .p-password-toggle {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      transition: color 0.2s ease;
+      z-index: 10;
+
+      &:hover {
+        color: #34F5A3;
+      }
+    }
+  }
+
+  .p-float-label {
+    label {
+      color: #94A3B8 !important;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: color 0.3s ease;
+
+      &[data-p-filled='true'],
+      &[data-p-inputwrapper-focus='true'] {
+        color: #34F5A3 !important;
+      }
+    }
+  }
+}
+
+// Toast notifications styling
+.p-toast {
+  .p-toast-message {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(17, 26, 47, 0.95) 100%);
+    border: 1px solid #1E293B;
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    box-shadow: 
+      0 10px 30px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(52, 245, 163, 0.1);
+
+    &.p-toast-message-success {
+      border-left: 3px solid #34F5A3;
+
+      .p-toast-message-icon {
+        color: #34F5A3;
+      }
+    }
+
+    &.p-toast-message-error {
+      border-left: 3px solid #F87171;
+
+      .p-toast-message-icon {
+        color: #F87171;
+      }
+    }
+
+    &.p-toast-message-warn {
+      border-left: 3px solid #FACC15;
+
+      .p-toast-message-icon {
+        color: #FACC15;
+      }
+    }
+
+    &.p-toast-message-info {
+      border-left: 3px solid #38BDF8;
+
+      .p-toast-message-icon {
+        color: #38BDF8;
+      }
+    }
+
+    .p-toast-message-content {
+      padding: 1rem 1.25rem;
+
+      .p-toast-summary {
+        color: #F9FAFB;
+        font-weight: 600;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .p-toast-detail {
+        color: #CBD5E1;
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      .p-toast-icon-close {
+        color: #94A3B8;
+        transition: color 0.2s ease;
+
+        &:hover {
+          color: #F9FAFB;
+        }
+      }
+    }
   }
 }

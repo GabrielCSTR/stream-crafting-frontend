@@ -12,12 +12,14 @@ import Image from 'primevue/image'
 import Select from 'primevue/select'
 import PanelMenu from 'primevue/panelmenu'
 import Fluid from 'primevue/fluid'
+import Toast from 'primevue/toast'
+import ToastService from 'primevue/toastservice'
 
 // Prime directives imports
 import Ripple from 'primevue/ripple'
 
 // Prime config imports
-import Aura from '@primevue/themes/aura'
+import D2Cast from '@/presets/D2Cast'
 
 export default function ({ app }: PluginContext) {
   // Prime components
@@ -30,6 +32,10 @@ export default function ({ app }: PluginContext) {
   app.component('PSelect', Select)
   app.component('PanelMenu', PanelMenu)
   app.component('Fluid', Fluid)
+  app.component('Toast', Toast)
+
+  // Prime services
+  app.use(ToastService)
 
   // Prime directives
   app.directive('ripple', Ripple)
@@ -37,7 +43,14 @@ export default function ({ app }: PluginContext) {
   // Prime
   app.use(PrimeVue, {
     theme: {
-      preset: Aura,
+      preset: D2Cast,
+      options: {
+        darkModeSelector: '.dark',
+        cssLayer: {
+          name: 'primevue',
+          order: 'tailwind-base, primeui, primevue, tailwind-utilities'
+        }
+      },
       cssLayer: {
         name: 'primevue',
         order: 'tailwind-base, primeui, primevue, tailwind-utilities'

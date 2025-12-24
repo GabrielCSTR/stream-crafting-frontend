@@ -12,8 +12,10 @@ import { useRouter } from 'vue-router'
 import { oauth } from '@/plugins/services'
 import { PasswordGrant } from '@/services/oauth'
 import { useI18n } from 'vue-i18n'
+import { useToast } from 'primevue/usetoast'
 
 const router = useRouter()
+const toast = useToast()
 
 const { t } = useI18n()
 
@@ -71,21 +73,45 @@ function btnsText(platform: string) {
 async function onSubmit({ email, password }: { email: string; password: string }) {
   loading.value = true
 
-  await oauth
-    .requestAndSave(new PasswordGrant(email, password))
-    .then(() => {
-      router.replace('/app')
+  try {
+    await oauth.requestAndSave(new PasswordGrant(email, password))
+    toast.add({
+      severity: 'success',
+      summary: 'Login realizado com sucesso!',
+      life: 3000
     })
-    .finally(() => {
-      loading.value = false
-    })
+    router.replace('/app')
+  } catch (error: any) {
+    let errorMessage = 'Erro ao fazer login. Verifique suas credenciais.'
+    
+    if (error?.response?.data?.error) {
+      const errorData = error.response.data.error
+      
+      if (errorData === 'invalid_grant' || errorData === 'user_or_password_wrong') {
+        errorMessage = 'Email ou senha incorretos. Tente novamente.'
+      } else if (errorData === 'invalid_user') {
+        errorMessage = 'Usuário inválido ou não encontrado.'
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message
+      }
+    } else if (error?.message) {
+      errorMessage = error.message
+    }
 
-  // await new Promise((resolve) => setTimeout(resolve, 5000))
+    toast.add({
+      severity: 'error',
+      summary: 'Erro no login',
+      detail: errorMessage,
+      life: 5000
+    })
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 
 <template>
-  <Page class="stream-crafting-signin flex py-8">
+  <div class="radiantcast-signin">
     <SignBase
       :dynamic-form-props="dynamicFormProps"
       :submit-btn-text="t('buttons.signin')"
@@ -95,5 +121,12 @@ async function onSubmit({ email, password }: { email: string; password: string }
       :links="links"
       :title="t('pages.signin.title')"
     ></SignBase>
-  </Page>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.radiantcast-signin {
+  width: 100%;
+  max-width: 100%;
+}
+</style>
