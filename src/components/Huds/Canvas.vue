@@ -354,6 +354,7 @@ watch(
     linear-gradient(rgba(52, 245, 163, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
+  height: 100vh;
 
   &__toolbar {
     position: sticky;

@@ -52,6 +52,11 @@ export const routes: RouteRecordRaw[] = [
             component: () => import('@/pages/app/Huds/List.vue')
           },
           {
+            path: 'templates',
+            name: 'huds-templates',
+            component: () => import('@/pages/app/Huds/Templates.vue')
+          },
+          {
             path: 'new',
             name: 'huds-new',
             component: () => import('@/pages/app/Huds/New.vue')

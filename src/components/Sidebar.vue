@@ -27,7 +27,18 @@ const list: MenuItem[] = [
   {
     icon: PrimeIcons.TH_LARGE,
     label: 'HUDs',
-    route: '/app/huds'
+    items: [
+      {
+        icon: PrimeIcons.LIST,
+        label: 'Meus HUDs',
+        route: '/app/huds'
+      },
+      {
+        icon: PrimeIcons.IMAGES,
+        label: 'Templates',
+        route: '/app/huds/templates'
+      }
+    ]
   }
 ]
 
@@ -239,6 +250,18 @@ const profileBind = computed<PanelMenuProps>(() => ({
       background: transparent;
       border: none;
       padding: 0;
+      margin-left: 0.5rem;
+      border-left: 2px solid rgba(52, 245, 163, 0.1);
+      
+      .stream-crafter-sidebar-item {
+        font-size: 0.875rem;
+        padding: 0.625rem 0.875rem;
+        margin: 0.125rem 0.25rem;
+        
+        &__icon {
+          font-size: 1rem;
+        }
+      }
     }
   }
 
