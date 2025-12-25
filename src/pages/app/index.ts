@@ -37,7 +37,7 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'huds',
         name: 'app-huds',
-        component: () => import('@/pages/app/Huds.vue')
+        component: () => import('@/pages/app/Huds/Index.vue')
       },
       {
         path: 'profile',

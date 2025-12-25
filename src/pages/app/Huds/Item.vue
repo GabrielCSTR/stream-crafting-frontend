@@ -1,9 +1,14 @@
 <template>
-  <Page class="stream-crafter-hud-edit-page flex flex-column w-full h-full">
-    <router-view></router-view>
-  </Page>
+  <div class="stream-crafter-hud-item-page">
+    <router-view />
+  </div>
 </template>
 
-<script setup lang="ts">
-import Page from '@/components/Page.vue'
-</script>
+<style lang="scss" scoped>
+.stream-crafter-hud-item-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>

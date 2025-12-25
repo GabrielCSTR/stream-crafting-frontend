@@ -54,17 +54,11 @@ export const routes: RouteRecordRaw[] = [
           {
             path: 'new',
             name: 'huds-new',
-            meta: {
-              hideSidebar: true
-            },
             component: () => import('@/pages/app/Huds/New.vue')
           },
           {
             path: ':hudId',
             component: () => import('@/pages/app/Huds/Item.vue'),
-            meta: {
-              hideSidebar: true
-            },
             children: [
               {
                 path: '',
@@ -74,9 +68,6 @@ export const routes: RouteRecordRaw[] = [
               {
                 path: 'editor',
                 name: 'huds-item-edit',
-                meta: {
-                  hideSidebar: true
-                },
                 component: () => import('@/pages/app/Huds/Item/Editor.vue')
               }
             ]

@@ -11,6 +11,7 @@ import { HudText, HudImage } from './elements'
 import isEqual from 'lodash.isequal'
 import { computed, ref, toRaw, watch } from 'vue'
 import { PrimeIcons } from '@primevue/core'
+import SplitButton from 'primevue/splitbutton'
 import { useRoute, useRouter } from 'vue-router'
 import { DEFAULT_MIN_SIZE } from '@/composables/useElement'
 import useElementSelection, { CONTEXT_MENU_Z_INDEX } from '@/composables/useElementSelection'
@@ -76,7 +77,7 @@ function normalizeListItem(
       ...rest,
       id,
       active: selecteds.size ? isInsideBoundingBox : activeNode.value === id,
-      disable: true,
+      disable: props.disable,
       isInsideBoundingBox
     },
     on: {
@@ -161,6 +162,35 @@ function addText() {
     }
   })
 }
+
+function addImage() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'image',
+    isShowed: true,
+    maintainAspectRatio: true,
+    layer: 0,
+    data: {
+      src: 'https://placehold.co/400x300',
+      alt: 'Imagem placeholder'
+    }
+  })
+}
+
+const addElementMenuItems = ref([
+  {
+    label: 'Texto',
+    icon: PrimeIcons.FONT,
+    command: () => addText()
+  },
+  {
+    label: 'Imagem',
+    icon: PrimeIcons.IMAGE,
+    command: () => addImage()
+  }
+])
 
 function updateSelectedsIsShowed(newValue: IHUDElement['isShowed']) {
   selectedNormalizedElements.value.forEach((item) => {
@@ -267,13 +297,31 @@ watch(
     <div class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full">
       <div
         v-if="!props.disable"
-        class="sticky top-2 left-2 z-10 flex items-center gap-1 bg-white p-2 rounded w-fit"
+        class="stream-crafter-hud-canvas__toolbar"
       >
-        <p-button label="Adicionar texto" @click="addText" />
+        <SplitButton
+          label="Adicionar Elemento"
+          :icon="PrimeIcons.PLUS"
+          severity="success"
+          :model="addElementMenuItems"
+          @click="addText"
+        />
 
-        <p-button label="Ver lista" @click="showList" />
+        <p-button 
+          label="Ver Lista" 
+          :icon="PrimeIcons.LIST"
+          severity="secondary"
+          outlined
+          @click="showList" 
+        />
 
-        <p-button label="Preview" :icon="PrimeIcons.EYE" @click="showPreview" />
+        <p-button 
+          label="Preview" 
+          :icon="PrimeIcons.EYE" 
+          severity="info"
+          outlined
+          @click="showPreview" 
+        />
       </div>
 
       <component
@@ -301,13 +349,66 @@ watch(
 
 <style lang="scss">
 .stream-crafter-hud-canvas {
-  background-image: radial-gradient(circle, transparent 20px, white 1px);
+  background-color: #0F172A;
+  background-image: 
+    linear-gradient(rgba(52, 245, 163, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
+
+  &__toolbar {
+    position: sticky;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(52, 245, 163, 0.2);
+    border-radius: 12px;
+    width: fit-content;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    margin: 1rem;
+  }
 }
 
 .selection-area {
-  background: rgba(79, 144, 242, 0.01);
-  border: 1px dashed rgba(79, 144, 242, 0.8);
+  background: rgba(52, 245, 163, 0.05);
+  border: 2px dashed rgba(52, 245, 163, 0.6);
   border-radius: 0.25rem;
+}
+
+// Estilo do menu dropdown
+:deep(.p-splitbutton-dropdown) {
+  .p-menu {
+    background: rgba(15, 23, 42, 0.98);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(52, 245, 163, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    
+    .p-menuitem {
+      .p-menuitem-content {
+        transition: all 0.2s;
+        
+        &:hover {
+          background: rgba(52, 245, 163, 0.1);
+        }
+        
+        .p-menuitem-link {
+          color: #CBD5E1;
+          
+          .p-menuitem-icon {
+            color: #34F5A3;
+          }
+          
+          &:hover {
+            color: #F9FAFB;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -11,6 +11,9 @@ body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #app {
@@ -20,7 +23,6 @@ body {
 }
 
 // Aplicar tema dark por padrão
-// A classe 'dark' deve estar no elemento html (já configurado no index.html)
 html {
   background-color: #020617;
   color: #CBD5E1;
@@ -31,15 +33,117 @@ body {
   color: #CBD5E1;
 }
 
+// Scrollbar global customizada
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(52, 245, 163, 0.3) rgba(15, 23, 42, 0.5);
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(52, 245, 163, 0.3);
+  border-radius: 4px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(52, 245, 163, 0.5);
+  }
+}
+
+// Tipografia melhorada
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  color: #F9FAFB;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  line-height: 1.6;
+  color: #CBD5E1;
+}
+
+// Seleção de texto
+::selection {
+  background: rgba(52, 245, 163, 0.3);
+  color: #F9FAFB;
+}
+
+::-moz-selection {
+  background: rgba(52, 245, 163, 0.3);
+  color: #F9FAFB;
+}
+
 .a-full {
   @extend .h-full, .w-full !optional;
 }
 
 .p-button {
   justify-content: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 245, 163, 0.3);
+  }
 
   &-label {
     flex: none;
+  }
+}
+
+// Cards e Painéis
+.p-card {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border: 1px solid rgba(52, 245, 163, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    border-color: rgba(52, 245, 163, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+// Inputs melhorados
+.p-inputtext,
+.p-password-input,
+.p-dropdown,
+.p-textarea {
+  background: rgba(15, 23, 42, 0.6) !important;
+  border: 1px solid rgba(52, 245, 163, 0.2) !important;
+  border-radius: 8px !important;
+  color: #F9FAFB !important;
+  transition: all 0.2s !important;
+
+  &:hover {
+    border-color: rgba(52, 245, 163, 0.3) !important;
+  }
+
+  &:focus {
+    border-color: #34F5A3 !important;
+    box-shadow: 0 0 0 3px rgba(52, 245, 163, 0.1) !important;
+  }
+
+  &::placeholder {
+    color: #64748B !important;
   }
 }
 
