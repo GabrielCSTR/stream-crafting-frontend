@@ -1,24 +1,31 @@
 <script lang="ts" setup>
 import type { HUDElementBaseEmits, HUDElementBaseProps } from '@/types'
+import type { Dota2Map } from '@/types/gsi'
 import Base from './Base.vue'
 import { generateListeners } from '@/utils'
 import { PrimeIcons } from '@primevue/core/api'
-
-interface MapData {
-  game_time: number
-  radiant_score: number
-  dire_score: number
-  game_state: string
-  daytime: boolean
-}
+import { computed } from 'vue'
+import { formatGameTime, getGameStateInfo } from '@/types/gsi'
+import { useGSI } from '@/composables/useGSI'
 
 interface Props extends Partial<HUDElementBaseProps> {
   data: {
-    mapData?: MapData
+    // Modo legacy (compatibilidade)
+    mapData?: {
+      game_time: number
+      radiant_score: number
+      dire_score: number
+      game_state: string
+      daytime: boolean
+    }
     radiantLogo?: string
     direLogo?: string
     radiantName?: string
     direName?: string
+    
+    // Modo GSI (novo - recomendado)
+    map?: Dota2Map  // Passar dados do map diretamente
+    useGSIData?: boolean  // Usar dados GSI globais
   }
 }
 
@@ -43,11 +50,61 @@ const on = generateListeners<HUDElementBaseEmits>(
   emits
 )
 
-const formatTime = (seconds: number) => {
-  const mins = Math.floor(seconds / 60)
-  const secs = seconds % 60
-  return `${mins}:${secs.toString().padStart(2, '0')}`
-}
+// Hook GSI para buscar dados globais se solicitado
+const { map: gsiMap } = useGSI()
+
+// Determina qual fonte de dados usar
+const activeMap = computed(() => {
+  if (props.data.map) return props.data.map
+  if (props.data.useGSIData) return gsiMap.value
+  return null
+})
+
+// Computed properties para dados do scoreboard
+const gameTime = computed(() => {
+  if (activeMap.value) return activeMap.value.game_time || activeMap.value.clock_time
+  return props.data.mapData?.game_time || 0
+})
+
+const radiantScore = computed(() => {
+  if (activeMap.value) return activeMap.value.radiant_score
+  return props.data.mapData?.radiant_score || 0
+})
+
+const direScore = computed(() => {
+  if (activeMap.value) return activeMap.value.dire_score
+  return props.data.mapData?.dire_score || 0
+})
+
+const gameState = computed(() => {
+  if (activeMap.value) return getGameStateInfo(activeMap.value.game_state).label
+  return formatGameState(props.data.mapData?.game_state)
+})
+
+const radiantName = computed(() => {
+  if (activeMap.value?.radiant?.name) return activeMap.value.radiant.name
+  return props.data.radiantName || 'Radiant'
+})
+
+const direName = computed(() => {
+  if (activeMap.value?.dire?.name) return activeMap.value.dire.name
+  return props.data.direName || 'Dire'
+})
+
+const radiantLogo = computed(() => {
+  if (activeMap.value?.radiant?.logo) return activeMap.value.radiant.logo
+  return props.data.radiantLogo || ''
+})
+
+const direLogo = computed(() => {
+  if (activeMap.value?.dire?.logo) return activeMap.value.dire.logo
+  return props.data.direLogo || ''
+})
+
+const isDaytime = computed(() => {
+  if (activeMap.value) return activeMap.value.daytime
+  return props.data.mapData?.daytime ?? true
+})
 
 const formatGameState = (state?: string) => {
   if (!state) return 'Waiting'
@@ -65,26 +122,26 @@ const formatGameState = (state?: string) => {
 
 <template>
   <Base class="stream-crafter-hud-element-scoreboard" v-bind="props" v-on="on">
-    <div class="dota-scoreboard">
+    <div class="dota-scoreboard" :class="{ 'dota-scoreboard--night': !isDaytime }">
       <div class="dota-scoreboard__team dota-scoreboard__team--radiant">
         <div class="team-logo">
-          <img v-if="props.data.radiantLogo" :src="props.data.radiantLogo" alt="Radiant" />
+          <img v-if="radiantLogo" :src="radiantLogo" alt="Radiant" />
           <i v-else :class="PrimeIcons.SHIELD"></i>
         </div>
-        <div class="team-name">{{ props.data.radiantName || 'Radiant' }}</div>
-        <div class="team-score">{{ props.data.mapData?.radiant_score || 0 }}</div>
+        <div class="team-name">{{ radiantName }}</div>
+        <div class="team-score">{{ radiantScore }}</div>
       </div>
 
       <div class="dota-scoreboard__center">
-        <div class="game-time">{{ formatTime(props.data.mapData?.game_time || 0) }}</div>
-        <div class="game-state">{{ formatGameState(props.data.mapData?.game_state) }}</div>
+        <div class="game-time">{{ formatGameTime(gameTime) }}</div>
+        <div class="game-state">{{ gameState }}</div>
       </div>
 
       <div class="dota-scoreboard__team dota-scoreboard__team--dire">
-        <div class="team-score">{{ props.data.mapData?.dire_score || 0 }}</div>
-        <div class="team-name">{{ props.data.direName || 'Dire' }}</div>
+        <div class="team-score">{{ direScore }}</div>
+        <div class="team-name">{{ direName }}</div>
         <div class="team-logo">
-          <img v-if="props.data.direLogo" :src="props.data.direLogo" alt="Dire" />
+          <img v-if="direLogo" :src="direLogo" alt="Dire" />
           <i v-else :class="PrimeIcons.SHIELD"></i>
         </div>
       </div>

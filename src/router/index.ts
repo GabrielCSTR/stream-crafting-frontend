@@ -88,6 +88,11 @@ export const routes: RouteRecordRaw[] = [
         path: 'profile',
         name: 'app-profile',
         component: () => import('@/pages/app/Profile.vue')
+      },
+      {
+        path: 'gsi-example',
+        name: 'gsi-example',
+        component: () => import('@/pages/app/GSIExample.vue')
       }
     ]
   },

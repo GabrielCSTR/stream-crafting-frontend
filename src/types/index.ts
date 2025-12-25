@@ -36,3 +36,4 @@ export type ListenersType<Emits extends Record<string, any[]>> = Record<
 export * from './components'
 export * from './hud'
 export * from './links'
+export * from './gsi'

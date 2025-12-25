@@ -139,11 +139,12 @@ function onKeydown(event: KeyboardEvent) {
   <div
     ref="elementRef"
     :class="[
-      'stream-crafter-hud-element-base absolute touch-none select-none flex items-center justify-center px-4',
+      'stream-crafter-hud-element-base absolute touch-none select-none flex items-center justify-center',
       {
         'opacity-35': !props.isShowed,
         'stream-crafter-hud-element-base--active': props.active,
-        'stream-crafter-hud-element-base--grouped': props.groupId
+        'stream-crafter-hud-element-base--grouped': props.groupId,
+        'stream-crafter-hud-element-base--transparent': props.transparentBackground,
       }
     ]"
     tabindex="0"
@@ -170,9 +171,8 @@ function onKeydown(event: KeyboardEvent) {
   transform: translate(var(--hud-element-position-x), var(--hud-element-position-y));
   width: var(--hud-element-width);
   height: var(--hud-element-height);
-  background-color: var(--hud-element-background-color);
   color: var(--hud-element-text-color);
-  border: 4px dashed transparent;
+  // border: 4px dashed transparent;
   z-index: var(--hud-element-layer);
 
   &__show-btn {
@@ -186,6 +186,14 @@ function onKeydown(event: KeyboardEvent) {
   &--grouped {
     outline: 2px solid #6D5DF6;
     outline-offset: -2px;
+  }
+
+  &--transparent {
+    background-color: transparent !important;
+  }
+
+  &--background-color {
+    background-color: var(--hud-element-background-color);
   }
 }
 
