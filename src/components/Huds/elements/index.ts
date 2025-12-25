@@ -1,2 +1,7 @@
 export { default as HudText } from './Text.vue'
 export { default as HudImage } from './Image.vue'
+export { default as PlayerCard } from './PlayerCard.vue'
+export { default as ScoreBoard } from './ScoreBoard.vue'
+export { default as DraftPanel } from './DraftPanel.vue'
+export { default as GameTimer } from './GameTimer.vue'
+export { default as TeamBanner } from './TeamBanner.vue'

@@ -24,6 +24,19 @@ const contextMenuItems = markRaw<MenuItem[]>([
     separator: true
   },
   {
+    label: props.groupId ? '[Desagrupar]' : '[Agrupar selecionados]',
+    icon: props.groupId ? PrimeIcons.TIMES : PrimeIcons.LINK,
+    visible: () => props.id !== BOUNDING_BOX_ID,
+    command: () => {
+      if (props.groupId) {
+        emits('update:group', undefined)
+      }
+    }
+  },
+  {
+    separator: true
+  },
+  {
     label: '[Trazer à frente]',
     icon: PrimeIcons.ARROW_UP,
     command: () => emits('update:layer', props.layer + 1)
@@ -129,7 +142,8 @@ function onKeydown(event: KeyboardEvent) {
       'stream-crafter-hud-element-base absolute touch-none select-none flex items-center justify-center px-4',
       {
         'opacity-35': !props.isShowed,
-        'stream-crafter-hud-element-base--active': props.active
+        'stream-crafter-hud-element-base--active': props.active,
+        'stream-crafter-hud-element-base--grouped': props.groupId
       }
     ]"
     tabindex="0"
@@ -167,6 +181,11 @@ function onKeydown(event: KeyboardEvent) {
 
   &--active {
     border-color: var(--p-primary-color);
+  }
+
+  &--grouped {
+    outline: 2px solid #6D5DF6;
+    outline-offset: -2px;
   }
 }
 

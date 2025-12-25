@@ -1,6 +1,6 @@
 import { generateListeners } from '../utils'
 
-export type IHUDElementComponents = 'text' | 'image'
+export type IHUDElementComponents = 'text' | 'image' | 'playerCard' | 'scoreBoard' | 'draftPanel' | 'gameTimer' | 'teamBanner'
 
 interface IHUDElementData {
   id: string
@@ -9,6 +9,7 @@ interface IHUDElementData {
   color: string
   maintainAspectRatio: boolean
   layer: number
+  groupId?: string
   position: {
     x: number
     y: number
@@ -49,6 +50,7 @@ export type HUDElementBaseEmits = {
   'update:size': [payload: INormalizedHUDElementBind['size']]
   'update:is-showed': [payload: INormalizedHUDElementBind['isShowed']]
   'update:layer': [payload: INormalizedHUDElementBind['layer']]
+  'update:group': [payload: string | undefined]
   'delta:position': [payload: { dx: number; dy: number }]
   click: [payload: MouseEvent]
 }

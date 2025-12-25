@@ -11,6 +11,12 @@
           Escolha um template pronto para começar rapidamente
         </p>
       </div>
+      <Button
+        :icon="PrimeIcons.EYE"
+        label="Ver Componentes"
+        outlined
+        @click="router.push('/app/huds/preview')"
+      />
     </div>
 
     <!-- Loading State -->
@@ -97,41 +103,61 @@ const templates = ref<Template[]>([
     _id: 'template-1',
     created_at: dayjs().toDate(),
     updated_at: dayjs().toDate(),
-    src: 'https://placehold.co/1000x500/1a1a1a/34F5A3?text=Minimal+Dark',
-    name: 'Minimal Dark',
-    description: 'Template minimalista com fundo escuro e elementos destacados',
-    category: 'Minimal',
-    uses: 145
+    src: 'https://placehold.co/1200x675/0F172A/34F5A3?text=Tournament+Pro+HUD&font=raleway',
+    name: 'Tournament Pro',
+    description: 'HUD profissional para transmissões de torneios. Inclui scoreboard, draft panel, player cards e timer.',
+    category: 'Professional',
+    uses: 245
   },
   {
     _id: 'template-2',
     created_at: dayjs().toDate(),
     updated_at: dayjs().toDate(),
-    src: 'https://placehold.co/1000x500/6D5DF6/ffffff?text=Tournament+Pro',
-    name: 'Tournament Pro',
-    description: 'Design profissional para transmissões de torneios',
-    category: 'Professional',
-    uses: 89
+    src: 'https://placehold.co/1200x675/1E293B/6D5DF6?text=Clean+Overlay&font=raleway',
+    name: 'Clean Overlay',
+    description: 'Overlay limpo e minimalista com foco nas informações essenciais do jogo.',
+    category: 'Minimal',
+    uses: 189
   },
   {
     _id: 'template-3',
     created_at: dayjs().toDate(),
     updated_at: dayjs().toDate(),
-    src: 'https://placehold.co/1000x500/3AF2E9/1a1a1a?text=Neon+Glow',
-    name: 'Neon Glow',
-    description: 'Visual moderno com efeitos neon e cores vibrantes',
-    category: 'Modern',
-    uses: 203
+    src: 'https://placehold.co/1200x675/020617/3AF2E9?text=Draft+Focus&font=raleway',
+    name: 'Draft Focus',
+    description: 'Template especializado para fase de draft com destaque para picks e bans.',
+    category: 'Draft',
+    uses: 156
   },
   {
     _id: 'template-4',
     created_at: dayjs().toDate(),
     updated_at: dayjs().toDate(),
-    src: 'https://placehold.co/1000x500/0F172A/34F5A3?text=Clean+Stream',
-    name: 'Clean Stream',
-    description: 'Layout limpo e simples para streams casuais',
-    category: 'Casual',
-    uses: 67
+    src: 'https://placehold.co/1200x675/0B1220/92E66F?text=In-Game+Complete&font=raleway',
+    name: 'In-Game Complete',
+    description: 'HUD completo para transmissão in-game com todas as estatísticas dos jogadores.',
+    category: 'Complete',
+    uses: 312
+  },
+  {
+    _id: 'template-5',
+    created_at: dayjs().toDate(),
+    updated_at: dayjs().toDate(),
+    src: 'https://placehold.co/1200x675/1E293B/E66F6F?text=Team+Comparison&font=raleway',
+    name: 'Team Comparison',
+    description: 'Layout focado em comparação entre times com banners e estatísticas side-by-side.',
+    category: 'Comparison',
+    uses: 134
+  },
+  {
+    _id: 'template-6',
+    created_at: dayjs().toDate(),
+    updated_at: dayjs().toDate(),
+    src: 'https://placehold.co/1200x675/0F172A/FFC864?text=Minimal+Scoreboard&font=raleway',
+    name: 'Minimal Scoreboard',
+    description: 'Scoreboard minimalista para não obstruir a visão do jogo.',
+    category: 'Minimal',
+    uses: 201
   }
 ])
 

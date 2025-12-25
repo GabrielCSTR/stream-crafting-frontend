@@ -7,7 +7,15 @@ import type {
 } from '@/types/hud'
 import useColor from '@/composables/useColor'
 import useCrypt from '@/composables/useCrypt'
-import { HudText, HudImage } from './elements'
+import { 
+  HudText, 
+  HudImage, 
+  PlayerCard, 
+  ScoreBoard, 
+  DraftPanel, 
+  GameTimer, 
+  TeamBanner 
+} from './elements'
 import isEqual from 'lodash.isequal'
 import { computed, ref, toRaw, watch } from 'vue'
 import { PrimeIcons } from '@primevue/core'
@@ -33,16 +41,17 @@ const { genUUID } = useCrypt('HUD')
 
 const lazyList = ref<IHUDElement[]>([])
 
-const { selecteds, selectedsIds, boundingBox, clearSelection } = useElementSelection({
-  list: lazyList,
-  container: '.stream-crafter-hud-canvas__content',
-  selectable: '.stream-crafter-hud-element-base',
-  disable: computed(() => props.disable)
-})
+const { selecteds, selectedsIds, boundingBox, clearSelection } = useElementSelection(
+  lazyList,
+  '.stream-crafter-hud-canvas__content',
+  '.stream-crafter-hud-element-base'
+)
 
 const normalizedList = ref<INormalizedHUDElement[]>([])
 
 const activeNode = ref<string>()
+
+const canvasContentRef = ref<HTMLElement>()
 
 const componentsMap = toRaw({
   text: {
@@ -50,6 +59,21 @@ const componentsMap = toRaw({
   },
   image: {
     component: HudImage
+  },
+  playerCard: {
+    component: PlayerCard
+  },
+  scoreBoard: {
+    component: ScoreBoard
+  },
+  draftPanel: {
+    component: DraftPanel
+  },
+  gameTimer: {
+    component: GameTimer
+  },
+  teamBanner: {
+    component: TeamBanner
   }
 })
 
@@ -85,6 +109,7 @@ function normalizeListItem(
       'update:size': setNewValue('size'),
       'update:is-showed': setNewValue('isShowed'),
       'update:layer': setNewValue('layer'),
+      'update:group': setNewValue('groupId'),
       'selecteds:position'(payload: HUDElementBaseEmits['delta:position'][number]) {
         updateSelectedsPosition(id, payload)
       },
@@ -125,13 +150,21 @@ function genDefaultListItemData() {
   const { color, luminance } = genRandomColors()
   const uuid = genUUID()
 
+  // Calcula o centro do canvas (container)
+  const canvasWidth = canvasContentRef.value?.clientWidth || window.innerWidth
+  const canvasHeight = canvasContentRef.value?.clientHeight || window.innerHeight
+  
+  // Centraliza o elemento considerando seu tamanho padrão
+  const centerX = (canvasWidth - DEFAULT_MIN_SIZE) / 2
+  const centerY = (canvasHeight - DEFAULT_MIN_SIZE) / 2
+
   return {
     id: uuid,
     backgroundColor: color,
     color: luminance,
     position: {
-      x: 0,
-      y: 0
+      x: Math.max(0, centerX),
+      y: Math.max(0, centerY)
     },
     size: {
       width: DEFAULT_MIN_SIZE,
@@ -179,16 +212,155 @@ function addImage() {
   })
 }
 
+function addPlayerCard() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'playerCard',
+    isShowed: true,
+    layer: 1,
+    maintainAspectRatio: false,
+    size: { width: 300, height: 120 },
+    data: {
+      playerData: {
+        name: 'Player Name',
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        last_hits: 0,
+        denies: 0,
+        net_worth: 0,
+        gold: 0,
+        team_name: 'radiant'
+      },
+      team: 'radiant'
+    }
+  })
+}
+
+function addScoreBoard() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'scoreBoard',
+    isShowed: true,
+    layer: 1,
+    maintainAspectRatio: false,
+    size: { width: 600, height: 120 },
+    data: {
+      mapData: {
+        game_time: 0,
+        radiant_score: 0,
+        dire_score: 0,
+        game_state: 'DOTA_GAMERULES_STATE_PRE_GAME',
+        daytime: true
+      },
+      radiantName: 'Radiant',
+      direName: 'Dire'
+    }
+  })
+}
+
+function addDraftPanel() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'draftPanel',
+    isShowed: true,
+    layer: 1,
+    maintainAspectRatio: false,
+    size: { width: 900, height: 300 },
+    data: {
+      draftData: {
+        activeteam: 2,
+        pick: true,
+        activeteam_time_remaining: 30,
+        team2: {},
+        team3: {}
+      },
+      radiantName: 'Radiant',
+      direName: 'Dire'
+    }
+  })
+}
+
+function addGameTimer() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'gameTimer',
+    isShowed: true,
+    layer: 1,
+    maintainAspectRatio: false,
+    size: { width: 200, height: 80 },
+    data: {
+      mapData: {
+        game_time: 0,
+        daytime: true,
+        nightstalker_night: false
+      }
+    }
+  })
+}
+
+function addTeamBanner() {
+  const defaultData = genDefaultListItemData()
+
+  lazyList.value.push({
+    ...defaultData,
+    component: 'teamBanner',
+    isShowed: true,
+    layer: 1,
+    maintainAspectRatio: false,
+    size: { width: 350, height: 100 },
+    data: {
+      team: 'radiant',
+      teamName: 'Team Name',
+      teamTag: 'TAG',
+      score: 0
+    }
+  })
+}
+
 const addElementMenuItems = ref([
   {
     label: 'Texto',
-    icon: PrimeIcons.FONT,
+    icon: PrimeIcons.ALIGN_LEFT,
     command: () => addText()
   },
   {
     label: 'Imagem',
     icon: PrimeIcons.IMAGE,
     command: () => addImage()
+  },
+  {
+    label: 'Player Card',
+    icon: PrimeIcons.ID_CARD,
+    command: () => addPlayerCard()
+  },
+  {
+    label: 'ScoreBoard',
+    icon: PrimeIcons.CHART_BAR,
+    command: () => addScoreBoard()
+  },
+  {
+    label: 'Draft Panel',
+    icon: PrimeIcons.TH_LARGE,
+    command: () => addDraftPanel()
+  },
+  {
+    label: 'Game Timer',
+    icon: PrimeIcons.CLOCK,
+    command: () => addGameTimer()
+  },
+  {
+    label: 'Team Banner',
+    icon: PrimeIcons.FLAG,
+    command: () => addTeamBanner()
   }
 ])
 
@@ -211,6 +383,11 @@ function updateSelectedsPosition(
   targetDispatched: string,
   { dx, dy }: HUDElementBaseEmits['delta:position'][number]
 ) {
+  // Encontra o elemento que disparou o evento
+  const targetElement = normalizedList.value.find(item => item.id === targetDispatched)
+  const targetGroupId = targetElement?.bind.groupId
+
+  // Atualiza elementos selecionados
   selectedNormalizedElements.value.forEach((item) => {
     if (targetDispatched !== item.id) {
       normalizedList.value[item.index].bind.position = {
@@ -219,6 +396,19 @@ function updateSelectedsPosition(
       }
     }
   })
+
+  // Se o elemento que disparou pertence a um grupo, move todos do grupo
+  if (targetGroupId) {
+    normalizedList.value.forEach((item, index) => {
+      // Move elementos do mesmo grupo que não estão selecionados
+      if (item.bind.groupId === targetGroupId && !selecteds.has(item.id)) {
+        normalizedList.value[index].bind.position = {
+          x: item.bind.position.x + dx,
+          y: item.bind.position.y + dy
+        }
+      }
+    })
+  }
 }
 
 // Método que atualiza o tamanho dos itens selecionados
@@ -250,6 +440,83 @@ function showList() {
 
 function showPreview() {
   router.push(`/app/huds/${route.params.hudId}`)
+}
+
+function removeSelectedElements() {
+  if (selectedsIds.value.length === 0) return
+  
+  // Remove os elementos selecionados
+  lazyList.value = lazyList.value.filter(item => !selectedsIds.value.includes(item.id))
+  
+  // Limpa a seleção
+  clearSelection()
+  
+  // Limpa o nó ativo
+  activeNode.value = undefined
+}
+
+function groupSelectedElements() {
+  if (selectedsIds.value.length < 2) return
+  
+  // Gera um ID único para o grupo
+  const groupId = genUUID()
+  
+  // Aplica o groupId a todos os elementos selecionados
+  selectedNormalizedElements.value.forEach((item) => {
+    normalizedList.value[item.index].bind.groupId = groupId
+  })
+}
+
+function ungroupSelectedElements() {
+  if (selectedsIds.value.length === 0) return
+  
+  // Remove o groupId de todos os elementos selecionados
+  selectedNormalizedElements.value.forEach((item) => {
+    normalizedList.value[item.index].bind.groupId = undefined
+  })
+}
+
+function handleKeyDown(event: KeyboardEvent) {
+  // Remove elementos ao pressionar Delete ou Backspace
+  if ((event.key === 'Delete' || event.key === 'Backspace') && selectedsIds.value.length > 0) {
+    event.preventDefault()
+    removeSelectedElements()
+    return
+  }
+
+  // Move elementos com as setas do teclado
+  if (selectedsIds.value.length > 0 && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+    event.preventDefault()
+    
+    // Define o incremento: 1px normal, 10px com Shift
+    const step = event.shiftKey ? 10 : 1
+    
+    let deltaX = 0
+    let deltaY = 0
+    
+    switch (event.key) {
+      case 'ArrowUp':
+        deltaY = -step
+        break
+      case 'ArrowDown':
+        deltaY = step
+        break
+      case 'ArrowLeft':
+        deltaX = -step
+        break
+      case 'ArrowRight':
+        deltaX = step
+        break
+    }
+    
+    // Atualiza a posição de todos os elementos selecionados
+    selectedNormalizedElements.value.forEach((item) => {
+      normalizedList.value[item.index].bind.position = {
+        x: item.bind.position.x + deltaX,
+        y: item.bind.position.y + deltaY
+      }
+    })
+  }
 }
 
 function onDoubleClick() {
@@ -291,10 +558,12 @@ watch(
 <template>
   <div
     class="stream-crafter-hud-canvas flex flex-col h-full overflow-hidden"
+    tabindex="0"
     @dblclick.prevent="onDoubleClick"
+    @keydown="handleKeyDown"
   >
     <!-- content -->
-    <div class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full">
+    <div ref="canvasContentRef" class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full">
       <div
         v-if="!props.disable"
         class="stream-crafter-hud-canvas__toolbar"
@@ -308,9 +577,39 @@ watch(
         />
 
         <p-button 
+          label="Remover" 
+          :icon="PrimeIcons.TRASH"
+          severity="danger"
+          :disabled="selectedsIds.length === 0"
+          outlined
+          @click="removeSelectedElements" 
+        />
+
+        <p-button 
+          label="Agrupar" 
+          :icon="PrimeIcons.LINK"
+          severity="secondary"
+          class="text-gray-400"
+          :disabled="selectedsIds.length < 2"
+          outlined
+          @click="groupSelectedElements" 
+        />
+
+        <p-button 
+          label="Desagrupar" 
+          :icon="PrimeIcons.TIMES"
+          severity="secondary"
+          class="text-gray-400"
+          :disabled="selectedsIds.length === 0"
+          outlined
+          @click="ungroupSelectedElements" 
+        />
+
+        <p-button 
           label="Ver Lista" 
           :icon="PrimeIcons.LIST"
           severity="secondary"
+          class="text-gray-400"
           outlined
           @click="showList" 
         />
