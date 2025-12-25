@@ -26,7 +26,7 @@ const props = withDefaults(defineProps<Props>(), {
   backgroundColor: '#000000',
   color: '#ffffff',
   maintainAspectRatio: false,
-  // transparentBackground: true,
+  transparentBackground: true,
   layer: 0,
   position: () => ({ x: 0, y: 0 }),
   size: () => ({ width: 1920, height: 1080 })
@@ -208,42 +208,44 @@ onMounted(async () => {
 
      -->
 
-    <div class="flex flex-row w-full">
+    <div class="flex flex-row w-full h-full">
         <!-- DRAFT LEFT PANEL -->
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col flex-1">
             <!-- RADIANT PICKS HERO -->
-            <div class="flex flex-row">
-                <div v-for="(player, index) in radiantPicks" :key="index" class="w-auto">
+            <div class="flex flex-row flex-1">
+                <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1">
                   <CardHeroPick :player="player" :index="Number(index)" />
                 </div>
             </div>
             <!-- RADIANT BANS HERO -->
-            <div class="flex flex-row bg-red-600 w-full">
-                <div v-for="(heroBan, index) in radiantBans" :key="index">
+            <div class="flex flex-row bg-red-600 w-full h-16">
+                <div v-for="(heroBan, index) in radiantBans" :key="index" class="flex-1 h-full">
                     <CardHeroBans :heroBan="heroBan" />
                 </div>
             </div>
         </div>
-        
+
         <!-- DRAFT MIDDLE PANEL -->
-        <CardTimer 
-            :activeTeam="activeTeam" 
-            :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
-            :radiantBonusTime="RADIANT_BONUS_TIME" 
-            :direBonusTime="DIRE_BONUS_TIME"
-        />
+        <div class="w-64 flex-shrink-0">
+            <CardTimer 
+                :activeTeam="activeTeam" 
+                :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
+                :radiantBonusTime="RADIANT_BONUS_TIME" 
+                :direBonusTime="DIRE_BONUS_TIME"
+            />
+        </div>
 
         <!-- DRAFT RIGHT PANEL -->
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col flex-1">
             <!-- DIRE PICKS HERO -->
-            <div class="flex flex-row-reverse">
-               <div v-for="(player, index) in direPicks" :key="index" class="w-auto">
+            <div class="flex flex-row-reverse flex-1">
+               <div v-for="(player, index) in direPicks" :key="index" class="flex-1">
                    <CardHeroPick :player="player" :index="Number(index)" />
                 </div>
             </div>
             <!-- DIRE BANS HERO -->
-              <div class="flex flex-row-reverse bg-red-600">
-                <div v-for="(heroBan, index) in direBans" :key="index">
+              <div class="flex flex-row-reverse bg-red-600 h-16">
+                <div v-for="(heroBan, index) in direBans" :key="index" class="flex-1 h-full">
                    <CardHeroBans :heroBan="heroBan" />
                 </div>
             </div>

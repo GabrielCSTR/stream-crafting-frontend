@@ -34,7 +34,7 @@ const formatTime = (seconds: any) => {
 
 </script>
 <template>
-    <div class="relative flex flex-col w-[1280px] bg-blue-300">
+    <div class="relative flex flex-col w-full h-full bg-blue-300">
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <div class="flex flex-row mb-12">
                     <div v-if="activeTeam == 'radiant'">

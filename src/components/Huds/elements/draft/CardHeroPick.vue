@@ -22,9 +22,9 @@ const getImageUrl = (hero_name: string) => {
 
 </script>
 <template>
-    <div class="media-container">
+    <div class="flex w-full h-full overflow-hidden">
         <video :id="`radiant_pick:pick${props.index}_class_image`" autoplay muted loop
-            class=" w-[600px] h-[200px] object-fill">
+            class="w-full h-full object-fill">
             <source :src="getImageUrl(props.player)" type="video/mp4" />
         </video>
     </div>
