@@ -3,7 +3,10 @@ import type { Dota2Draft, HUDElementBaseEmits, HUDElementBaseProps } from '@/typ
 import Base from './Base.vue';
 import useGSI, { useDraft } from '@/composables/useGSI';
 import { generateListeners } from '@/utils';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
+import CardHeroPick from './draft/CardHeroPick.vue';
+import CardHeroBans from './draft/CardHeroBans.vue';
+import CardTimer from './draft/CardTimer.vue';
 
 interface Props extends Partial<HUDElementBaseProps> {
   data: {
@@ -179,21 +182,6 @@ const loadData = async () => {
   });
 }
 
-const getImageUrl = (hero_name: string) => {
-    if(!hero_name || hero_name === "none" || hero_name === "banning" || hero_name === "picking") {
-      return new URL(`../../../assets/images/dota2_logo_animated.mp4`, import.meta.url).href;
-    }
-    const image = new URL(`../../../assets/images/heroes_animated/npc_dota_hero_${hero_name}.webm`, import.meta.url).href;
-    return image;
-};
-
-
-const getImageStaticUrl = (hero_name: string) => {
-    const image = new URL(`../../../assets/images/heroes_static/${hero_name}.png`, import.meta.url).href;
-    return image || '';
-};
-
-
 const { 
   loadExampleData, 
 } = useGSI()
@@ -226,122 +214,37 @@ onMounted(async () => {
             <!-- RADIANT PICKS HERO -->
             <div class="flex flex-row">
                 <div v-for="(player, index) in radiantPicks" :key="index" class="w-auto">
-                    <div class="media-container">
-                        <video :id="`radiant_pick:pick${index}_class_image`" autoplay muted loop
-                            class=" w-[600px] h-[200px] object-fill">
-                            <source :src="getImageUrl(player)" type="video/mp4" />
-                        </video>
-                    </div>
+                  <CardHeroPick :player="player" :index="Number(index)" />
                 </div>
             </div>
             <!-- RADIANT BANS HERO -->
             <div class="flex flex-row bg-red-600 w-full">
                 <div v-for="(heroBan, index) in radiantBans" :key="index">
-                    <div v-if="heroBan == 'banning' && heroBan != 'none'"
-                      class="relative w-full h-full bg-red-600 animate-fade-in">
-                      <div class="banning-inner-shadow absolute inset-0 bg-red-600 opacity-60"></div>
-                      <img class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[80%] h-[28px] pulse"
-                          src="@/assets/images/cross.png" alt="cross.png" onerror="this.style.display='none'" />
-                      <p
-                          class="banning-font tracking-[.25em] absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center mb-[4px] text-white text-[10px] font-bold pulse">
-                          BANNING
-                      </p>
-                    </div>
-
-                    <div v-if="heroBan == 'none' && heroBan != 'banning'"
-                        class="relative w-full h-full bg-red-600 animate-fade-in">
-                        <img class="h-[55px] w-full grayscale" src="@/assets/images/black_image.png" alt="" />
-                        <div class="absolute inset-0 bg-red-950 opacity-60"></div>
-                    </div>
-
-                    <div v-if="heroBan != 'none' && heroBan != 'banning'" class=" relative w-full h-full bg-red-600">
-                        <img class="h-[55px] w-full grayscale contrast-125 animate-fade-in" :src="getImageStaticUrl(heroBan)"
-                            alt="" />
-                        <div class="slash"></div>
-                        <div class="inner-shadow absolute inset-0 bg-red-600 opacity-30"></div>
-                    </div>
+                    <CardHeroBans :heroBan="heroBan" />
                 </div>
             </div>
         </div>
+        
         <!-- DRAFT MIDDLE PANEL -->
-        <div class="relative flex flex-col w-[1280px] bg-blue-300">
-              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <div class="flex flex-row mb-12">
-                      <div v-if="activeTeam == 'radiant'">
-                          <img class="h-14 scale-x-[-1]" src="@/assets/images/arrow.png" alt="" />
-                      </div>
-                      <div v-else-if="activeTeam == 'dire'">
-                          <img  class="h-14 scale-x-[-1] opacity-0" src="@/assets/images/arrow.png" alt="" />
-                      </div>
-                      <p class="text-5xl activeteam_time_remaining text-black">
-                          {{ formatTime(DRAFT_ACTIVE_TIME_REMAINING) }}
-                      </p>
+        <CardTimer 
+            :activeTeam="activeTeam" 
+            :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
+            :radiantBonusTime="RADIANT_BONUS_TIME" 
+            :direBonusTime="DIRE_BONUS_TIME"
+        />
 
-                      <div v-if="activeTeam == 'dire'">
-                          <img class="h-14" src="@/assets/images/arrow.png" alt="" />
-                      </div>
-                      <div v-else-if="activeTeam == 'radiant'">
-                          <img class="h-14 opacity-0" src="@/assets/images/arrow.png" alt="" />
-                      </div>
-
-                  </div>
-              </div>
-              <div class="absolute bottom-0 w-full bg-orange-500">
-                  <div class="flex flex-row">
-                      <div class="w-full bg-emerald-400">
-                          <div class="flex flex-col pl-2">
-                              <p class="text-sm reserve_time text-black">RESERVE TIME</p>
-                              <p class="text-2xl reserve_time text-black">{{ formatTime(RADIANT_BONUS_TIME) }}</p>
-                          </div>
-                      </div>
-                      <div class="w-full bg-red-500">
-                          <div class="flex flex-col items-end pr-2">
-                              <p class="text-sm reserve_time text-black">RESERVE TIME</p>
-                              <p class="text-2xl reserve_time text-black">{{ formatTime(DIRE_BONUS_TIME) }}</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
         <!-- DRAFT RIGHT PANEL -->
         <div class="flex flex-col w-full">
             <!-- DIRE PICKS HERO -->
             <div class="flex flex-row-reverse">
                <div v-for="(player, index) in direPicks" :key="index" class="w-auto">
-                    <div class="media-container">
-                        <video :id="`radiant_pick:pick${index}_class_image`" autoplay muted loop
-                            class=" w-[600px] h-[200px] object-fill">
-                            <source :src="getImageUrl(player)" type="video/mp4" />
-                        </video>
-                    </div>
+                   <CardHeroPick :player="player" :index="Number(index)" />
                 </div>
             </div>
             <!-- DIRE BANS HERO -->
               <div class="flex flex-row-reverse bg-red-600">
                 <div v-for="(heroBan, index) in direBans" :key="index">
-                    <div v-if="heroBan == 'banning' && heroBan != 'none'"
-                      class="relative w-full h-full bg-red-600 animate-fade-in">
-                      <div class="banning-inner-shadow absolute inset-0 bg-red-600 opacity-60"></div>
-                      <img class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-[80%] h-[28px] pulse"
-                          src="@/assets/images/cross.png" alt="cross.png" onerror="this.style.display='none'" />
-                      <p
-                          class="banning-font tracking-[.25em] absolute bottom-0 ml-2 text-center mb-[4px] text-white text-[10px] font-bold pulse">
-                          BANNING
-                      </p>
-                    </div>
-
-                    <div v-if="heroBan == 'none' && heroBan != 'banning'"
-                        class="relative w-full h-full bg-red-600 animate-fade-in">
-                        <img class="h-[55px] w-full grayscale" src="@/assets/images/black_image.png" alt="" />
-                        <div class="absolute inset-0 bg-red-950 opacity-60"></div>
-                    </div>
-
-                    <div v-if="heroBan != 'none' && heroBan != 'banning'" class=" relative w-full h-full bg-red-600">
-                        <img class="h-[55px] w-full grayscale contrast-125 animate-fade-in" :src="getImageStaticUrl(heroBan)"
-                            alt="" />
-                        <div class="slash"></div>
-                        <div class="inner-shadow absolute inset-0 bg-red-600 opacity-30"></div>
-                    </div>
+                   <CardHeroBans :heroBan="heroBan" />
                 </div>
             </div>
         </div>
