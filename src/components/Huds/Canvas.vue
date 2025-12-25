@@ -264,15 +264,31 @@ function addScoreBoard() {
 }
 
 function addDraftPanel() {
-  const defaultData = genDefaultListItemData()
+  const { color, luminance } = genRandomColors()
+  const uuid = genUUID()
+
+  // Calcula o centro do canvas considerando o tamanho real do DraftPanel
+  const canvasWidth = canvasContentRef.value?.clientWidth || window.innerWidth
+  const canvasHeight = canvasContentRef.value?.clientHeight || window.innerHeight
+  const draftWidth = 1520
+  const draftHeight = 320
+  
+  const centerX = (canvasWidth - draftWidth) / 2
+  const centerY = (canvasHeight - draftHeight) / 2
 
   lazyList.value.push({
-    ...defaultData,
+    id: uuid,
+    backgroundColor: color,
+    color: luminance,
+    position: {
+      x: Math.max(0, centerX),
+      y: Math.max(0, centerY)
+    },
     component: 'draftPanel',
     isShowed: true,
     layer: 1,
     maintainAspectRatio: false,
-    size: { width: 900, height: 300 },
+    size: { width: draftWidth, height: draftHeight },
     data: {
       draftData: {
         activeteam: 2,

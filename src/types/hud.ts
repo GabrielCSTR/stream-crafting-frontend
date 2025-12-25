@@ -5,7 +5,7 @@ export type IHUDElementComponents = 'text' | 'image' | 'playerCard' | 'scoreBoar
 interface IHUDElementData {
   id: string
   isShowed: boolean
-  BackgroundColor?: string
+  backgroundColor?: string
   color: string
   maintainAspectRatio: boolean
   layer: number
