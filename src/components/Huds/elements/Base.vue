@@ -171,6 +171,7 @@ function onKeydown(event: KeyboardEvent) {
   transform: translate(var(--hud-element-position-x), var(--hud-element-position-y));
   width: var(--hud-element-width);
   height: var(--hud-element-height);
+  min-width: var(--hud-element-min-width);
   color: var(--hud-element-text-color);
   // border: 4px dashed transparent;
   z-index: var(--hud-element-layer);

@@ -24,6 +24,7 @@ const props = withDefaults(defineProps<Props>(), {
   isResizing: true,
   isShowed: true,
   backgroundColor: '#000000',
+  minWidth: '1200px',
   color: '#ffffff',
   maintainAspectRatio: false,
   transparentBackground: true,
@@ -40,6 +41,8 @@ const on = generateListeners<HUDElementBaseEmits>(
 )
 
 const formatTime = (seconds: any) => {
+  console.log("SECONDS", seconds);
+  
   if (isNaN(seconds)) {
     return "0:00";
   }
@@ -184,9 +187,9 @@ const loadData = async () => {
   }
 
   console.table({
-    "Draft Active Time Remaining": formatTime(DRAFT_ACTIVE_TIME_REMAINING),
-    "Radiant Bonus Time": formatTime(RADIANT_BONUS_TIME),
-    "Dire Bonus Time": formatTime(DIRE_BONUS_TIME),
+    "Draft Active Time Remaining": formatTime(DRAFT_ACTIVE_TIME_REMAINING.value),
+    "Radiant Bonus Time": formatTime(RADIANT_BONUS_TIME.value),
+    "Dire Bonus Time": formatTime(DIRE_BONUS_TIME.value),
     "Active Team": activeTeam.value,
     "Current Phase": phase,
     "Radiant State": radiantState.value,
@@ -225,7 +228,7 @@ onMounted(async () => {
 
     <div class="flex flex-col w-full h-full bg-gradient-to-b from-gray-900 to-black">
         <!-- TOP ROW: PICKS -->
-        <div class="flex flex-row w-full h-1/2">
+        <div class="flex flex-row w-full h-full">
             <!-- RADIANT PICKS -->
             <div class="flex flex-row" style="width: calc((100% - 14rem) / 2)">
                 <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1 border-r border-black">
@@ -262,18 +265,25 @@ onMounted(async () => {
         </div>
 
         <!-- BOTTOM ROW: TEAM INFO -->
-        <div class="flex flex-row w-full">
+        <div class="flex flex-row w-full h-full">
             <!-- RADIANT TEAM INFO -->
             <div class="flex flex-row items-center justify-between bg-gradient-to-r from-blue-950 to-blue-900 px-1.5 gap-1" style="width: calc((100% - 14rem) / 2)">
                 <!-- Team Number -->
                 <div class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
-                    1
+                    {{ gsiDraft.radiant_score }}
                 </div>
                 
                 <!-- Team Name and Players -->
-                <div class="flex-shrink min-w-0 text-left max-w-xs">
-                    <h2 class="text-white text-xl font-bold truncate">Qhali</h2>
-                    <p class="text-blue-300 text-xs truncate">{{ radiantPlayerNames }}</p>
+                <div class="flex-shrink min-w-0 text-left max-w-xs overflow-hidden">
+                    <h2 class="text-white text-xl font-bold truncate">{{ radiantTeamName }}</h2>
+                    <div class="relative overflow-hidden">
+                        <p 
+                            class="text-blue-300 text-xs whitespace-nowrap inline-block"
+                            :class="radiantPlayerNames.length > 0 ? 'animate-marquee' : ''"
+                        >
+                            {{ radiantPlayerNames }}
+                        </p>
+                    </div>
                 </div>
 
                 <!-- RADIANT BANS -->
@@ -296,9 +306,16 @@ onMounted(async () => {
                     </div>
                 </div>
                 <!-- Team Name and Players -->
-                <div class="flex-shrink min-w-0 text-right max-w-xs">
-                    <h2 class="text-white text-xl font-bold truncate">Estar Backs</h2>
-                    <p class="text-pink-300 text-xs truncate">{{ direPlayerNames }}</p>
+                <div class="flex-shrink min-w-0 text-right max-w-xs overflow-hidden">
+                    <h2 class="text-white text-xl font-bold truncate">{{ direTeamName }}</h2>
+                    <div class="relative overflow-hidden">
+                        <p 
+                            class="text-pink-300 text-xs whitespace-nowrap inline-block"
+                            :class="direPlayerNames.length > 0 ? 'animate-marquee' : ''"
+                        >
+                            {{ direPlayerNames }}
+                        </p>
+                    </div>
                 </div>
                 <!-- Team Number -->
                 <div class="w-8 h-8 bg-pink-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
@@ -309,3 +326,31 @@ onMounted(async () => {
     </div>
 </Base>
 </template>
+
+<style scoped>
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  95% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  96% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.animate-marquee {
+  animation: marquee 12s ease-in-out infinite;
+}
+</style>
