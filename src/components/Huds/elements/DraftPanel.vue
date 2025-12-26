@@ -205,48 +205,90 @@ onMounted(async () => {
         // draft:team#:ban#_id (0-5)
         // draft:team#:pick#_class (0-4)
         // draft:team#:pick#_id (0-4)
-
      -->
 
-    <div class="flex flex-row w-full h-full">
-        <!-- DRAFT LEFT PANEL -->
-        <div class="flex flex-col flex-1">
-            <!-- RADIANT PICKS HERO -->
+    <div class="flex flex-col w-full bg-gradient-to-b from-gray-900 to-black">
+        <!-- TOP ROW: PICKS -->
+        <div class="flex flex-row w-full" style="height: 35%">
+            <!-- RADIANT PICKS -->
             <div class="flex flex-row flex-1">
-                <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1">
-                  <CardHeroPick :player="player" :index="Number(index)" />
+                <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1 border-r border-black">
+                    <CardHeroPick 
+                        :player="player" 
+                        :index="Number(index)" 
+                        team="radiant"
+                        :isPicking="activeTeam === 'radiant' && player === 'picking'"
+                    />
                 </div>
             </div>
-            <!-- RADIANT BANS HERO -->
-            <div class="flex flex-row bg-red-600 w-full h-16">
-                <div v-for="(heroBan, index) in radiantBans" :key="index" class="flex-1 h-full">
-                    <CardHeroBans :heroBan="heroBan" />
+            
+            <!-- MIDDLE TIMER -->
+            <div class="w-64 flex-shrink-0 border-x-4 border-gray-800">
+                <CardTimer 
+                    :activeTeam="activeTeam" 
+                    :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
+                    :radiantBonusTime="RADIANT_BONUS_TIME" 
+                    :direBonusTime="DIRE_BONUS_TIME"
+                />
+            </div>
+            
+            <!-- DIRE PICKS -->
+            <div class="flex flex-row flex-1">
+                <div v-for="(player, index) in direPicks" :key="index" class="flex-1 border-l border-black">
+                    <CardHeroPick 
+                        :player="player" 
+                        :index="Number(index)" 
+                        team="dire"
+                        :isPicking="activeTeam === 'dire' && player === 'picking'"
+                    />
                 </div>
             </div>
         </div>
 
-        <!-- DRAFT MIDDLE PANEL -->
-        <div class="w-64 flex-shrink-0">
-            <CardTimer 
-                :activeTeam="activeTeam" 
-                :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
-                :radiantBonusTime="RADIANT_BONUS_TIME" 
-                :direBonusTime="DIRE_BONUS_TIME"
-            />
-        </div>
+        <!-- BOTTOM ROW: TEAM INFO -->
+        <div class="flex flex-row w-full" >
+            <!-- RADIANT TEAM INFO -->
+            <div class="flex flex-row items-center max-w-[633px] flex-1 bg-gradient-to-r from-blue-950 to-blue-900 px-3 gap-4">
+                <!-- Team Number -->
+                <div class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                    1
+                </div>
+                
+                <!-- Team Name and Players -->
+                <div class="flex-shrink-0 min-w-[180px]">
+                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Qhali</h2>
+                    <p class="text-blue-300 text-xs whitespace-nowrap">Yor \ Shido \ kendallx \ Kiri \ James</p>
+                </div>
 
-        <!-- DRAFT RIGHT PANEL -->
-        <div class="flex flex-col flex-1">
-            <!-- DIRE PICKS HERO -->
-            <div class="flex flex-row-reverse flex-1">
-               <div v-for="(player, index) in direPicks" :key="index" class="flex-1">
-                   <CardHeroPick :player="player" :index="Number(index)" />
+                <!-- RADIANT BANS -->
+                <div class="flex flex-row gap-1 flex-shrink-0">
+                    <div v-for="(heroBan, index) in radiantBans" :key="index" class="w-12 h-12">
+                        <CardHeroBans :heroBan="heroBan" />
+                    </div>
                 </div>
             </div>
-            <!-- DIRE BANS HERO -->
-              <div class="flex flex-row-reverse bg-red-600 h-16">
-                <div v-for="(heroBan, index) in direBans" :key="index" class="flex-1 h-full">
-                   <CardHeroBans :heroBan="heroBan" />
+            
+            <!-- CENTER DIVIDER -->
+            <div class="w-64 flex-shrink-0 bg-black border-x-4 border-gray-800"></div>
+            
+            <!-- DIRE TEAM INFO -->
+            <div class="flex flex-row-reverse items-center max-w-[633px] flex-1 bg-gradient-to-l from-pink-950 to-pink-900 px-3 gap-4">
+                <!-- Team Number -->
+                <div class="w-10 h-10 bg-pink-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                    1
+                </div>
+                
+                <!-- Team Name and Players -->
+                <div class="flex-shrink-0 text-right min-w-[180px]">
+                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Estar Backs</h2>
+                    <p class="text-pink-300 text-xs whitespace-nowrap">wits / Alone / Ryu / Michael- / Prada</p>
+                </div>
+
+                <!-- DIRE BANS -->
+                <div class="flex flex-row-reverse gap-1 flex-shrink-0">
+                    <div v-for="(heroBan, index) in direBans" :key="index" class="w-12 h-12">
+                        <CardHeroBans :heroBan="heroBan" />
+                    </div>
                 </div>
             </div>
         </div>

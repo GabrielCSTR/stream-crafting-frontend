@@ -271,7 +271,7 @@ function addDraftPanel() {
   const canvasWidth = canvasContentRef.value?.clientWidth || window.innerWidth
   const canvasHeight = canvasContentRef.value?.clientHeight || window.innerHeight
   const draftWidth = 1520
-  const draftHeight = 320
+  const draftHeight = 520
   
   const centerX = (canvasWidth - draftWidth) / 2
   const centerY = (canvasHeight - draftHeight) / 2
