@@ -29,6 +29,20 @@ export interface IHUDElement<D = any> extends IHUDElementBase {
   data: D
 }
 
+// Formato para criar/atualizar HUD no backend
+export interface ICreateHUDPayload {
+  name: string
+  userId?: string
+  elements: IHUDElement[]
+}
+
+// Formato de resposta do backend
+export interface IHUDResponse extends ICreateHUDPayload {
+  _id: string
+  createdAt: string
+  updatedAt: string
+}
+
 export interface INormalizedHUDElementBind<D = any> extends IHUDElementData {
   active: boolean
   disable: boolean

@@ -6,7 +6,7 @@ import useColor from './useColor'
 
 export type BoundingBox = Pick<IHUDElementBase, 'position' | 'size'>
 
-export const CONTEXT_MENU_Z_INDEX = 9_999
+export const CONTEXT_MENU_Z_INDEX = 8_000
 
 export const BOUNDING_BOX_ID = 'bounding-box'
 

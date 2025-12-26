@@ -10,6 +10,12 @@ const props = defineProps<{
 
 const list = computed(() => [
   {
+    key: 'elements',
+    icon: PrimeIcons.TH_LARGE,
+    text: 'Elementos',
+    value: props.hud.elements?.length || 0
+  },
+  {
     key: 'created_at',
     icon: PrimeIcons.CALENDAR_PLUS,
     text: 'Criado',
@@ -33,7 +39,7 @@ const list = computed(() => [
       <!-- Preview Image -->
       <div class="stream-crafting-hud-grid-item__preview">
         <img 
-          :src="props.hud.src" 
+          :src="props.hud.src || 'https://placehold.co/1000x500/png?text=No+Preview'" 
           :alt="`${props.hud.name} preview`"
           class="stream-crafting-hud-grid-item__image"
         />

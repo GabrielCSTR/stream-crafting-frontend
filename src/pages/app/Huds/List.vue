@@ -26,7 +26,7 @@ const handleSearch = () => {
     return
   }
   filteredHuds.value = huds.value.filter(hud => 
-    hud.name.toLowerCase().includes(searchQuery.value.toLowerCase())
+    hud.name?.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 }
 
@@ -38,10 +38,12 @@ onMounted(async () => {
   loading.value = true
   try {
     const hudsResponse = await api.huds.find()
-    huds.value = hudsResponse.items
+    huds.value = hudsResponse.items || hudsResponse || []
     filteredHuds.value = huds.value
   } catch (error) {
     console.error('Error fetching HUDs:', error)
+    huds.value = []
+    filteredHuds.value = []
   } finally {
     loading.value = false
   }

@@ -1,21 +1,113 @@
 <script lang="ts" setup>
 import HUDCanvas from '@/components/Huds/Canvas.vue'
-import { LIST } from '@/composables/useElement'
+import { api } from '@/plugins/services'
 import type { IHUDElement } from '@/types/hud'
 import { PrimeIcons } from '@primevue/core/api'
 import Button from 'primevue/button'
-import { onMounted, ref } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import ConfirmDialog from 'primevue/confirmdialog'
+import InputText from 'primevue/inputtext'
+import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
+import { computed, onMounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave, useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
 const toast = useToast()
-const list = ref<IHUDElement[]>([])
-const isSaving = ref(false)
+const confirm = useConfirm()
 
-onMounted(() => {
-  list.value = LIST
+const list = ref<IHUDElement[]>([])
+const hudName = ref('')
+const originalHudName = ref('')
+const originalList = ref<IHUDElement[]>([])
+const hasUnsavedChanges = ref(false)
+const isSaving = ref(false)
+const isLoading = ref(true)
+
+onMounted(async () => {
+  try {
+    const hudId = route.params.hudId as string
+    const hudData = await api.huds.findOne(hudId)
+    
+    if (!hudData) {
+      throw new Error('HUD não encontrada')
+    }
+    
+    hudName.value = hudData.name || 'Meu HUD'
+    
+    // Mapear elementos para o formato correto do frontend
+    list.value = (hudData.elements || []).map((element: any) => ({
+      id: element.id,
+      component: element.component,
+      backgroundColor: element.backgroundColor || '#000000',
+      color: element.color || '#ffffff',
+      position: element.position,
+      size: element.size,
+      isShowed: element.isShowed,
+      maintainAspectRatio: element.maintainAspectRatio || false,
+      layer: element.layer || 0,
+      data: element.data || {},
+      ...(element.groupId && { groupId: element.groupId }),
+      ...(element.transparentBackground && { transparentBackground: element.transparentBackground })
+    }))
+    
+    // Salvar estado original para comparação
+    originalHudName.value = hudName.value
+    originalList.value = JSON.parse(JSON.stringify(list.value))
+  } catch (error) {
+    console.error('Error loading HUD:', error)
+    
+    toast.add({
+      severity: 'error',
+      summary: 'Erro',
+      detail: 'Erro ao carregar HUD',
+      life: 3000
+    })
+  } finally {
+    isLoading.value = false
+  }
+})
+
+// Detectar mudanças na lista ou no nome
+watch(
+  [list, hudName],
+  () => {
+    const nameChanged = hudName.value !== originalHudName.value
+    const listChanged = JSON.stringify(list.value) !== JSON.stringify(originalList.value)
+    hasUnsavedChanges.value = nameChanged || listChanged
+  },
+  { deep: true }
+)
+
+// Guard de navegação
+onBeforeRouteLeave((to, from, next) => {
+  if (!hasUnsavedChanges.value) {
+    next()
+    return
+  }
+
+  confirm.require({
+    message: 'Você tem alterações não salvas. Deseja sair sem salvar?',
+    header: 'Alterações não salvas',
+    icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+    rejectLabel: 'Cancelar',
+    acceptLabel: 'Sair sem salvar',
+    rejectProps: {
+      label: 'Cancelar',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Sair sem salvar',
+      severity: 'danger'
+    },
+    accept: () => {
+      next()
+    },
+    reject: () => {
+      next(false)
+    }
+  })
 })
 
 const goBack = () => {
@@ -27,14 +119,62 @@ const viewHud = () => {
 }
 
 const saveHud = async () => {
-  isSaving.value = true
+  if (!hudName.value.trim()) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Atenção',
+      detail: 'Por favor, insira um nome para o HUD',
+      life: 3000
+    })
+    return
+  }
+
+  if (list.value.length === 0) {
+    toast.add({
+      severity: 'warn',
+      summary: 'Atenção',
+      detail: 'Adicione pelo menos um elemento ao HUD antes de salvar',
+      life: 3000
+    })
+    return
+  }
+
   try {
-    // Simular salvamento
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    isSaving.value = true
+    
+    // Preparar payload no formato esperado pelo backend
+    const payload = {
+      _id: route.params.hudId as string,
+      name: hudName.value.trim(),
+      elements: list.value.map(element => ({
+        id: element.id,
+        component: element.component,
+        backgroundColor: element.backgroundColor,
+        color: element.color,
+        position: element.position,
+        size: element.size,
+        isShowed: element.isShowed,
+        maintainAspectRatio: element.maintainAspectRatio,
+        layer: element.layer,
+        data: element.data,
+        active: true,
+        isInsideBoundingBox: true,
+        ...(element.groupId && { groupId: element.groupId }),
+        ...(element.transparentBackground && { transparentBackground: element.transparentBackground })
+      }))
+    }
+    
+    await api.huds.update(payload)
+    
+    // Atualizar estado original após salvar
+    originalHudName.value = hudName.value
+    originalList.value = JSON.parse(JSON.stringify(list.value))
+    hasUnsavedChanges.value = false
+    
     toast.add({
       severity: 'success',
       summary: 'Sucesso',
-      detail: 'HUD salvo com sucesso!',
+      detail: 'HUD atualizado com sucesso!',
       life: 3000
     })
   } catch (error) {
@@ -48,16 +188,20 @@ const saveHud = async () => {
     isSaving.value = false
   }
 }
+
+const canSave = computed(() => hudName.value.trim() !== '' && list.value.length > 0 && !isSaving.value && hasUnsavedChanges.value)
 </script>
 
 <template>
   <div class="stream-crafting-hud-editor">
+    <ConfirmDialog />
+    
     <div class="stream-crafting-hud-editor__header">
       <Button
         :icon="PrimeIcons.ARROW_LEFT"
         text
         rounded
-        severity="secondary"
+        severity="info"
         @click="goBack"
         class="stream-crafting-hud-editor__back-btn"
       />
@@ -66,9 +210,14 @@ const saveHud = async () => {
           <i :class="PrimeIcons.PALETTE" />
           Editor de HUD
         </h1>
-        <p class="stream-crafting-hud-editor__subtitle">
-          Personalize todos os elementos do seu HUD
-        </p>
+        <div class="stream-crafting-hud-editor__name-input">
+          <InputText
+            v-model="hudName"
+            placeholder="Nome do HUD"
+            class="w-full"
+            :disabled="isLoading"
+          />
+        </div>
       </div>
       <div class="stream-crafting-hud-editor__actions">
         <Button
@@ -77,19 +226,25 @@ const saveHud = async () => {
           severity="secondary"
           outlined
           @click="viewHud"
+          :disabled="isLoading"
         />
         <Button
           label="Salvar"
           :icon="PrimeIcons.SAVE"
           severity="success"
           :loading="isSaving"
+          :disabled="!canSave"
           @click="saveHud"
         />
       </div>
     </div>
 
     <div class="stream-crafting-hud-editor__content">
-      <div class="stream-crafting-hud-editor__canvas-wrapper">
+      <div v-if="isLoading" class="stream-crafting-hud-editor__loading">
+        <i :class="PrimeIcons.SPINNER" class="pi-spin" />
+        <p>Carregando HUD...</p>
+      </div>
+      <div v-else class="stream-crafting-hud-editor__canvas-wrapper">
         <HUDCanvas v-model="list" />
       </div>
     </div>
@@ -126,7 +281,7 @@ const saveHud = async () => {
     gap: 0.75rem;
     font-size: 1.75rem;
     font-weight: 700;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 0.75rem 0;
     background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -136,6 +291,10 @@ const saveHud = async () => {
       color: #34F5A3;
       -webkit-text-fill-color: #34F5A3;
     }
+  }
+
+  &__name-input {
+    max-width: 400px;
   }
 
   &__subtitle {
@@ -156,6 +315,25 @@ const saveHud = async () => {
     display: flex;
     flex-direction: column;
     min-height: 0;
+  }
+
+  &__loading {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: #34F5A3;
+    
+    i {
+      font-size: 3rem;
+    }
+    
+    p {
+      font-size: 1.125rem;
+      color: #94A3B8;
+    }
   }
 
   &__canvas-wrapper {
@@ -185,5 +363,13 @@ const saveHud = async () => {
       pointer-events: none;
     }
   }
+}
+
+:deep(.p-confirm-dialog) {
+  z-index: 100000 !important;
+}
+
+:deep(.p-dialog-mask) {
+  z-index: 99999 !important;
 }
 </style>

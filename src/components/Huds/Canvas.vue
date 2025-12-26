@@ -555,7 +555,7 @@ watch(
   () => {
     genNormalizedList(lazyList.value)
   },
-  { deep: true }
+  { deep: true, immediate: true }
 )
 
 watch(

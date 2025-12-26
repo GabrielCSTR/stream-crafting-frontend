@@ -14,6 +14,7 @@ import PanelMenu from 'primevue/panelmenu'
 import Fluid from 'primevue/fluid'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
+import ConfirmationService from 'primevue/confirmationservice'
 
 // Prime directives imports
 import Ripple from 'primevue/ripple'
@@ -36,6 +37,7 @@ export default function ({ app }: PluginContext) {
 
   // Prime services
   app.use(ToastService)
+  app.use(ConfirmationService)
 
   // Prime directives
   app.directive('ripple', Ripple)
