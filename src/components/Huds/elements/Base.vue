@@ -145,6 +145,7 @@ function onKeydown(event: KeyboardEvent) {
         'stream-crafter-hud-element-base--active': props.active,
         'stream-crafter-hud-element-base--grouped': props.groupId,
         'stream-crafter-hud-element-base--transparent': props.transparentBackground,
+        'stream-crafter-hud-element-base--bg-color': !props.backgroundColor
       }
     ]"
     tabindex="0"
@@ -169,6 +170,7 @@ function onKeydown(event: KeyboardEvent) {
 <style lang="scss">
 .stream-crafter-hud-element-base {
   transform: translate(var(--hud-element-position-x), var(--hud-element-position-y));
+  background-color: var(--hud-element-background-color);
   width: var(--hud-element-width);
   height: var(--hud-element-height);
   min-width: var(--hud-element-min-width);
@@ -193,7 +195,7 @@ function onKeydown(event: KeyboardEvent) {
     background-color: transparent !important;
   }
 
-  &--background-color {
+  &--bg-color {
     background-color: var(--hud-element-background-color);
   }
 }

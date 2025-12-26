@@ -28,7 +28,7 @@ export default function useElement(
     '--hud-element-position-y': `${props.position.y}px`,
     '--hud-element-width': `${props.size.width}px`,
     '--hud-element-height': `${props.size.height}px`,
-    '--hud-element-background-color': props.transparentBackground ? 'transparent' : props.BackgroundColor,
+    '--hud-element-background-color': props.backgroundColor,
     '--hud-element-text-color': props.color,
     '--hud-element-layer': props.layer
   }))
@@ -137,7 +137,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#b17fa9',
+    backgroundColor: '#b17fa9',
     color: '#2d2d2d',
     maintainAspectRatio: false,
     position: {
@@ -157,7 +157,7 @@ export const LIST: IHUDElement[] = [
     isShowed: false,
     layer: 0,
     component: 'text',
-    BackgroundColor: '#9c137b',
+    backgroundColor: '#9c137b',
     color: '#ffffff',
     maintainAspectRatio: false,
     position: {
@@ -177,7 +177,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#77a32c',
+    backgroundColor: '#77a32c',
     color: '#2d2d2d',
     maintainAspectRatio: false,
     position: {
@@ -197,7 +197,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#2ab28d',
+    backgroundColor: '#2ab28d',
     color: '#2d2d2d',
     maintainAspectRatio: false,
     position: {
@@ -217,7 +217,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#5775ad',
+    backgroundColor: '#5775ad',
     color: '#ffffff',
     maintainAspectRatio: false,
     position: {
@@ -237,7 +237,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#653224',
+    backgroundColor: '#653224',
     color: '#ffffff',
     maintainAspectRatio: false,
     position: {
@@ -257,7 +257,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 1,
     component: 'text',
-    BackgroundColor: '#4862b7',
+    backgroundColor: '#4862b7',
     color: '#ffffff',
     maintainAspectRatio: false,
     position: {
@@ -277,7 +277,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 0,
     component: 'text',
-    BackgroundColor: '#e8c96f',
+    backgroundColor: '#e8c96f',
     color: '#2d2d2d',
     maintainAspectRatio: false,
     position: {
@@ -297,7 +297,7 @@ export const LIST: IHUDElement[] = [
     isShowed: true,
     layer: 0,
     component: 'image',
-    BackgroundColor: '#badad0',
+    backgroundColor: '#badad0',
     color: '#2d2d2d',
     maintainAspectRatio: true,
     position: {
