@@ -76,13 +76,13 @@ const formatTime = (seconds: any) => {
         </div>
 
         <!-- Reserve Times Bottom Bar -->
-        <div class="flex flex-row h-20 mt-2 border-t-2 border-gray-800">
+        <div class="flex flex-row h-full mt-5 border-t-2 border-gray-800">
             <!-- Radiant Reserve Time -->
             <div 
                 class="flex-1 bg-gradient-to-br from-blue-900 to-blue-950 flex flex-col justify-center items-center px-2 border-r border-gray-800 transition-all duration-300"
                 :class="activeTeam === 'radiant' ? 'border-t-4 border-t-blue-400' : ''"
             >
-                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Radiant Bonus</p>
+                <p class="text-blue-300 text-xs font-bold uppercase tracking-wider">Radiant</p>
                 <p class="reserve_time text-white text-3xl font-bold tabular-nums">{{ formatTime(radiantBonusTime) }}</p>
             </div>
 
@@ -91,7 +91,7 @@ const formatTime = (seconds: any) => {
                 class="flex-1 bg-gradient-to-bl from-pink-900 to-pink-950 flex flex-col justify-center items-center px-2 transition-all duration-300"
                 :class="activeTeam === 'dire' ? 'border-t-4 border-t-pink-400' : ''"
             >
-                <p class="text-pink-300 text-xs font-bold uppercase tracking-wider">Dire Bonus</p>
+                <p class="text-pink-300 text-xs font-bold uppercase tracking-wider">Dire</p>
                 <p class="reserve_time text-white text-3xl font-bold tabular-nums">{{ formatTime(direBonusTime) }}</p>
             </div>
         </div>

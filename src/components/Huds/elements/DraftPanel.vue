@@ -270,7 +270,7 @@ onMounted(async () => {
             <div class="flex flex-row items-center justify-between bg-gradient-to-r from-blue-950 to-blue-900 px-1.5 gap-1" style="width: calc((100% - 14rem) / 2)">
                 <!-- Team Number -->
                 <div class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
-                    {{ gsiDraft.radiant_score }}
+                    1
                 </div>
                 
                 <!-- Team Name and Players -->
