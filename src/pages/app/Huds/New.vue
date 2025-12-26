@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import HUDCanvas from '@/components/Huds/Canvas.vue'
-import { LIST } from '@/composables/useElement'
 import type { IHUDElement } from '@/types/hud'
 import { PrimeIcons } from '@primevue/core/api'
+import Button from 'primevue/button'
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -10,7 +10,7 @@ const router = useRouter()
 const list = ref<IHUDElement[]>([])
 
 onMounted(() => {
-  list.value = LIST
+  list.value = []
 })
 
 const goBack = () => {
@@ -25,7 +25,7 @@ const goBack = () => {
         :icon="PrimeIcons.ARROW_LEFT"
         text
         rounded
-        severity="secondary"
+        severity="info"
         @click="goBack"
         class="stream-crafting-hud-new__back-btn"
       />

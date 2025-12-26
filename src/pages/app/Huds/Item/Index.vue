@@ -5,6 +5,7 @@ import type { IHUDElement } from '@/types/hud'
 import { PrimeIcons } from '@primevue/core/api'
 import { onMounted, ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import Button from 'primevue/button'
 
 const router = useRouter()
 const route = useRoute()

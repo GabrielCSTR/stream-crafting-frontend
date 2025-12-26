@@ -2,42 +2,21 @@
 import GridItem from '@/components/Huds/GridItem.vue'
 import ProfessionalLoading from '@/components/ProfessionalLoading.vue'
 import { dayjs } from '@/plugins/dayjs'
+import { api } from '@/plugins/services'
 import type { Hud } from '@/services/models/hud'
 import { PrimeIcons } from '@primevue/core/api'
 import Button from 'primevue/button'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const loading = ref(false)
 const searchQuery = ref('')
 
-const huds = ref<Hud[]>([
-  {
-    _id: '666e4a7a9c782d9999a30ab8',
-    created_at: dayjs().subtract(5, 'months').toDate(),
-    updated_at: dayjs().subtract(2, 'weeks').toDate(),
-    src: 'https://placehold.co/1000x500',
-    name: 'Static Hud'
-  },
-  {
-    _id: '666e4a7a9c782d9999a30ab9',
-    created_at: dayjs().subtract(3, 'months').toDate(),
-    updated_at: dayjs().subtract(1, 'week').toDate(),
-    src: 'https://placehold.co/1000x500',
-    name: 'Tournament HUD'
-  },
-  {
-    _id: '666e4a7a9c782d9999a30ac0',
-    created_at: dayjs().subtract(1, 'month').toDate(),
-    updated_at: dayjs().subtract(3, 'days').toDate(),
-    src: 'https://placehold.co/1000x500',
-    name: 'Minimal HUD'
-  }
-])
+const huds = ref<Hud[]>([])
 
 const filteredHuds = ref(huds.value)
 
@@ -54,6 +33,19 @@ const handleSearch = () => {
 const createNewHud = () => {
   router.push('/app/huds/new')
 }
+
+onMounted(async () => {
+  loading.value = true
+  try {
+    const hudsResponse = await api.huds.find()
+    huds.value = hudsResponse.items
+    filteredHuds.value = huds.value
+  } catch (error) {
+    console.error('Error fetching HUDs:', error)
+  } finally {
+    loading.value = false
+  }
+})
 </script>
 
 <template>
@@ -96,7 +88,7 @@ const createNewHud = () => {
         <div class="stream-crafting-huds-page__stats">
           <div class="stream-crafting-huds-page__stat">
             <i :class="PrimeIcons.TH_LARGE" />
-            <span>{{ filteredHuds.length }} HUD{{ filteredHuds.length !== 1 ? 's' : '' }}</span>
+            <span>{{ filteredHuds?.length }} HUD{{ filteredHuds?.length !== 1 ? 's' : '' }}</span>
           </div>
         </div>
       </div>
@@ -106,7 +98,7 @@ const createNewHud = () => {
     <div class="stream-crafting-huds-page__content">
       <ProfessionalLoading v-if="loading" text="Carregando HUDs..." />
       
-      <div v-else-if="filteredHuds.length === 0" class="stream-crafting-huds-page__empty">
+      <div v-else-if="filteredHuds?.length === 0" class="stream-crafting-huds-page__empty">
         <i :class="PrimeIcons.INBOX" />
         <h3>{{ searchQuery ? 'Nenhum HUD encontrado' : 'Nenhum HUD criado ainda' }}</h3>
         <p>{{ searchQuery ? 'Tente outro termo de busca' : 'Comece criando seu primeiro HUD personalizado' }}</p>

@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { PrimeIcons } from '@primevue/core/api'
+import Button from 'primevue/button'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

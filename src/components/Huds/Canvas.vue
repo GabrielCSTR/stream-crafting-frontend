@@ -573,13 +573,13 @@ watch(
 
 <template>
   <div
-    class="stream-crafter-hud-canvas flex flex-col h-full overflow-hidden"
+    class="stream-crafter-hud-canvas flex flex-col h-full"
     tabindex="0"
     @dblclick.prevent="onDoubleClick"
     @keydown="handleKeyDown"
   >
     <!-- content -->
-    <div ref="canvasContentRef" class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full">
+    <div ref="canvasContentRef" class="stream-crafter-hud-canvas__content relative flex flex-col w-full h-full overflow-auto">
       <div
         v-if="!props.disable"
         class="stream-crafter-hud-canvas__toolbar"
@@ -646,19 +646,19 @@ watch(
         v-bind="item.bind"
         v-on="item.on"
       />
-    </div>
 
-    <!-- bounding box -->
-    <BoundingBox
-      v-if="selectedsIds.length > 0 && !props.disable"
-      ref="boundingBoxRef"
-      v-bind="boundingBox"
-      :disable="props.disable"
-      @on-change-size="updateSelectedsSize"
-      @on-change-layer="updateSelectedsLayer"
-      @on-change-is-showed="updateSelectedsIsShowed"
-      @on-change-position="updateSelectedsPosition('bounding-box', $event)"
-    ></BoundingBox>
+      <!-- bounding box -->
+      <BoundingBox
+        v-if="selectedsIds.length > 0 && !props.disable"
+        ref="boundingBoxRef"
+        v-bind="boundingBox"
+        :disable="props.disable"
+        @on-change-size="updateSelectedsSize"
+        @on-change-layer="updateSelectedsLayer"
+        @on-change-is-showed="updateSelectedsIsShowed"
+        @on-change-position="updateSelectedsPosition('bounding-box', $event)"
+      ></BoundingBox>
+    </div>
   </div>
 </template>
 
@@ -670,6 +670,10 @@ watch(
     linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
   height: 100vh;
+
+  &__content {
+    min-height: 100vh;
+  }
 
   &__toolbar {
     position: sticky;
