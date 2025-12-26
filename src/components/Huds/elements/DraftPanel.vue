@@ -51,6 +51,7 @@ const formatTime = (seconds: any) => {
 
 
 const { draft: gsiDraft, activeTeam, activeTime, radiant_bonus_time, dire_bonus_time, pickPhase } = useDraft()
+const { radiantPlayers, direPlayers } = useGSI()
 
 const radiantState: any = ref([]);
 const radiantPicks: any = ref([]);
@@ -69,6 +70,12 @@ const DRAFT_ACTIVE_TIME_REMAINING = ref();
 const RADIANT_BONUS_TIME = ref();
 const DIRE_BONUS_TIME = ref();
 
+// Team info
+const radiantTeamName = ref('Team Radiant');
+const direTeamName = ref('Team Dire');
+const radiantPlayerNames = ref('');
+const direPlayerNames = ref('');
+
 const loadData = async () => {
   DRAFT_ACTIVE_TIME_REMAINING.value = activeTime.value;
   RADIANT_BONUS_TIME.value = radiant_bonus_time.value;
@@ -77,15 +84,24 @@ const loadData = async () => {
   const isPickPhase = pickPhase.value;
   const phase = isPickPhase ? "picking" : "banning"; // Assign phase inside the callback
 
+  // Load team and player names
+  if (radiantPlayers.value && radiantPlayers.value.length > 0) {
+    radiantPlayerNames.value = radiantPlayers.value.map((p: any) => p.name).join(' \\ ');
+  }
+  
+  if (direPlayers.value && direPlayers.value.length > 0) {
+    direPlayerNames.value = direPlayers.value.map((p: any) => p.name).join(' \\ ');
+  }
+
   console.log("DATA GSI", gsiDraft.value);
   
 
 
   for (let i = 0; i <= 6; i++) {
     const banKeyDire = `ban${i}_class`;
-    const banDataDire = gsiDraft.value.team3[banKeyDire];
+    const banDataDire = gsiDraft.value?.team3[banKeyDire];
     const banKeyRadiant = `ban${i}_class`;
-    const banDataRadiant = gsiDraft.value.team2[banKeyRadiant];
+    const banDataRadiant = gsiDraft.value?.team2[banKeyRadiant];
 
     if (banDataDire) {
       DIRE_BANS.value[i] = banDataDire;
@@ -126,9 +142,9 @@ const loadData = async () => {
 
   for (let i = 0; i <= 4; i++) {
     const pickKeyDire = `pick${i}_class`;
-    const pickDataDire = gsiDraft.value.team3[pickKeyDire];
+    const pickDataDire = gsiDraft.value?.team3[pickKeyDire];
     const pickKeyRadiant = `pick${i}_class`;
-    const pickDataRadiant = gsiDraft.value.team2[pickKeyRadiant];
+    const pickDataRadiant = gsiDraft.value?.team2[pickKeyRadiant];
 
     if (pickDataDire) {
       DIRE_PICKS.value[i] = pickDataDire;
@@ -223,7 +239,7 @@ onMounted(async () => {
             </div>
             
             <!-- MIDDLE TIMER -->
-            <div class="w-64 flex-shrink-0 border-x-4 border-gray-800">
+            <div class="w-56 flex-shrink-0 border-x-4 border-gray-800 z-50">
                 <CardTimer 
                     :activeTeam="activeTeam" 
                     :activeTime="DRAFT_ACTIVE_TIME_REMAINING" 
@@ -246,18 +262,18 @@ onMounted(async () => {
         </div>
 
         <!-- BOTTOM ROW: TEAM INFO -->
-        <div class="flex flex-row w-full" >
+        <div class="flex flex-row w-full" style="height: 35%">
             <!-- RADIANT TEAM INFO -->
-            <div class="flex flex-row items-center max-w-[633px] flex-1 bg-gradient-to-r from-blue-950 to-blue-900 px-3 gap-4">
+            <div class="flex flex-row items-center justify-between flex-1 bg-gradient-to-r from-blue-950 to-blue-900 px-1.5 gap-1">
                 <!-- Team Number -->
-                <div class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                <div class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0x">
                     1
                 </div>
                 
                 <!-- Team Name and Players -->
-                <div class="flex-shrink-0 min-w-[180px]">
+                <div class="flex-shrink-0 text-left">
                     <h2 class="text-white text-xl font-bold whitespace-nowrap">Qhali</h2>
-                    <p class="text-blue-300 text-xs whitespace-nowrap">Yor \ Shido \ kendallx \ Kiri \ James</p>
+                    <p class="text-blue-300 text-xs whitespace-nowrap">{{ radiantPlayerNames }}</p>
                 </div>
 
                 <!-- RADIANT BANS -->
@@ -269,26 +285,24 @@ onMounted(async () => {
             </div>
             
             <!-- CENTER DIVIDER -->
-            <div class="w-64 flex-shrink-0 bg-black border-x-4 border-gray-800"></div>
+            <div class="w-56 flex-shrink-0 bg-black border-x-4 border-gray-800"></div>
             
             <!-- DIRE TEAM INFO -->
-            <div class="flex flex-row-reverse items-center max-w-[633px] flex-1 bg-gradient-to-l from-pink-950 to-pink-900 px-3 gap-4">
-                <!-- Team Number -->
-                <div class="w-10 h-10 bg-pink-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
-                    1
-                </div>
-                
-                <!-- Team Name and Players -->
-                <div class="flex-shrink-0 text-right min-w-[180px]">
-                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Estar Backs</h2>
-                    <p class="text-pink-300 text-xs whitespace-nowrap">wits / Alone / Ryu / Michael- / Prada</p>
-                </div>
-
+            <div class="flex flex-row items-center justify-between flex-1 bg-gradient-to-l from-pink-950 to-pink-900 px-2 gap-1">
                 <!-- DIRE BANS -->
                 <div class="flex flex-row-reverse gap-1 flex-shrink-0">
                     <div v-for="(heroBan, index) in direBans" :key="index" class="w-12 h-12">
                         <CardHeroBans :heroBan="heroBan" />
                     </div>
+                </div>
+                <!-- Team Name and Players -->
+                <div class="flex-shrink-0 text-right">
+                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Estar Backs</h2>
+                    <p class="text-pink-300 text-xs whitespace-nowrap">{{ direPlayerNames }}</p>
+                </div>
+                <!-- Team Number -->
+                <div class="w-8 h-8 bg-pink-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+                    1
                 </div>
             </div>
         </div>

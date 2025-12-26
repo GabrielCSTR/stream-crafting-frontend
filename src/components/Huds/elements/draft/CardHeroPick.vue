@@ -63,6 +63,7 @@ const getPickLabelClass = (team: string, isPicking: boolean) => {
             {{ isPicking ? 'PICKING...' : getPickLabel(props.index, props.team) }}
         </div>
         <div 
+            v-if="props.player !== 'none' && props.player !== 'picking'"
             :class="[
                 'absolute top-0 left-0 right-0 z-10 text-center py-1 font-bold text-xs uppercase tracking-wider',
                 getPickLabelClass(props.team, props.isPicking)

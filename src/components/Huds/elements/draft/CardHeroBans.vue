@@ -21,7 +21,7 @@ const getImageStaticUrl = (hero_name: string) => {
             src="@/assets/images/cross.png" alt="cross.png" onerror="this.style.display='none'" />
         <p
             class="banning-font tracking-[.25em] absolute bottom-0 ml-2 text-center mb-[4px] text-white text-xs font-bold pulse">
-            BANNING
+            BAN
         </p>
     </div>
 
@@ -32,7 +32,7 @@ const getImageStaticUrl = (hero_name: string) => {
     </div>
 
     <div v-if="props.heroBan != 'none' && props.heroBan != 'banning'" class=" relative w-full h-full bg-red-600">
-        <img class="w-full h-full object-fill grayscale contrast-125 animate-fade-in" :src="getImageStaticUrl(props.heroBan)"
+        <img class="w-full h-full object-cover grayscale contrast-125 animate-fade-in" :src="getImageStaticUrl(props.heroBan)"
             alt="" />
         <div class="slash"></div>
         <div class="inner-shadow absolute inset-0 bg-red-600 opacity-30"></div>

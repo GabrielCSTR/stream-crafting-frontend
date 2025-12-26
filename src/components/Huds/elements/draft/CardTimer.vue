@@ -36,7 +36,7 @@ const formatTime = (seconds: any) => {
 <template>
     <div class="relative flex items-center justify-center w-full h-full bg-black">
         <!-- Central Timer Display -->
-        <div class="flex flex-col items-center justify-center">
+        <div class="flex flex-col items-center justify-center mt-5">
             <!-- Dota 2 Logo/Icon -->
             <div class="mb-4 flex items-center justify-center">
                 <div class="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center border-4 border-white">
@@ -51,12 +51,12 @@ const formatTime = (seconds: any) => {
                 <div 
                     :class="[
                         'absolute transition-all duration-300',
-                        activeTeam === 'radiant' ? 'left-0 -translate-x-full' : 'right-0 translate-x-full'
+                        activeTeam === 'radiant' ? 'left-0 translate-x-full' : 'right-0 translate-x-full'
                     ]"
                 >
                     <svg 
-                        class="w-8 h-8" 
-                        :class="activeTeam === 'radiant' ? 'text-pink-500' : 'text-pink-500'"
+                        class="w-16 h-16" 
+                        :class="activeTeam === 'radiant' ? 'text-green-500 -translate-x-full scale-x-[-1]' : 'text-green-500 -translate-x-full'"
                         viewBox="0 0 24 24" 
                         fill="currentColor"
                     >
