@@ -3,10 +3,22 @@ import type { Hud } from '@/services/models/hud'
 import dayjs from 'dayjs'
 import { PrimeIcons } from '@primevue/core/api'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useConfirm } from 'primevue/useconfirm'
+import { useToast } from 'primevue/usetoast'
+import { api } from '@/plugins/services'
 
 const props = defineProps<{
   hud: Hud
 }>()
+
+const emit = defineEmits<{
+  'delete': [hudId: string]
+}>()
+
+const router = useRouter()
+const confirm = useConfirm()
+const toast = useToast()
 
 const list = computed(() => [
   {
@@ -28,6 +40,59 @@ const list = computed(() => [
     value: dayjs().to(props.hud.updated_at)
   }
 ])
+
+const viewHud = (event: Event) => {
+  event.preventDefault()
+  event.stopPropagation()
+  router.push(`/app/huds/${props.hud._id}`)
+}
+
+const editHud = (event: Event) => {
+  event.preventDefault()
+  event.stopPropagation()
+  router.push(`/app/huds/${props.hud._id}/editor`)
+}
+
+const deleteHud = (event: Event) => {
+  event.preventDefault()
+  event.stopPropagation()
+  
+  confirm.require({
+    message: `Deseja realmente excluir o HUD "${props.hud.name}"?`,
+    header: 'Confirmar exclusão',
+    icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+    rejectLabel: 'Cancelar',
+    acceptLabel: 'Excluir',
+    rejectProps: {
+      label: 'Cancelar',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Excluir',
+      severity: 'danger'
+    },
+    accept: async () => {
+      try {
+        await api.huds.delete(props.hud._id)
+        toast.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'HUD excluído com sucesso!',
+          life: 3000
+        })
+        emit('delete', props.hud._id)
+      } catch (error) {
+        toast.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao excluir HUD',
+          life: 3000
+        })
+      }
+    }
+  })
+}
 </script>
 
 <template>
@@ -39,19 +104,32 @@ const list = computed(() => [
       <!-- Preview Image -->
       <div class="stream-crafting-hud-grid-item__preview">
         <img 
-          :src="props.hud.src || 'https://placehold.co/1000x500/png?text=No+Preview'" 
+          :src="props.hud.src || `https://placehold.co/1000x500/transparent/png?font=oswald&text=${props.hud.name ? `${encodeURIComponent(props.hud.name)}` : ''}`" 
           :alt="`${props.hud.name} preview`"
           class="stream-crafting-hud-grid-item__image"
         />
         <div class="stream-crafting-hud-grid-item__overlay">
           <div class="stream-crafting-hud-grid-item__actions">
-            <button class="stream-crafting-hud-grid-item__action-btn">
+            <button 
+              class="stream-crafting-hud-grid-item__action-btn"
+              @click="viewHud"
+            >
               <i :class="PrimeIcons.EYE" />
               <span>Visualizar</span>
             </button>
-            <button class="stream-crafting-hud-grid-item__action-btn">
+            <button 
+              class="stream-crafting-hud-grid-item__action-btn"
+              @click="editHud"
+            >
               <i :class="PrimeIcons.PENCIL" />
               <span>Editar</span>
+            </button>
+            <button 
+              class="stream-crafting-hud-grid-item__action-btn stream-crafting-hud-grid-item__action-btn--danger"
+              @click="deleteHud"
+            >
+              <i :class="PrimeIcons.TRASH" />
+              <span>Remover</span>
             </button>
           </div>
         </div>
@@ -175,6 +253,16 @@ const list = computed(() => [
     &:hover {
       background: rgba(52, 245, 163, 0.2);
       transform: scale(1.05);
+    }
+
+    &--danger {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.3);
+      color: #EF4444;
+
+      &:hover {
+        background: rgba(239, 68, 68, 0.2);
+      }
     }
 
     i {

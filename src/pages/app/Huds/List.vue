@@ -6,6 +6,7 @@ import { api } from '@/plugins/services'
 import type { Hud } from '@/services/models/hud'
 import { PrimeIcons } from '@primevue/core/api'
 import Button from 'primevue/button'
+import ConfirmDialog from 'primevue/confirmdialog'
 import IconField from 'primevue/iconfield'
 import InputIcon from 'primevue/inputicon'
 import InputText from 'primevue/inputtext'
@@ -34,6 +35,11 @@ const createNewHud = () => {
   router.push('/app/huds/new')
 }
 
+const handleDeleteHud = (hudId: string) => {
+  huds.value = huds.value.filter(hud => hud._id !== hudId)
+  handleSearch()
+}
+
 onMounted(async () => {
   loading.value = true
   try {
@@ -52,6 +58,8 @@ onMounted(async () => {
 
 <template>
   <div class="stream-crafting-huds-page">
+    <ConfirmDialog />
+    
     <!-- Header Section -->
     <div class="stream-crafting-huds-page__header">
       <div class="stream-crafting-huds-page__header-content">
@@ -118,6 +126,7 @@ onMounted(async () => {
           v-for="hud in filteredHuds" 
           :key="hud._id" 
           :hud="hud"
+          @delete="handleDeleteHud"
         />
       </div>
     </div>
