@@ -223,11 +223,11 @@ onMounted(async () => {
         // draft:team#:pick#_id (0-4)
      -->
 
-    <div class="flex flex-col w-full bg-gradient-to-b from-gray-900 to-black">
+    <div class="flex flex-col w-full h-full bg-gradient-to-b from-gray-900 to-black">
         <!-- TOP ROW: PICKS -->
-        <div class="flex flex-row w-full" style="height: 35%">
+        <div class="flex flex-row w-full h-1/2">
             <!-- RADIANT PICKS -->
-            <div class="flex flex-row flex-1">
+            <div class="flex flex-row" style="width: calc((100% - 14rem) / 2)">
                 <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1 border-r border-black">
                     <CardHeroPick 
                         :player="player" 
@@ -249,7 +249,7 @@ onMounted(async () => {
             </div>
             
             <!-- DIRE PICKS -->
-            <div class="flex flex-row flex-1">
+            <div class="flex flex-row" style="width: calc((100% - 14rem) / 2)">
                 <div v-for="(player, index) in direPicks" :key="index" class="flex-1 border-l border-black">
                     <CardHeroPick 
                         :player="player" 
@@ -262,18 +262,18 @@ onMounted(async () => {
         </div>
 
         <!-- BOTTOM ROW: TEAM INFO -->
-        <div class="flex flex-row w-full" style="height: 35%">
+        <div class="flex flex-row w-full">
             <!-- RADIANT TEAM INFO -->
-            <div class="flex flex-row items-center justify-between flex-1 bg-gradient-to-r from-blue-950 to-blue-900 px-1.5 gap-1">
+            <div class="flex flex-row items-center justify-between bg-gradient-to-r from-blue-950 to-blue-900 px-1.5 gap-1" style="width: calc((100% - 14rem) / 2)">
                 <!-- Team Number -->
-                <div class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0x">
+                <div class="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
                     1
                 </div>
                 
                 <!-- Team Name and Players -->
-                <div class="flex-shrink-0 text-left">
-                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Qhali</h2>
-                    <p class="text-blue-300 text-xs whitespace-nowrap">{{ radiantPlayerNames }}</p>
+                <div class="flex-shrink min-w-0 text-left max-w-xs">
+                    <h2 class="text-white text-xl font-bold truncate">Qhali</h2>
+                    <p class="text-blue-300 text-xs truncate">{{ radiantPlayerNames }}</p>
                 </div>
 
                 <!-- RADIANT BANS -->
@@ -288,7 +288,7 @@ onMounted(async () => {
             <div class="w-56 flex-shrink-0 bg-black border-x-4 border-gray-800"></div>
             
             <!-- DIRE TEAM INFO -->
-            <div class="flex flex-row items-center justify-between flex-1 bg-gradient-to-l from-pink-950 to-pink-900 px-2 gap-1">
+            <div class="flex flex-row items-center justify-between bg-gradient-to-l from-pink-950 to-pink-900 px-2 gap-1" style="width: calc((100% - 14rem) / 2)">
                 <!-- DIRE BANS -->
                 <div class="flex flex-row-reverse gap-1 flex-shrink-0">
                     <div v-for="(heroBan, index) in direBans" :key="index" class="w-12 h-12">
@@ -296,9 +296,9 @@ onMounted(async () => {
                     </div>
                 </div>
                 <!-- Team Name and Players -->
-                <div class="flex-shrink-0 text-right">
-                    <h2 class="text-white text-xl font-bold whitespace-nowrap">Estar Backs</h2>
-                    <p class="text-pink-300 text-xs whitespace-nowrap">{{ direPlayerNames }}</p>
+                <div class="flex-shrink min-w-0 text-right max-w-xs">
+                    <h2 class="text-white text-xl font-bold truncate">Estar Backs</h2>
+                    <p class="text-pink-300 text-xs truncate">{{ direPlayerNames }}</p>
                 </div>
                 <!-- Team Number -->
                 <div class="w-8 h-8 bg-pink-700 rounded-full flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
