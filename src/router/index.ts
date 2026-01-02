@@ -25,6 +25,11 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/pages/About.vue')
   },
   {
+    path: '/overlay/:hudId',
+    name: 'overlay',
+    component: () => import('@/pages/Overlay.vue')
+  },
+  {
     path: '/app',
     component: () => import('@/layouts/LayoutApp.vue'),
     meta: {

@@ -13,5 +13,13 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    hmr: {
+      overlay: true
+    }
+  },
+  define: {
+    __WS_TOKEN__: JSON.stringify('')
   }
 })

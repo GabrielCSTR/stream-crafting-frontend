@@ -44,6 +44,19 @@ export function useGSI() {
   }
 
   /**
+   * Atualiza parcialmente os dados GSI (merge)
+   * Útil para quando o servidor envia apenas dados incrementais
+   */
+  const updateData = (partialData: Partial<Dota2GSIData>) => {
+    const currentData = gsiData.value || {} as Dota2GSIData
+    const mergedData = {
+      ...currentData,
+      ...partialData
+    }
+    setData(mergedData as Dota2GSIData)
+  }
+
+  /**
    * Carrega dados de exemplo do arquivo example.json
    */
   const loadExampleData = async () => {
@@ -66,24 +79,9 @@ export function useGSI() {
   // Computed properties para acesso fácil aos dados
   const map = computed(() => gsiData.value?.map || null)
   const players = computed(() => {
-    if (!gsiData.value?.player) return []
-    
+    if (!gsiData.value?.players) return []
     const allPlayers: Dota2Player[] = []
-    
-    // Team 2 (Radiant)
-    if (gsiData.value.player.team2) {
-      Object.values(gsiData.value.player.team2).forEach(player => {
-        allPlayers.push(player)
-      })
-    }
-    
-    // Team 3 (Dire)
-    if (gsiData.value.player.team3) {
-      Object.values(gsiData.value.player.team3).forEach(player => {
-        allPlayers.push(player)
-      })
-    }
-    
+    allPlayers.push(...gsiData.value.players)
     return allPlayers
   })
   
@@ -112,6 +110,7 @@ export function useGSI() {
     // Métodos
     onChange,
     setData,
+    updateData,
     loadExampleData,
     clearData
   }
@@ -171,11 +170,22 @@ export function useDraft() {
   
   const radiantDraft = computed(() => draft.value?.radiant || null)
   const direDraft = computed(() => draft.value?.dire || null)
-  const activeTeam = computed(() => draft.value?.activeteam === 2 ? "radiant" : "dire")
+  const activeTeam = computed(() => {
+    const team = draft.value?.activeteam
+    if (team === 2) return "radiant"
+    if (team === 3) return "dire"
+    return "none"
+  })
   const activeTime = computed(() => draft.value?.activeteam_time_remaining || 0)
-  const radiant_bonus_time = computed(() => draft.value?.radiant_bonus_time || 0)
-  const dire_bonus_time = computed(() => draft.value?.dire_bonus_time || 0)
+  const radiant_bonus_time = computed(() => draft.value?.radiant?.bonus_time || draft.value?.radiant_bonus_time || 0)
+  const dire_bonus_time = computed(() => draft.value?.dire?.bonus_time || draft.value?.dire_bonus_time || 0)
   const pickPhase = computed(() => draft.value?.pick || false)
+  const radiantPlayers = computed(() => {
+    return data.value?.players?.filter(p => p.team_name === 'radiant') || []
+  })
+  const direPlayers = computed(() => {
+    return data.value?.players?.filter(p => p.team_name === 'dire') || []
+  })
 
   return {
     draft,
@@ -186,6 +196,8 @@ export function useDraft() {
     radiant_bonus_time,
     dire_bonus_time,
     pickPhase,
+    radiantPlayers,
+    direPlayers,
     data
   }
 }

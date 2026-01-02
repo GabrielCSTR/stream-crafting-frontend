@@ -15,6 +15,7 @@ export interface Dota2GSIData {
     team2?: Record<string, Dota2Player>  // Radiant
     team3?: Record<string, Dota2Player>  // Dire
   }
+  players: Dota2Player[]
   hero?: Record<string, Dota2Hero>
   abilities?: Record<string, Dota2Ability>
   items?: Record<string, Dota2Item>

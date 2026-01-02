@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { watch, ref, nextTick } from 'vue'
+
 const props = defineProps({
     player: {
         type: String,
@@ -21,6 +23,9 @@ const props = defineProps({
         default: false
     }
 })
+
+const videoRef = ref<HTMLVideoElement | null>(null)
+const videoKey = ref(0)
 
 const getImageUrl = (hero_name: string) => {
     if(!hero_name || hero_name === "none" || hero_name === "banning" || hero_name === "picking") {
@@ -50,6 +55,23 @@ const getPickLabelClass = (team: string, isPicking: boolean) => {
     return team === "radiant" ? "bg-blue-900 text-blue-300" : "bg-pink-900 text-pink-300";
 };
 
+// Watch para recarregar o vídeo quando o player mudar
+watch(() => props.player, async (newPlayer, oldPlayer) => {
+    if (newPlayer !== oldPlayer) {
+        // Incrementa a key para forçar re-renderização
+        videoKey.value++
+        
+        await nextTick()
+        
+        // Recarrega o vídeo
+        if (videoRef.value) {
+            videoRef.value.load()
+            videoRef.value.play().catch(err => {
+                console.log('Erro ao reproduzir vídeo:', err)
+            })
+        }
+    }
+})
 </script>
 <template>
     <div class="flex flex-col w-full h-full relative">
@@ -75,15 +97,19 @@ const getPickLabelClass = (team: string, isPicking: boolean) => {
         <!-- Hero Video -->
         <div class="flex w-full h-full overflow-hidden relative">
             <video 
+                ref="videoRef"
+                :key="`${props.team}-${props.index}-${videoKey}`"
                 :id="`${props.team}_pick:pick${props.index}_class_image`" 
                 autoplay 
                 muted 
                 loop
+                playsinline
                 :class="[
                     'w-full h-full object-cover',
                     props.player === 'none' || props.player === 'picking' ? 'opacity-30' : ''
                 ]"
             >
+                <source :src="getImageUrl(props.player)" type="video/webm" />
                 <source :src="getImageUrl(props.player)" type="video/mp4" />
             </video>
             

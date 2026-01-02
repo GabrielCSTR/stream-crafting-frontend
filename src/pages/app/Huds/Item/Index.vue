@@ -3,13 +3,20 @@ import HUDCanvas from '@/components/Huds/Canvas.vue'
 import { LIST } from '@/composables/useElement'
 import type { IHUDElement } from '@/types/hud'
 import { PrimeIcons } from '@primevue/core/api'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import Button from 'primevue/button'
+import { useToast } from 'primevue/usetoast'
 
 const router = useRouter()
 const route = useRoute()
+const toast = useToast()
 const list = ref<IHUDElement[]>([])
+
+const overlayUrl = computed(() => {
+  const hudId = route.params.hudId
+  return `${window.location.origin}/overlay/${hudId}`
+})
 
 onMounted(() => {
   list.value = LIST
@@ -20,7 +27,30 @@ const goBack = () => {
 }
 
 const editHud = () => {
-  router.push(`/app/huds/${route.params.id}/editor`)
+  router.push(`/app/huds/${route.params.hudId}/editor`)
+}
+
+const copyOverlayLink = async () => {
+  try {
+    await navigator.clipboard.writeText(overlayUrl.value)
+    toast.add({
+      severity: 'success',
+      summary: 'Link copiado!',
+      detail: 'O link do overlay foi copiado para a área de transferência',
+      life: 3000
+    })
+  } catch (err) {
+    toast.add({
+      severity: 'error',
+      summary: 'Erro',
+      detail: 'Não foi possível copiar o link',
+      life: 3000
+    })
+  }
+}
+
+const openOverlay = () => {
+  window.open(overlayUrl.value, '_blank', 'width=1920,height=1080')
 }
 </script>
 
@@ -44,13 +74,28 @@ const editHud = () => {
           Prévia do seu HUD em modo de visualização
         </p>
       </div>
-      <Button
-        label="Editar"
-        :icon="PrimeIcons.PENCIL"
-        severity="info"
-        @click="editHud"
-        class="stream-crafting-hud-view__edit-btn"
-      />
+      <div class="stream-crafting-hud-view__actions">
+        <Button
+          label="Copiar Link Overlay"
+          :icon="PrimeIcons.COPY"
+          severity="secondary"
+          outlined
+          @click="copyOverlayLink"
+        />
+        <Button
+          label="Abrir Overlay"
+          :icon="PrimeIcons.EXTERNAL_LINK"
+          severity="success"
+          outlined
+          @click="openOverlay"
+        />
+        <Button
+          label="Editar"
+          :icon="PrimeIcons.PENCIL"
+          severity="info"
+          @click="editHud"
+        />
+      </div>
     </div>
 
     <div class="stream-crafting-hud-view__content">
@@ -94,12 +139,19 @@ const editHud = () => {
     margin: 0 0 0.5rem 0;
     background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
 
-    i {
-      color: #34F5A3;
-      -webkit-text-fill-color: #34F5A3;
+      button {
+        white-space: nowrap;
+      }
+      i {
+        color: #34F5A3;
+        -webkit-text-fill-color: #34F5A3;
+      }
     }
   }
 

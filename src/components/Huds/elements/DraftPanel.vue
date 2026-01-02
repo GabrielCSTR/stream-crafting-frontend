@@ -3,7 +3,7 @@ import type { Dota2Draft, HUDElementBaseEmits, HUDElementBaseProps } from '@/typ
 import Base from './Base.vue';
 import useGSI, { useDraft } from '@/composables/useGSI';
 import { generateListeners } from '@/utils';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import CardHeroPick from './draft/CardHeroPick.vue';
 import CardHeroBans from './draft/CardHeroBans.vue';
 import CardTimer from './draft/CardTimer.vue';
@@ -41,8 +41,6 @@ const on = generateListeners<HUDElementBaseEmits>(
 )
 
 const formatTime = (seconds: any) => {
-  console.log("SECONDS", seconds);
-  
   if (isNaN(seconds)) {
     return "0:00";
   }
@@ -53,8 +51,7 @@ const formatTime = (seconds: any) => {
 }
 
 
-const { draft: gsiDraft, activeTeam, activeTime, radiant_bonus_time, dire_bonus_time, pickPhase } = useDraft()
-const { radiantPlayers, direPlayers } = useGSI()
+const { draft: gsiDraft, activeTeam, activeTime, radiant_bonus_time, dire_bonus_time, pickPhase, radiantPlayers, direPlayers } = useDraft()
 
 const radiantState: any = ref([]);
 const radiantPicks: any = ref([]);
@@ -85,8 +82,8 @@ const loadData = async () => {
   DIRE_BONUS_TIME.value = dire_bonus_time.value;
 
   const isPickPhase = pickPhase.value;
-  const phase = isPickPhase ? "picking" : "banning"; // Assign phase inside the callback
-
+  const phase = isPickPhase ? "picking" : "banning";
+  
   // Load team and player names
   if (radiantPlayers.value && radiantPlayers.value.length > 0) {
     radiantPlayerNames.value = radiantPlayers.value.map((p: any) => p.name).join(' \\ ');
@@ -96,30 +93,28 @@ const loadData = async () => {
     direPlayerNames.value = direPlayers.value.map((p: any) => p.name).join(' \\ ');
   }
 
-  console.log("DATA GSI", gsiDraft.value);
-  
-
+  // Processar bans - usar nova estrutura draft.radiant e draft.dire
+  const radiantBansData = gsiDraft.value?.radiant?.picks?.filter((p: any) => p.type === 'ban') || [];
+  const direBansData = gsiDraft.value?.dire?.picks?.filter((p: any) => p.type === 'ban') || [];
 
   for (let i = 0; i <= 6; i++) {
-    const banKeyDire = `ban${i}_class`;
-    const banDataDire = gsiDraft.value?.team3[banKeyDire];
-    const banKeyRadiant = `ban${i}_class`;
-    const banDataRadiant = gsiDraft.value?.team2[banKeyRadiant];
+    const direBan = direBansData.find((b: any) => b.order === i);
+    const radiantBan = radiantBansData.find((b: any) => b.order === i);
 
-    if (banDataDire) {
-      DIRE_BANS.value[i] = banDataDire;
-      direState.value = banDataDire;
-      direBans.value[i] = banDataDire;
+    if (direBan && direBan.class) {
+      DIRE_BANS.value[i] = direBan.class;
+      direState.value = direBan.class;
+      direBans.value[i] = direBan.class;
     } else {
       DIRE_BANS.value[i] = "black_image";
       direState.value = phase;
       direBans.value[i] = "none";
     }
 
-    if (banDataRadiant) {
-      RADIANT_BANS.value[i] = banDataRadiant;
-      radiantState.value = banDataRadiant;
-      radiantBans.value[i] = banDataRadiant;
+    if (radiantBan && radiantBan.class) {
+      RADIANT_BANS.value[i] = radiantBan.class;
+      radiantState.value = radiantBan.class;
+      radiantBans.value[i] = radiantBan.class;
     } else {
       RADIANT_BANS.value[i] = "black_image";
       radiantState.value = phase;
@@ -143,26 +138,28 @@ const loadData = async () => {
     }
   }
 
-  for (let i = 0; i <= 4; i++) {
-    const pickKeyDire = `pick${i}_class`;
-    const pickDataDire = gsiDraft.value?.team3[pickKeyDire];
-    const pickKeyRadiant = `pick${i}_class`;
-    const pickDataRadiant = gsiDraft.value?.team2[pickKeyRadiant];
+  // Processar picks - usar nova estrutura
+  const radiantPicksData = gsiDraft.value?.radiant?.picks?.filter((p: any) => p.type === 'pick') || [];
+  const direPicksData = gsiDraft.value?.dire?.picks?.filter((p: any) => p.type === 'pick') || [];
 
-    if (pickDataDire) {
-      DIRE_PICKS.value[i] = pickDataDire;
-      direState.value = pickDataDire;
-      direPicks.value[i] = pickDataDire;
+  for (let i = 0; i <= 4; i++) {
+    const direPick = direPicksData.find((p: any) => p.order === i);
+    const radiantPick = radiantPicksData.find((p: any) => p.order === i);
+
+    if (direPick && direPick.class) {
+      DIRE_PICKS.value[i] = direPick.class;
+      direState.value = direPick.class;
+      direPicks.value[i] = direPick.class;
     } else {
       DIRE_PICKS.value[i] = "dota2_logo_animated";
       direState.value = phase;
       direPicks.value[i] = "none";
     }
 
-    if (pickDataRadiant) {
-      RADIANT_PICKS.value[i] = pickDataRadiant;
-      radiantState.value = pickDataRadiant;
-      radiantPicks.value[i] = pickDataRadiant;
+    if (radiantPick && radiantPick.class) {
+      RADIANT_PICKS.value[i] = radiantPick.class;
+      radiantState.value = radiantPick.class;
+      radiantPicks.value[i] = radiantPick.class;
     } else {
       RADIANT_PICKS.value[i] = "dota2_logo_animated";
       radiantState.value = phase;
@@ -206,9 +203,35 @@ const {
 } = useGSI()
 
 onMounted(async () => {
-  await loadExampleData()
+  // await loadExampleData()
   await loadData()
 })
+
+// Watch para atualizar automaticamente quando dados do GSI mudarem
+watch(
+  [gsiDraft, activeTime, radiant_bonus_time, dire_bonus_time, pickPhase, activeTeam],
+  () => {
+    if (gsiDraft.value) {
+      loadData()
+    }
+  },
+  { deep: true }
+)
+
+// Watch para atualizar nomes dos jogadores quando mudarem
+watch(
+  [radiantPlayers, direPlayers],
+  () => {
+    if (radiantPlayers.value && radiantPlayers.value.length > 0) {
+      radiantPlayerNames.value = radiantPlayers.value.map((p: any) => p.name).join(' \\ ')
+    }
+    
+    if (direPlayers.value && direPlayers.value.length > 0) {
+      direPlayerNames.value = direPlayers.value.map((p: any) => p.name).join(' \\ ')
+    }
+  },
+  { deep: true, immediate: true }
+)
 </script>
 
 <template>
@@ -231,7 +254,7 @@ onMounted(async () => {
         <div class="flex flex-row w-full h-full">
             <!-- RADIANT PICKS -->
             <div class="flex flex-row" style="width: calc((100% - 14rem) / 2)">
-                <div v-for="(player, index) in radiantPicks" :key="index" class="flex-1 border-r border-black">
+                <div v-for="(player, index) in radiantPicks" :key="`radiant-pick-${index}-${player}`" class="flex-1 border-r border-black">
                     <CardHeroPick 
                         :player="player" 
                         :index="Number(index)" 
@@ -253,7 +276,7 @@ onMounted(async () => {
             
             <!-- DIRE PICKS -->
             <div class="flex flex-row" style="width: calc((100% - 14rem) / 2)">
-                <div v-for="(player, index) in direPicks" :key="index" class="flex-1 border-l border-black">
+                <div v-for="(player, index) in direPicks" :key="`dire-pick-${index}-${player}`" class="flex-1 border-l border-black">
                     <CardHeroPick 
                         :player="player" 
                         :index="Number(index)" 
@@ -288,7 +311,7 @@ onMounted(async () => {
 
                 <!-- RADIANT BANS -->
                 <div class="flex flex-row gap-1 flex-shrink-0">
-                    <div v-for="(heroBan, index) in radiantBans" :key="index" class="w-12 h-12">
+                    <div v-for="(heroBan, index) in radiantBans" :key="`radiant-ban-${index}-${heroBan}`" class="w-12 h-12">
                         <CardHeroBans :heroBan="heroBan" />
                     </div>
                 </div>
@@ -301,7 +324,7 @@ onMounted(async () => {
             <div class="flex flex-row items-center justify-between bg-gradient-to-l from-pink-950 to-pink-900 px-2 gap-1" style="width: calc((100% - 14rem) / 2)">
                 <!-- DIRE BANS -->
                 <div class="flex flex-row-reverse gap-1 flex-shrink-0">
-                    <div v-for="(heroBan, index) in direBans" :key="index" class="w-12 h-12">
+                    <div v-for="(heroBan, index) in direBans" :key="`dire-ban-${index}-${heroBan}`" class="w-12 h-12">
                         <CardHeroBans :heroBan="heroBan" />
                     </div>
                 </div>
