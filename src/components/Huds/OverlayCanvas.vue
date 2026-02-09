@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IHUDElement, INormalizedHUDElement, INormalizedHUDElementBind } from '@/types/hud'
+import type { IHUDElement, INormalizedHUDElement } from '@/types/hud'
 import { 
   HudText, 
   HudImage, 
@@ -54,7 +54,8 @@ function normalizeListItem(
       id,
       active: false,
       disable: true, // Sempre desabilitado no overlay (sem edição)
-      isInsideBoundingBox: false
+      isInsideBoundingBox: false,
+      transparentBackground: true // Sempre transparente no overlay
     },
     on: {} as any // Sem eventos de edição no overlay
   }

@@ -8,7 +8,7 @@ import { api } from '@/plugins/services'
 import { io } from 'socket.io-client';
 
 const route = useRoute()
-const { setData, updateData, clearData, data } = useGSI()
+const { setData, updateData, clearData } = useGSI()
 
 const hudElements = ref<IHUDElement[]>([])
 const loading = ref(true)
@@ -17,13 +17,14 @@ const hudId = ref<string>()
 const connectionStatus = ref<'connecting' | 'connected' | 'disconnected'>('disconnected')
 const useTestData = ref(false)
 
-// Função para buscar a HUD
+// Função para buscar a HUD (rota pública, sem autenticação)
 async function fetchHUD(id: string) {
     try {
         loading.value = true
         error.value = null
 
-        const response = await api.huds.findOne(id)
+        // Usa rota pública para não exigir login (importante para OBS Studio)
+        const response = await api.huds.findOnePublic(id)
 
         if (response && response.elements) {
             hudElements.value = response.elements

@@ -203,8 +203,8 @@ const {
 } = useGSI()
 
 onMounted(async () => {
-  // await loadExampleData()
-  await loadData()
+  await loadExampleData()
+  // await loadData()
 })
 
 // Watch para atualizar automaticamente quando dados do GSI mudarem
@@ -249,7 +249,7 @@ watch(
         // draft:team#:pick#_id (0-4)
      -->
 
-    <div class="flex flex-col w-full h-full bg-gradient-to-b from-gray-900 to-black">
+    <div class="flex flex-col w-full h-full" :class="{ 'bg-gradient-to-b from-gray-900 to-black': !transparentBackground }">
         <!-- TOP ROW: PICKS -->
         <div class="flex flex-row w-full h-full">
             <!-- RADIANT PICKS -->
