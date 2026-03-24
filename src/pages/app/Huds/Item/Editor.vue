@@ -115,7 +115,7 @@ const goBack = () => {
 }
 
 const viewHud = () => {
-  router.push(`/app/huds/${route.params.id}`)
+  router.push(`/app/huds/${route.params.hudId}`)
 }
 
 const saveHud = async () => {
