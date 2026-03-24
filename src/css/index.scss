@@ -230,6 +230,148 @@ p {
   }
 }
 
+// Magic UI Animations
+@keyframes meteor-effect {
+  to {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--angle));
+    opacity: 0;
+  }
+}
+
+.animate-meteor-effect {
+  --angle: 215deg;
+  --tx: 200px;
+  --ty: 200px;
+  animation: meteor-effect linear infinite;
+}
+
+@keyframes border-beam {
+  100% {
+    background-position: -200% 0%, var(--anchor) var(--anchor);
+  }
+}
+
+@keyframes shine-border {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: -200% -200%;
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateY(calc(var(--radius) * -1)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateY(calc(var(--radius) * -1)) rotate(-360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg) translateY(calc(var(--radius) * -1)) rotate(-360deg);
+  }
+  to {
+    transform: rotate(0deg) translateY(calc(var(--radius) * -1)) rotate(0deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit linear infinite;
+}
+
+.animate-orbit-reverse {
+  animation: orbit-reverse linear infinite;
+}
+
+@keyframes grid-pattern {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-flicker {
+  animation: flicker ease-in-out infinite;
+}
+
+@keyframes ripple {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(52, 245, 163, 0.3), 0 0 40px rgba(52, 245, 163, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(52, 245, 163, 0.5), 0 0 60px rgba(52, 245, 163, 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s linear infinite;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(52, 245, 163, 0.4),
+    transparent
+  );
+  background-size: 1000px 100%;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate-gradient {
+  animation: rotate-gradient 20s linear infinite;
+}
+
 // Toast notifications styling
 .p-toast {
   .p-toast-message {
