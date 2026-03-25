@@ -19,8 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
   duration: 15,
   borderWidth: 1.5,
   anchor: 90,
-  colorFrom: '#34F5A3',
-  colorTo: '#6D5DF6',
+  colorFrom: '#FD2A36',
+  colorTo: '#FFAF0E',
   delay: 0
 })
 

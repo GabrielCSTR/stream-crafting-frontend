@@ -66,7 +66,7 @@ const btns = markRaw<
             :label="link.text" 
             :disabled="props.loading" 
             link 
-            style="color: #34F5A3;"
+            style="color: #FD2A36;"
           />
         </component>
       </template>
@@ -130,11 +130,11 @@ const btns = markRaw<
     &__line {
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, transparent, #1E293B, transparent);
+      background: linear-gradient(90deg, transparent, #242424, transparent);
     }
 
     &__text {
-      color: #94A3B8;
+      color: #A4A4A4;
       font-size: 0.875rem;
       font-weight: 500;
     }
@@ -145,22 +145,22 @@ const btns = markRaw<
       --p-button-primary-focus-ring-color: var(--text-color);
 
       background: transparent !important;
-      border: 1px solid #1E293B !important;
-      border-color: #1E293B !important;
+      border: 1px solid #242424 !important;
+      border-color: #242424 !important;
       color: var(--text-color) !important;
       transition: all 0.3s ease;
 
       &:not(:disabled) {
         &:hover {
-          background: rgba(30, 41, 59, 0.5) !important;
-          border-color: rgba(52, 245, 163, 0.3) !important;
+          background: rgba(253, 42, 54, 0.08) !important;
+          border-color: rgba(253, 42, 54, 0.25) !important;
           transform: translateY(-2px);
         }
 
         &:active,
         &:focus-visible {
-          background: rgba(30, 41, 59, 0.7) !important;
-          border-color: rgba(52, 245, 163, 0.5) !important;
+          background: rgba(253, 42, 54, 0.12) !important;
+          border-color: rgba(253, 42, 54, 0.35) !important;
         }
       }
     }

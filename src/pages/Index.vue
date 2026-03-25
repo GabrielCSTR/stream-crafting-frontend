@@ -30,20 +30,20 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
       <DotPattern 
         :width="20" 
         :height="20" 
-        color="#34F5A3"
+        color="#FD2A36"
         className="opacity-20"
       />
       <FlickeringGrid :squares="80" :duration="3" />
       <Particles 
         :quantity="80" 
         :size="0.6" 
-        color="#34F5A3"
+        color="#FD2A36"
         className="opacity-40"
       />
       <Particles 
         :quantity="40" 
         :size="0.4" 
-        color="#6D5DF6"
+        color="#FFAF0E"
         className="opacity-30"
       />
       <Meteors :number="25" />
@@ -67,7 +67,7 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
           </BlurFade>
           
           <BlurFade :delay="300" :duration="0.8">
-            <p class="text-xl md:text-2xl mb-10" style="color: #94A3B8; line-height: 1.7;">
+            <p class="text-xl md:text-2xl mb-10" style="color: #A4A4A4; line-height: 1.7;">
               Crie HUDs profissionais direto no navegador. Sem instalação, sem complicação. 
               Integre com OBS em segundos e transmita com qualidade de campeonato.
             </p>
@@ -100,14 +100,14 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
       <DotPattern 
         :width="16" 
         :height="16" 
-        color="#6D5DF6"
+        color="#FFAF0E"
         className="opacity-15"
       />
       <FlickeringGrid :squares="60" :duration="4" />
       <Particles 
         :quantity="50" 
         :size="0.4" 
-        color="#6D5DF6"
+        color="#FFAF0E"
         className="opacity-25"
       />
       <div class="container mx-auto px-6 relative z-10">
@@ -116,10 +116,10 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <AnimatedGradientText className="mb-4">
               Funcionalidades
             </AnimatedGradientText>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #F9FAFB;">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #FFFFFF;">
               Transmissões profissionais ao alcance de todos
             </h2>
-            <p class="text-xl max-w-3xl mx-auto" style="color: #94A3B8; line-height: 1.7;">
+            <p class="text-xl max-w-3xl mx-auto" style="color: #A4A4A4; line-height: 1.7;">
               RadiantCast leva as transmissões de Dota 2 para um novo patamar visual. Escolha entre layouts 
               pré-prontos ou crie seu próprio HUD personalizado com scoreboard, networth, K/D/A e muito mais.
             </p>
@@ -132,17 +132,17 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <div class="relative">
               <MagicCard 
                 className="d2cast-feature-card h-full"
-                gradient-color="#34F5A3"
+                gradient-color="#FD2A36"
                 :gradient-opacity="0.15"
               >
                 <div class="text-center p-8 relative z-10">
                   <div class="d2cast-feature-icon mb-6">
                     <div class="d2cast-icon-wrapper">
-                      <i class="pi pi-desktop text-6xl" style="color: #34F5A3;"></i>
+                      <i class="pi pi-desktop text-6xl" style="color: #FD2A36;"></i>
                     </div>
                   </div>
-                  <h3 class="text-2xl font-bold mb-4" style="color: #F9FAFB;">100% Web, Zero Instalação</h3>
-                  <p style="color: #94A3B8; line-height: 1.6;">
+                  <h3 class="text-2xl font-bold mb-4" style="color: #FFFFFF;">100% Web, Zero Instalação</h3>
+                  <p style="color: #A4A4A4; line-height: 1.6;">
                     Funciona direto no navegador. Sem programas complexos, sem configurações complicadas. 
                     Acesse de qualquer lugar e crie HUDs profissionais em minutos.
                   </p>
@@ -152,8 +152,8 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
                 :size="250" 
                 :duration="12" 
                 :border-width="2"
-                color-from="#34F5A3"
-                color-to="#6D5DF6"
+                color-from="#FD2A36"
+                color-to="#FFAF0E"
               />
             </div>
           </BlurFade>
@@ -163,17 +163,17 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <div class="relative">
               <MagicCard 
                 className="d2cast-feature-card h-full"
-                gradient-color="#6D5DF6"
+                gradient-color="#FFAF0E"
                 :gradient-opacity="0.15"
               >
                 <div class="text-center p-8 relative z-10">
                   <div class="d2cast-feature-icon mb-6">
                     <div class="d2cast-icon-wrapper">
-                      <i class="pi pi-eye text-6xl" style="color: #34F5A3;"></i>
+                      <i class="pi pi-eye text-6xl" style="color: #FD2A36;"></i>
                     </div>
                   </div>
-                  <h3 class="text-2xl font-bold mb-4" style="color: #F9FAFB;">Layouts Pré-prontos ou Personalizados</h3>
-                  <p style="color: #94A3B8; line-height: 1.6;">
+                  <h3 class="text-2xl font-bold mb-4" style="color: #FFFFFF;">Layouts Pré-prontos ou Personalizados</h3>
+                  <p style="color: #A4A4A4; line-height: 1.6;">
                     Escolha entre templates profissionais ou crie seu próprio HUD do zero. Configure scoreboard, 
                     informações de equipes, networth, K/D/A e área de patrocinadores.
                   </p>
@@ -183,8 +183,8 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
                 :size="250" 
                 :duration="12" 
                 :border-width="2"
-                color-from="#6D5DF6"
-                color-to="#3AF2E9"
+                color-from="#FFAF0E"
+                color-to="#2671F4"
               />
             </div>
           </BlurFade>
@@ -194,17 +194,17 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <div class="relative">
               <MagicCard 
                 className="d2cast-feature-card h-full"
-                gradient-color="#3AF2E9"
+                gradient-color="#2671F4"
                 :gradient-opacity="0.15"
               >
                 <div class="text-center p-8 relative z-10">
                   <div class="d2cast-feature-icon mb-6">
                     <div class="d2cast-icon-wrapper">
-                      <i class="pi pi-video text-6xl" style="color: #34F5A3;"></i>
+                      <i class="pi pi-video text-6xl" style="color: #FD2A36;"></i>
                     </div>
                   </div>
-                  <h3 class="text-2xl font-bold mb-4" style="color: #F9FAFB;">Integração Instantânea com OBS</h3>
-                  <p style="color: #94A3B8; line-height: 1.6;">
+                  <h3 class="text-2xl font-bold mb-4" style="color: #FFFFFF;">Integração Instantânea com OBS</h3>
+                  <p style="color: #A4A4A4; line-height: 1.6;">
                     Cada HUD gera uma URL única. Adicione como Browser Source no OBS ou qualquer software 
                     de streaming. Simples, prático e escalável.
                   </p>
@@ -214,8 +214,8 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
                 :size="250" 
                 :duration="12" 
                 :border-width="2"
-                color-from="#3AF2E9"
-                color-to="#34F5A3"
+                color-from="#2671F4"
+                color-to="#FD2A36"
               />
             </div>
           </BlurFade>
@@ -236,20 +236,20 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
       <DotPattern 
         :width="18" 
         :height="18" 
-        color="#3AF2E9"
+        color="#2671F4"
         className="opacity-20"
       />
       <FlickeringGrid :squares="70" :duration="2.5" />
       <Particles 
         :quantity="60" 
         :size="0.35" 
-        color="#3AF2E9"
+        color="#2671F4"
         className="opacity-30"
       />
       <Particles 
         :quantity="30" 
         :size="0.5" 
-        color="#34F5A3"
+        color="#FD2A36"
         className="opacity-25"
       />
       <Ripple 
@@ -263,7 +263,7 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <AnimatedGradientText className="mb-4">
               Como Funciona
             </AnimatedGradientText>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #F9FAFB;">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #FFFFFF;">
               Comece a transmitir profissionalmente em 5 passos
             </h2>
           </div>
@@ -287,15 +287,15 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
                       :duration="15"
                       :delay="index * 1.5"
                       :path="true"
-                      path-color="#34F5A3"
+                      path-color="#FD2A36"
                       className="absolute inset-0 pointer-events-none"
                     />
                   </div>
                   <div v-if="index < 4" class="d2cast-step-connector"></div>
                 </div>
                 <div class="d2cast-step-content">
-                  <h3 class="text-xl font-bold mb-3" style="color: #F9FAFB;">{{ step.title }}</h3>
-                  <p class="text-sm" style="color: #94A3B8; line-height: 1.6;">
+                  <h3 class="text-xl font-bold mb-3" style="color: #FFFFFF;">{{ step.title }}</h3>
+                  <p class="text-sm" style="color: #A4A4A4; line-height: 1.6;">
                     {{ step.description }}
                   </p>
                 </div>
@@ -318,14 +318,14 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
       <DotPattern 
         :width="14" 
         :height="14" 
-        color="#34F5A3"
+        color="#FD2A36"
         className="opacity-18"
       />
       <FlickeringGrid :squares="100" :duration="3.5" />
       <Particles 
         :quantity="70" 
         :size="0.3" 
-        color="#34F5A3"
+        color="#FD2A36"
         className="opacity-20"
       />
       <div class="container mx-auto px-6 relative z-10">
@@ -334,10 +334,10 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <AnimatedGradientText className="mb-4">
               Recursos
             </AnimatedGradientText>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #F9FAFB;">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #FFFFFF;">
               Tudo que você precisa para uma transmissão profissional
             </h2>
-            <p class="text-xl max-w-3xl mx-auto" style="color: #94A3B8; line-height: 1.7;">
+            <p class="text-xl max-w-3xl mx-auto" style="color: #A4A4A4; line-height: 1.7;">
               RadiantCast oferece todos os elementos essenciais para criar overlays interativos e profissionais, 
               respeitando a identidade do Dota 2 e as necessidades reais de quem transmite.
             </p>
@@ -353,7 +353,7 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
           >
             <ShineBorder 
               :border-radius="12"
-              color="#34F5A3"
+              color="#FD2A36"
               :duration="14"
               className="h-full"
             >
@@ -405,10 +405,10 @@ import AuroraBackground from '@/components/magic-ui/AuroraBackground.vue'
             <AnimatedGradientText className="mb-6" style="background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2);">
               Pronto para Começar?
             </AnimatedGradientText>
-            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #F9FAFB;">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6" style="color: #FFFFFF;">
               O novo padrão visual para quem ama Dota 2
             </h2>
-            <p class="text-xl mb-10 opacity-95 max-w-2xl mx-auto" style="color: #F9FAFB; line-height: 1.7;">
+            <p class="text-xl mb-10 opacity-95 max-w-2xl mx-auto" style="color: #D4D4D4; line-height: 1.7;">
               RadiantCast não é apenas uma ferramenta — é uma experiência que combina tecnologia, 
               design esportivo e performance. Perfeito para streamers, organizadores de campeonatos e estúdios.
             </p>
@@ -489,7 +489,7 @@ export default {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, #020617 0%, #0B1220 100%);
+  background: linear-gradient(180deg, #000000 0%, #121212 100%);
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -501,8 +501,8 @@ export default {
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 50%, rgba(52, 245, 163, 0.15) 0%, transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(109, 93, 246, 0.1) 0%, transparent 50%);
+      radial-gradient(circle at 20% 50%, rgba(253, 42, 54, 0.16) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 175, 14, 0.12) 0%, transparent 50%);
     z-index: 0;
   }
 
@@ -513,8 +513,8 @@ export default {
     right: 0;
     bottom: 0;
     background-image: 
-      linear-gradient(rgba(52, 245, 163, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(253, 42, 54, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(253, 42, 54, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     z-index: 0;
     opacity: 0.5;
@@ -530,31 +530,19 @@ export default {
   }
 
   &__title {
-    background: linear-gradient(135deg, #F9FAFB 0%, #34F5A3 50%, #6D5DF6 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #FD2A36 50%, #FFAF0E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    display: inline-block;
     line-height: 1.2;
     letter-spacing: -0.02em;
-    animation: pulse-glow 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(52, 245, 163, 0.3));
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -10px;
-      background: linear-gradient(135deg, rgba(52, 245, 163, 0.1) 0%, rgba(109, 93, 246, 0.1) 100%);
-      border-radius: 20px;
-      filter: blur(20px);
-      opacity: 0;
-      animation: pulse-glow 3s ease-in-out infinite;
-      z-index: -1;
-    }
+    // animation: pulse-glow 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 14px rgba(253, 42, 54, 0.18));
   }
 
   &__highlight {
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #FFAF0E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -569,20 +557,20 @@ export default {
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, transparent, #34F5A3, transparent);
+      background: linear-gradient(90deg, transparent, #FD2A36, transparent);
       opacity: 0.8;
       animation: shimmer 2s linear infinite;
-      box-shadow: 0 0 10px rgba(52, 245, 163, 0.6);
+      box-shadow: 0 0 10px rgba(253, 42, 54, 0.45);
     }
   }
 
   &__cta-primary {
-    background: linear-gradient(135deg, #34F5A3 0%, #2ae693 100%) !important;
+    background: linear-gradient(135deg, #FD2A36 0%, #e60011 100%) !important;
     border: none !important;
-    color: #020617 !important;
+    color: #FFFFFF !important;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(52, 245, 163, 0.3);
+    box-shadow: 0 4px 15px rgba(253, 42, 54, 0.25);
     position: relative;
     overflow: hidden;
 
@@ -599,7 +587,7 @@ export default {
 
     &:hover {
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 30px rgba(52, 245, 163, 0.5), 0 0 40px rgba(52, 245, 163, 0.3);
+      box-shadow: 0 8px 30px rgba(253, 42, 54, 0.35), 0 0 40px rgba(253, 42, 54, 0.2);
       
       &::before {
         left: 100%;
@@ -612,9 +600,9 @@ export default {
   }
 
   &__cta-secondary {
-    border: 2px solid #34F5A3 !important;
-    color: #34F5A3 !important;
-    background: transparent !important;
+    border: 2px solid #242424 !important;
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.02) !important;
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
@@ -627,17 +615,17 @@ export default {
       left: 0;
       width: 0;
       height: 100%;
-      background: rgba(52, 245, 163, 0.1);
+      background: rgba(253, 42, 54, 0.1);
       transition: width 0.3s ease;
       z-index: -1;
     }
 
     &:hover {
-      background: rgba(52, 245, 163, 0.15) !important;
+      background: rgba(253, 42, 54, 0.12) !important;
       transform: translateY(-3px);
-      box-shadow: 0 6px 25px rgba(52, 245, 163, 0.4), inset 0 0 20px rgba(52, 245, 163, 0.1);
-      border-color: #3AF2E9 !important;
-      color: #3AF2E9 !important;
+      box-shadow: 0 6px 25px rgba(253, 42, 54, 0.2), inset 0 0 20px rgba(253, 42, 54, 0.08);
+      border-color: #FD2A36 !important;
+      color: #FD2A36 !important;
       
       &::before {
         width: 100%;
@@ -649,10 +637,10 @@ export default {
 .d2cast-badge-text {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  background: linear-gradient(135deg, rgba(52, 245, 163, 0.15) 0%, rgba(109, 93, 246, 0.15) 100%);
-  border: 1px solid rgba(52, 245, 163, 0.3);
+  background: linear-gradient(135deg, rgba(253, 42, 54, 0.12) 0%, rgba(255, 175, 14, 0.12) 100%);
+  border: 1px solid rgba(253, 42, 54, 0.25);
   border-radius: 50px;
-  color: #34F5A3;
+  color: #FD2A36;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -661,10 +649,10 @@ export default {
 .d2cast-section-badge {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  background: rgba(52, 245, 163, 0.1);
-  border: 1px solid rgba(52, 245, 163, 0.3);
+  background: rgba(253, 42, 54, 0.1);
+  border: 1px solid rgba(253, 42, 54, 0.25);
   border-radius: 50px;
-  color: #34F5A3;
+  color: #FD2A36;
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -672,7 +660,7 @@ export default {
 }
 
 .d2cast-features {
-  background: linear-gradient(180deg, #0B1220 0%, #020617 100%);
+  background: linear-gradient(180deg, #121212 0%, #000000 100%);
   position: relative;
   overflow: hidden;
 
@@ -683,7 +671,7 @@ export default {
     right: 0;
     bottom: 0;
     background-image: 
-      radial-gradient(circle at 2px 2px, rgba(52, 245, 163, 0.05) 1px, transparent 0);
+      radial-gradient(circle at 2px 2px, rgba(253, 42, 54, 0.05) 1px, transparent 0);
     background-size: 40px 40px;
     opacity: 0.5;
     z-index: 0;
@@ -693,8 +681,8 @@ export default {
 .d2cast-feature-card {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
-  background: linear-gradient(135deg, #0F172A 0%, #111A2F 100%) !important;
-  border: 1px solid #1E293B !important;
+  background: linear-gradient(135deg, #090909 0%, #121212 100%) !important;
+  border: 1px solid #242424 !important;
   border-radius: 16px !important;
   overflow: hidden;
   position: relative;
@@ -706,7 +694,7 @@ export default {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #34F5A3, transparent);
+    background: linear-gradient(90deg, transparent, #FD2A36, transparent);
     opacity: 0;
     transition: opacity 0.4s ease;
     animation: shimmer 2s linear infinite;
@@ -716,7 +704,7 @@ export default {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(52, 245, 163, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(253, 42, 54, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
@@ -724,12 +712,12 @@ export default {
 
   &:hover {
     transform: translateY(-15px) scale(1.02);
-    border-color: #34F5A3 !important;
+    border-color: #FD2A36 !important;
     box-shadow: 
       0 25px 50px rgba(0, 0, 0, 0.5),
-      0 0 30px rgba(52, 245, 163, 0.3),
+      0 0 30px rgba(253, 42, 54, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 60px rgba(52, 245, 163, 0.2);
+      0 0 60px rgba(253, 42, 54, 0.12);
 
     &::before {
       opacity: 1;
@@ -742,7 +730,7 @@ export default {
 
     .d2cast-feature-icon {
       transform: scale(1.15) rotate(5deg);
-      filter: drop-shadow(0 0 20px rgba(52, 245, 163, 0.8));
+      filter: drop-shadow(0 0 20px rgba(253, 42, 54, 0.5));
     }
   }
 }
@@ -759,8 +747,8 @@ export default {
     width: 100px;
     height: 100px;
     border-radius: 20px;
-    background: linear-gradient(135deg, rgba(52, 245, 163, 0.1) 0%, rgba(52, 245, 163, 0.05) 100%);
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    background: linear-gradient(135deg, rgba(253, 42, 54, 0.12) 0%, rgba(253, 42, 54, 0.04) 100%);
+    border: 1px solid rgba(253, 42, 54, 0.2);
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
@@ -773,7 +761,7 @@ export default {
       width: 0;
       height: 0;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(52, 245, 163, 0.3) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(253, 42, 54, 0.25) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       transition: width 0.4s ease, height 0.4s ease;
     }
@@ -788,9 +776,9 @@ export default {
 }
 
 .d2cast-feature-card:hover .d2cast-feature-icon .d2cast-icon-wrapper {
-  background: linear-gradient(135deg, rgba(52, 245, 163, 0.2) 0%, rgba(52, 245, 163, 0.1) 100%);
-  border-color: rgba(52, 245, 163, 0.4);
-  box-shadow: 0 0 20px rgba(52, 245, 163, 0.3);
+  background: linear-gradient(135deg, rgba(253, 42, 54, 0.2) 0%, rgba(253, 42, 54, 0.1) 100%);
+  border-color: rgba(253, 42, 54, 0.35);
+  box-shadow: 0 0 20px rgba(253, 42, 54, 0.18);
 
   &::before {
     width: 120px;
@@ -800,7 +788,7 @@ export default {
 
 .d2cast-how-it-works {
   position: relative;
-  background: linear-gradient(180deg, #0F172A 0%, #0B1220 100%);
+  background: linear-gradient(180deg, #090909 0%, #121212 100%);
   overflow: hidden;
 
   &__background {
@@ -810,7 +798,7 @@ export default {
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 50% 0%, rgba(52, 245, 163, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 50% 0%, rgba(253, 42, 54, 0.08) 0%, transparent 50%);
     z-index: 0;
   }
 }
@@ -859,8 +847,8 @@ export default {
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #34F5A3 0%, #2ae693 100%);
-  color: #020617;
+  background: linear-gradient(135deg, #FD2A36 0%, #e60011 100%);
+  color: #FFFFFF;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -869,9 +857,9 @@ export default {
   position: relative;
   z-index: 2;
   box-shadow: 
-    0 4px 15px rgba(52, 245, 163, 0.3),
+    0 4px 15px rgba(253, 42, 54, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.2),
-    0 0 20px rgba(52, 245, 163, 0.2);
+    0 0 20px rgba(253, 42, 54, 0.15);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: pulse-glow 2s ease-in-out infinite;
 
@@ -880,7 +868,7 @@ export default {
     position: absolute;
     inset: -5px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #34F5A3, #3AF2E9, #6D5DF6);
+    background: linear-gradient(135deg, #FD2A36, #FFAF0E, #2671F4);
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -890,9 +878,9 @@ export default {
   &:hover {
     transform: scale(1.15) rotate(5deg);
     box-shadow: 
-      0 8px 30px rgba(52, 245, 163, 0.6),
+      0 8px 30px rgba(253, 42, 54, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(52, 245, 163, 0.4);
+      0 0 40px rgba(253, 42, 54, 0.22);
 
     &::before {
       opacity: 0.5;
@@ -907,7 +895,7 @@ export default {
   width: calc(100% - 70px - 1rem);
   max-width: 2rem;
   height: 2px;
-  background: linear-gradient(90deg, #34F5A3 0%, transparent 100%);
+  background: linear-gradient(90deg, #FD2A36 0%, transparent 100%);
   opacity: 0.3;
   z-index: 1;
   transform: translateY(-50%);
@@ -928,8 +916,8 @@ export default {
 .d2cast-functionality-item {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
-  background: linear-gradient(135deg, #0F172A 0%, #111A2F 100%);
-  border: 1px solid #1E293B;
+  background: linear-gradient(135deg, #090909 0%, #121212 100%);
+  border: 1px solid #242424;
   padding: 1.5rem;
   text-align: center;
   position: relative;
@@ -943,7 +931,7 @@ export default {
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #34F5A3, transparent);
+    background: linear-gradient(90deg, transparent, #FD2A36, transparent);
     opacity: 0;
     transition: opacity 0.3s ease;
     animation: shimmer 2s linear infinite;
@@ -953,18 +941,18 @@ export default {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, rgba(52, 245, 163, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(253, 42, 54, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.3s ease;
   }
 
   &:hover {
     transform: translateY(-8px) scale(1.05);
-    border-color: #34F5A3;
+    border-color: #FD2A36;
     box-shadow: 
       0 12px 32px rgba(0, 0, 0, 0.4),
-      0 0 30px rgba(52, 245, 163, 0.3),
-      inset 0 0 20px rgba(52, 245, 163, 0.1);
+      0 0 30px rgba(253, 42, 54, 0.18),
+      inset 0 0 20px rgba(253, 42, 54, 0.08);
 
     &::before {
       opacity: 1;
@@ -977,7 +965,7 @@ export default {
 
     .d2cast-functionality-icon {
       transform: scale(1.2) rotate(10deg);
-      filter: drop-shadow(0 0 15px rgba(52, 245, 163, 0.8));
+      filter: drop-shadow(0 0 15px rgba(253, 42, 54, 0.45));
     }
   }
 }
@@ -990,21 +978,21 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(52, 245, 163, 0.1) 0%, rgba(52, 245, 163, 0.05) 100%);
-  border: 1px solid rgba(52, 245, 163, 0.2);
+  background: linear-gradient(135deg, rgba(253, 42, 54, 0.12) 0%, rgba(253, 42, 54, 0.04) 100%);
+  border: 1px solid rgba(253, 42, 54, 0.18);
   transition: all 0.3s ease;
   position: relative;
 
   i {
     font-size: 1.75rem;
-    color: #34F5A3;
+    color: #FD2A36;
     transition: all 0.3s ease;
   }
 }
 
 .d2cast-functionality-text {
   font-weight: 600;
-  color: #CBD5E1;
+  color: #D4D4D4;
   font-size: 0.875rem;
   line-height: 1.4;
   margin: 0;
@@ -1012,7 +1000,7 @@ export default {
 
 .d2cast-cta {
   position: relative;
-  background: linear-gradient(135deg, #34F5A3 0%, #6D5DF6 100%);
+  background: linear-gradient(135deg, #090909 0%, #121212 100%);
   overflow: hidden;
 
   &__background {
@@ -1022,8 +1010,8 @@ export default {
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 70% 50%, rgba(109, 93, 246, 0.2) 0%, transparent 50%);
+      radial-gradient(circle at 30% 50%, rgba(253, 42, 54, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(255, 175, 14, 0.12) 0%, transparent 50%);
     z-index: 0;
   }
 
@@ -1042,30 +1030,30 @@ export default {
   }
 
   &__button-primary {
-    background: #020617 !important;
+    background: #FD2A36 !important;
     border: none !important;
-    color: #34F5A3 !important;
+    color: #FFFFFF !important;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(2, 6, 23, 0.3);
+    box-shadow: 0 4px 15px rgba(253, 42, 54, 0.2);
 
     &:hover {
-      background: #0B1220 !important;
+      background: #e60011 !important;
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(2, 6, 23, 0.4);
+      box-shadow: 0 6px 20px rgba(253, 42, 54, 0.3);
     }
   }
 
   &__button-secondary {
-    border: 2px solid rgba(255, 255, 255, 0.9) !important;
-    color: #F9FAFB !important;
+    border: 2px solid #333333 !important;
+    color: #FFFFFF !important;
     background: transparent !important;
     font-weight: 600;
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.1) !important;
-      border-color: #F9FAFB !important;
+      background: rgba(253, 42, 54, 0.08) !important;
+      border-color: #FD2A36 !important;
       transform: translateY(-2px);
     }
   }

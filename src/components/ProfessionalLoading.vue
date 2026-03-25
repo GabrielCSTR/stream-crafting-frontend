@@ -35,7 +35,7 @@ defineProps<{
   &--fullscreen {
     position: fixed;
     inset: 0;
-    background: rgba(2, 6, 23, 0.8);
+    background: rgba(0, 0, 0, 0.82);
     backdrop-filter: blur(8px);
     z-index: 9999;
   }
@@ -90,8 +90,8 @@ defineProps<{
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
-    box-shadow: 0 0 20px rgba(52, 245, 163, 0.5);
+    background: linear-gradient(135deg, #FD2A36 0%, #FFAF0E 100%);
+    box-shadow: 0 0 20px rgba(253, 42, 54, 0.35);
     animation: orbit 2s ease-in-out infinite;
 
     &:nth-child(1) {
@@ -109,7 +109,7 @@ defineProps<{
 
   &__text {
     font-size: 1rem;
-    color: #CBD5E1;
+    color: #D4D4D4;
     font-weight: 500;
     text-align: center;
     margin: 0;

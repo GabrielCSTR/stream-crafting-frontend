@@ -55,8 +55,8 @@ const onTabChange = (event: any) => {
   min-height: calc(100vh - 180px);
   
   &__tabs {
-    background: #0F172A;
-    border-bottom: 1px solid rgba(52, 245, 163, 0.1);
+    background: #090909;
+    border-bottom: 1px solid rgba(253, 42, 54, 0.1);
     padding: 0 2rem;
     
     :deep(.p-tabmenu) {
@@ -77,7 +77,7 @@ const onTabChange = (event: any) => {
       .p-tabmenu-tablist {
         background: transparent;
         border: none;
-        color: #0F172A;
+        color: #090909;
       }
       
       .p-tabmenu-item {
@@ -89,15 +89,15 @@ const onTabChange = (event: any) => {
           background: transparent;
           border: none;
           border-bottom: 2px solid transparent;
-          color: #94A3B8;
+          color: #A4A4A4;
           padding: 1rem 1.5rem;
           font-weight: 500;
           transition: all 0.2s;
           border-radius: 0;
           
           &:hover {
-            background: rgba(52, 245, 163, 0.05);
-            color: #34F5A3;
+            background: rgba(253, 42, 54, 0.05);
+            color: #FD2A36;
           }
           
           .p-tabmenu-item-icon {
@@ -109,11 +109,11 @@ const onTabChange = (event: any) => {
         &.p-highlight {
           .p-tabmenu-item-link {
             background: transparent;
-            color: #34F5A3;
-            border-bottom-color: #34F5A3;
+            color: #FD2A36;
+            border-bottom-color: #FD2A36;
             
             .p-tabmenu-item-icon {
-              color: #34F5A3;
+              color: #FD2A36;
             }
           }
         }

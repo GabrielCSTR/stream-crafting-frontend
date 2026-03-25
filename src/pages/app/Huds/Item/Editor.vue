@@ -282,14 +282,14 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.75rem 0;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     i {
-      color: #34F5A3;
-      -webkit-text-fill-color: #34F5A3;
+      color: #FD2A36;
+      -webkit-text-fill-color: #FD2A36;
     }
   }
 
@@ -298,7 +298,7 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
   }
 
   &__subtitle {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.9375rem;
     margin: 0;
   }
@@ -324,7 +324,7 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    color: #34F5A3;
+    color: #FD2A36;
     
     i {
       font-size: 3rem;
@@ -332,14 +332,14 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
     
     p {
       font-size: 1.125rem;
-      color: #94A3B8;
+      color: #A4A4A4;
     }
   }
 
   &__canvas-wrapper {
     flex: 1;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    background: linear-gradient(135deg, #090909 0%, #242424 100%);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
@@ -351,7 +351,7 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
       inset: 0;
       border-radius: 16px;
       padding: 1px;
-      background: linear-gradient(135deg, rgba(52, 245, 163, 0.2), rgba(58, 242, 233, 0.2));
+      background: linear-gradient(135deg, rgba(253, 42, 54, 0.2), rgba(38, 113, 244, 0.2));
       -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);

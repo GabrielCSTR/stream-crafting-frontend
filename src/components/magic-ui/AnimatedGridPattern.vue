@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const gridStyle = computed(() => ({
-  backgroundImage: `linear-gradient(to right, rgba(52, 245, 163, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(52, 245, 163, 0.1) 1px, transparent 1px)`,
+  backgroundImage: `linear-gradient(to right, rgba(253, 42, 54, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(253, 42, 54, 0.1) 1px, transparent 1px)`,
   backgroundSize: `${props.width}px ${props.height}px`,
   animation: `grid-pattern ${props.duration}s linear infinite`
 } as any))

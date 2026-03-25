@@ -161,47 +161,47 @@ const direTop3 = computed(() => direPlayers.value.slice(0, 3))
   h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #34F5A3;
+    color: #FD2A36;
     margin-bottom: 0.5rem;
   }
   
   p {
     font-size: 1.125rem;
-    color: #94A3B8;
+    color: #A4A4A4;
   }
 }
 
 .section {
   margin-bottom: 3rem;
   background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(52, 245, 163, 0.1);
+  border: 1px solid rgba(253, 42, 54, 0.1);
   border-radius: 12px;
   padding: 2rem;
   
   h2 {
     font-size: 1.75rem;
     font-weight: 600;
-    color: #34F5A3;
+    color: #FD2A36;
     margin-bottom: 1.5rem;
   }
   
   h3 {
     font-size: 1.25rem;
     font-weight: 500;
-    color: #6D5DF6;
+    color: #FFAF0E;
     margin-bottom: 1rem;
   }
   
   &--info {
-    border-color: rgba(109, 93, 246, 0.3);
-    background: rgba(109, 93, 246, 0.05);
+    border-color: rgba(255, 175, 14, 0.3);
+    background: rgba(255, 175, 14, 0.05);
     
     code {
       background: rgba(15, 23, 42, 0.8);
       padding: 0.125rem 0.5rem;
       border-radius: 4px;
       font-family: 'Courier New', monospace;
-      color: #3AF2E9;
+      color: #2671F4;
     }
     
     pre {
@@ -217,11 +217,11 @@ const direTop3 = computed(() => direPlayers.value.slice(0, 3))
     }
     
     a {
-      color: #3AF2E9;
+      color: #2671F4;
       text-decoration: underline;
       
       &:hover {
-        color: #34F5A3;
+        color: #FD2A36;
       }
     }
   }
@@ -251,7 +251,7 @@ const direTop3 = computed(() => direPlayers.value.slice(0, 3))
     overflow-x: auto;
     font-size: 0.875rem;
     line-height: 1.5;
-    color: #94A3B8;
+    color: #A4A4A4;
     max-height: 300px;
     overflow-y: auto;
   }
@@ -265,24 +265,24 @@ const direTop3 = computed(() => direPlayers.value.slice(0, 3))
     border-collapse: collapse;
     
     thead {
-      background: rgba(52, 245, 163, 0.1);
+      background: rgba(253, 42, 54, 0.1);
       
       th {
         padding: 0.75rem 1rem;
         text-align: left;
         font-weight: 600;
-        color: #34F5A3;
-        border-bottom: 2px solid rgba(52, 245, 163, 0.3);
+        color: #FD2A36;
+        border-bottom: 2px solid rgba(253, 42, 54, 0.3);
       }
     }
     
     tbody {
       tr {
-        border-bottom: 1px solid rgba(52, 245, 163, 0.1);
+        border-bottom: 1px solid rgba(253, 42, 54, 0.1);
         transition: background-color 0.2s;
         
         &:hover {
-          background: rgba(52, 245, 163, 0.05);
+          background: rgba(253, 42, 54, 0.05);
         }
         
         &.team-radiant {

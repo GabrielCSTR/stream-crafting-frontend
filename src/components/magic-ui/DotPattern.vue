@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   cx: 1,
   cy: 1,
   cr: 1,
-  color: '#34F5A3'
+  color: '#FD2A36'
 })
 
 const patternStyle = computed(() => {

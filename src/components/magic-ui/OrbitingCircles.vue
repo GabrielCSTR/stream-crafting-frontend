@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   delay: 0,
   path: true,
   radius: 50,
-  pathColor: '#34F5A3'
+  pathColor: '#FD2A36'
 })
 
 const orbitStyle = computed(() => ({
@@ -55,7 +55,7 @@ const orbitStyle = computed(() => ({
         transform: 'translate(-50%, -50%)'
       }"
     >
-      <div class="absolute left-1/2 top-0 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#34F5A3] shadow-[0_0_8px_#34F5A3]">
+      <div class="absolute left-1/2 top-0 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#FD2A36] shadow-[0_0_8px_#FD2A36]">
         <slot />
       </div>
     </div>

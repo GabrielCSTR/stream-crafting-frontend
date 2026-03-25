@@ -63,10 +63,10 @@ const pathD = computed(() => {
     />
     <defs>
       <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stop-color="#34F5A3" stop-opacity="0" />
-        <stop offset="0%" stop-color="#34F5A3" stop-opacity="1" />
-        <stop offset="100%" stop-color="#6D5DF6" stop-opacity="1" />
-        <stop offset="100%" stop-color="#6D5DF6" stop-opacity="0" />
+        <stop offset="0%" stop-color="#FD2A36" stop-opacity="0" />
+        <stop offset="0%" stop-color="#FD2A36" stop-opacity="1" />
+        <stop offset="100%" stop-color="#FFAF0E" stop-opacity="1" />
+        <stop offset="100%" stop-color="#FFAF0E" stop-opacity="0" />
       </linearGradient>
     </defs>
   </svg>

@@ -28,7 +28,7 @@ const meteors = computed(() => {
     <div
       v-for="meteor in meteors"
       :key="meteor.id"
-      class="animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-[#34F5A3] shadow-[0_0_0_1px_#34F5A3_inset,0_0_6px_#34F5A3,0_0_8px_#34F5A3]"
+      class="animate-meteor-effect absolute top-1/2 left-1/2 h-0.5 w-0.5 rounded-[9999px] bg-[#FD2A36] shadow-[0_0_0_1px_#FD2A36_inset,0_0_6px_#FD2A36,0_0_8px_#FD2A36]"
       :style="{
         top: meteor.top,
         left: meteor.left,

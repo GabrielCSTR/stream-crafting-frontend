@@ -176,7 +176,7 @@ const sampleData = ref({
 .dota-hud-preview {
   padding: 2rem;
   min-height: calc(100vh - 180px);
-  background: #020617;
+  background: #000000;
 
   .preview-header {
     display: flex;
@@ -184,12 +184,12 @@ const sampleData = ref({
     align-items: center;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid rgba(52, 245, 163, 0.2);
+    border-bottom: 2px solid rgba(253, 42, 54, 0.2);
 
     h2 {
       font-size: 1.75rem;
       font-weight: 700;
-      background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+      background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -206,7 +206,7 @@ const sampleData = ref({
       color: #E2E8F0;
       margin: 0 0 1.5rem 0;
       padding-left: 0.5rem;
-      border-left: 4px solid #34F5A3;
+      border-left: 4px solid #FD2A36;
     }
   }
 

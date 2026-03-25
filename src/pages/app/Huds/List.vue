@@ -167,19 +167,19 @@ onMounted(async () => {
     font-size: 2rem;
     font-weight: 700;
     margin: 0 0 0.5rem 0;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     i {
-      color: #34F5A3;
-      -webkit-text-fill-color: #34F5A3;
+      color: #FD2A36;
+      -webkit-text-fill-color: #FD2A36;
     }
   }
 
   &__subtitle {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 1rem;
     margin: 0;
   }
@@ -195,7 +195,7 @@ onMounted(async () => {
     gap: 1rem;
     padding: 1.5rem;
     background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 12px;
     flex-wrap: wrap;
   }
@@ -220,10 +220,10 @@ onMounted(async () => {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(52, 245, 163, 0.1);
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    background: rgba(253, 42, 54, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.2);
     border-radius: 8px;
-    color: #34F5A3;
+    color: #FD2A36;
     font-weight: 600;
 
     i {
@@ -243,23 +243,23 @@ onMounted(async () => {
     padding: 4rem 2rem;
     text-align: center;
     background: rgba(15, 23, 42, 0.4);
-    border: 2px dashed rgba(52, 245, 163, 0.2);
+    border: 2px dashed rgba(253, 42, 54, 0.2);
     border-radius: 16px;
     min-height: 400px;
 
     i {
       font-size: 4rem;
-      color: #94A3B8;
+      color: #A4A4A4;
       margin-bottom: 1rem;
     }
 
     h3 {
-      color: #F9FAFB;
+      color: #FFFFFF;
       margin: 0 0 0.5rem 0;
     }
 
     p {
-      color: #94A3B8;
+      color: #A4A4A4;
       margin: 0 0 1.5rem 0;
     }
   }

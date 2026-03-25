@@ -109,8 +109,8 @@ const on = generateListeners<HUDElementBaseEmits>(
     width: 64px;
     height: 64px;
     border-radius: 12px;
-    background: rgba(52, 245, 163, 0.1);
-    border: 2px solid rgba(52, 245, 163, 0.3);
+    background: rgba(253, 42, 54, 0.1);
+    border: 2px solid rgba(253, 42, 54, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -127,7 +127,7 @@ const on = generateListeners<HUDElementBaseEmits>(
 
   .team-logo-placeholder {
     font-size: 2rem;
-    color: #34F5A3;
+    color: #FD2A36;
   }
 
   .team-info {
@@ -141,7 +141,7 @@ const on = generateListeners<HUDElementBaseEmits>(
   .team-name {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     line-height: 1;
@@ -150,7 +150,7 @@ const on = generateListeners<HUDElementBaseEmits>(
   .team-tag {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #94A3B8;
+    color: #A4A4A4;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }

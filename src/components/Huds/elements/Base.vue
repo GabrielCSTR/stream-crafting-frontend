@@ -187,7 +187,7 @@ function onKeydown(event: KeyboardEvent) {
   }
 
   &--grouped {
-    outline: 2px solid #6D5DF6;
+    outline: 2px solid #FFAF0E;
     outline-offset: -2px;
   }
 

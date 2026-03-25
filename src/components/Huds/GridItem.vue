@@ -178,15 +178,15 @@ const deleteHud = (event: Event) => {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    background: linear-gradient(135deg, #090909 0%, #242424 100%);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 
     &:hover {
-      border-color: rgba(52, 245, 163, 0.3);
+      border-color: rgba(253, 42, 54, 0.3);
       transform: translateY(-8px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 
@@ -205,7 +205,7 @@ const deleteHud = (event: Event) => {
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    background: #0B1220;
+    background: #121212;
   }
 
   &__image {
@@ -241,17 +241,17 @@ const deleteHud = (event: Event) => {
     align-items: center;
     gap: 0.5rem;
     padding: 1rem;
-    background: rgba(52, 245, 163, 0.1);
-    border: 1px solid rgba(52, 245, 163, 0.3);
+    background: rgba(253, 42, 54, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.3);
     border-radius: 12px;
-    color: #34F5A3;
+    color: #FD2A36;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
 
     &:hover {
-      background: rgba(52, 245, 163, 0.2);
+      background: rgba(253, 42, 54, 0.2);
       transform: scale(1.05);
     }
 
@@ -286,8 +286,8 @@ const deleteHud = (event: Event) => {
     font-size: 1.25rem;
     font-weight: 700;
     margin: 0;
-    color: #F9FAFB;
-    background: linear-gradient(135deg, #F9FAFB 0%, #CBD5E1 100%);
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #FFFFFF 0%, #D4D4D4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -308,12 +308,12 @@ const deleteHud = (event: Event) => {
     align-items: center;
     padding: 0.75rem;
     background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 8px;
     transition: all 0.2s;
 
     &:hover {
-      border-color: rgba(52, 245, 163, 0.2);
+      border-color: rgba(253, 42, 54, 0.2);
       background: rgba(15, 23, 42, 0.8);
     }
   }
@@ -322,25 +322,25 @@ const deleteHud = (event: Event) => {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.875rem;
     font-weight: 500;
 
     i {
-      color: #34F5A3;
+      color: #FD2A36;
       font-size: 0.875rem;
     }
   }
 
   &__info-value {
-    color: #CBD5E1;
+    color: #D4D4D4;
     font-size: 0.875rem;
     font-weight: 600;
   }
 
   &__footer {
     padding: 1rem 1.5rem;
-    border-top: 1px solid rgba(52, 245, 163, 0.1);
+    border-top: 1px solid rgba(253, 42, 54, 0.1);
     background: rgba(11, 18, 32, 0.5);
   }
 
@@ -349,10 +349,10 @@ const deleteHud = (event: Event) => {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(52, 245, 163, 0.1);
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    background: rgba(253, 42, 54, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.2);
     border-radius: 20px;
-    color: #34F5A3;
+    color: #FD2A36;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;

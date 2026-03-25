@@ -20,45 +20,45 @@ import LanguageSelector from '@/components/LanguageSelector.vue'
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <!-- About -->
             <div>
-              <h3 class="text-lg font-bold mb-4" style="color: #F9FAFB;">RadiantCast</h3>
-              <p class="text-sm mb-4" style="color: #94A3B8;">
+              <h3 class="text-lg font-bold mb-4" style="color: #FFFFFF;">RadiantCast</h3>
+              <p class="text-sm mb-4" style="color: #A4A4A4;">
                 A plataforma web de HUDs para transmissões profissionais de Dota 2.
               </p>
             </div>
 
             <!-- Features -->
             <div>
-              <h4 class="font-semibold mb-4" style="color: #F9FAFB;">Funcionalidades</h4>
-              <ul class="space-y-2 text-sm" style="color: #94A3B8;">
-                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">100% Web</a></li>
-                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Layouts Personalizados</a></li>
-                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Integração OBS</a></li>
+              <h4 class="font-semibold mb-4" style="color: #FFFFFF;">Funcionalidades</h4>
+              <ul class="space-y-2 text-sm" style="color: #A4A4A4;">
+                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">100% Web</a></li>
+                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Layouts Personalizados</a></li>
+                <li><a href="#features" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Integração OBS</a></li>
               </ul>
             </div>
 
             <!-- Resources -->
             <div>
               <h4 class="font-semibold mb-4">Recursos</h4>
-              <ul class="space-y-2 text-sm" style="color: #94A3B8;">
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Documentação</a></li>
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Suporte</a></li>
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">API</a></li>
+              <ul class="space-y-2 text-sm" style="color: #A4A4A4;">
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Documentação</a></li>
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Suporte</a></li>
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">API</a></li>
               </ul>
             </div>
 
             <!-- Company -->
             <div>
               <h4 class="font-semibold mb-4">Empresa</h4>
-              <ul class="space-y-2 text-sm" style="color: #94A3B8;">
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Sobre</a></li>
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Blog</a></li>
-                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #94A3B8;">Contato</a></li>
+              <ul class="space-y-2 text-sm" style="color: #A4A4A4;">
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Sobre</a></li>
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Blog</a></li>
+                <li><a href="#" class="transition-colors hover:text-brand-primary" style="color: #A4A4A4;">Contato</a></li>
               </ul>
             </div>
           </div>
 
-          <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-color: #1E293B;">
-            <div class="text-sm" style="color: #94A3B8;">
+          <div class="border-t pt-8 flex flex-col md:flex-row justify-between items-center gap-4" style="border-color: #242424;">
+            <div class="text-sm" style="color: #A4A4A4;">
               <p>© 2024 RadiantCast. Todos os direitos reservados.</p>
               <p class="mt-2 text-xs">
                 RadiantCast não é afiliado à Valve Corporation ou Dota 2.
@@ -93,8 +93,8 @@ import LanguageSelector from '@/components/LanguageSelector.vue'
   }
 
   &__footer {
-    border-top: 1px solid #1E293B;
-    background: #0B1220;
+    border-top: 1px solid #242424;
+    background: #121212;
     margin-top: auto;
     width: 100%;
     max-width: 100%;

@@ -50,7 +50,7 @@ const toggleSidebar = () => {
   display: flex;
   width: 100%;
   height: 100vh;
-  background: linear-gradient(135deg, #020617 0%, #0B1220 100%);
+  background: linear-gradient(135deg, #000000 0%, #121212 100%);
   overflow: hidden;
 
   &__content {
@@ -75,15 +75,15 @@ const toggleSidebar = () => {
     }
 
     &::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.5);
+      background: rgba(18, 18, 18, 0.8);
     }
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(52, 245, 163, 0.3);
+      background: rgba(253, 42, 54, 0.3);
       border-radius: 4px;
       
       &:hover {
-        background: rgba(52, 245, 163, 0.5);
+        background: rgba(253, 42, 54, 0.5);
       }
     }
   }

@@ -210,7 +210,7 @@ const useTemplate = async (template: Template) => {
   &__title {
     font-size: 2rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -225,7 +225,7 @@ const useTemplate = async (template: Template) => {
   }
 
   &__description {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 1rem;
     margin: 0;
   }
@@ -261,24 +261,24 @@ const useTemplate = async (template: Template) => {
   }
 
   &__empty-text {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 1rem;
     margin: 0;
   }
 }
 
 .template-card {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  background: linear-gradient(135deg, #090909 0%, #242424 100%);
   border-radius: 12px;
   overflow: hidden;
-  border: 1px solid rgba(52, 245, 163, 0.1);
+  border: 1px solid rgba(253, 42, 54, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(52, 245, 163, 0.15);
-    border-color: rgba(52, 245, 163, 0.3);
+    box-shadow: 0 12px 24px rgba(253, 42, 54, 0.15);
+    border-color: rgba(253, 42, 54, 0.3);
 
     .template-card__image {
       transform: scale(1.05);
@@ -294,7 +294,7 @@ const useTemplate = async (template: Template) => {
     width: 100%;
     padding-top: 50%;
     overflow: hidden;
-    background: #020617;
+    background: #000000;
   }
 
   &__image {
@@ -325,7 +325,7 @@ const useTemplate = async (template: Template) => {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: linear-gradient(135deg, #6D5DF6 0%, #8B7CFF 100%);
+    background: linear-gradient(135deg, #FFAF0E 0%, #2671F4 100%);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
@@ -334,7 +334,7 @@ const useTemplate = async (template: Template) => {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 12px rgba(109, 93, 246, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 175, 14, 0.3);
   }
 
   &__content {
@@ -349,7 +349,7 @@ const useTemplate = async (template: Template) => {
   }
 
   &__description {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.875rem;
     margin: 0 0 1rem 0;
     line-height: 1.5;
@@ -366,11 +366,11 @@ const useTemplate = async (template: Template) => {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #64748B;
+    color: #737373;
     font-size: 0.875rem;
 
     i {
-      color: #34F5A3;
+      color: #FD2A36;
     }
   }
 }

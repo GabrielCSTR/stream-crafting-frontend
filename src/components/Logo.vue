@@ -21,8 +21,9 @@ const props = withDefaults(
       <!-- Background gradient -->
       <defs>
         <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#34F5A3;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#3AF2E9;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#FD2A36;stop-opacity:1" />
+          <stop offset="55%" style="stop-color:#FFAF0E;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#2671F4;stop-opacity:1" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -84,7 +85,7 @@ const props = withDefaults(
   justify-content: center;
   
   &__svg {
-    filter: drop-shadow(0 0 10px rgba(52, 245, 163, 0.3));
+    filter: drop-shadow(0 0 10px rgba(253, 42, 54, 0.25));
   }
   
   &__icon {

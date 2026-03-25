@@ -207,14 +207,14 @@ const openOverlay = () => {
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.5rem 0;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     i {
-      color: #34F5A3;
-      -webkit-text-fill-color: #34F5A3;
+      color: #FD2A36;
+      -webkit-text-fill-color: #FD2A36;
     }
   }
 
@@ -230,7 +230,7 @@ const openOverlay = () => {
   }
 
   &__subtitle {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.9375rem;
     margin: 0;
   }
@@ -254,15 +254,15 @@ const openOverlay = () => {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 16px;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    color: #CBD5E1;
+    background: linear-gradient(135deg, #090909 0%, #242424 100%);
+    color: #D4D4D4;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
 
     i {
       font-size: 2rem;
-      color: #34F5A3;
+      color: #FD2A36;
     }
   }
 
@@ -274,8 +274,8 @@ const openOverlay = () => {
 
   &__canvas-wrapper {
     flex: 1;
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    border: 1px solid rgba(52, 245, 163, 0.1);
+    background: linear-gradient(135deg, #090909 0%, #242424 100%);
+    border: 1px solid rgba(253, 42, 54, 0.1);
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);

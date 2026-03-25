@@ -189,8 +189,8 @@ const formatGold = (value: number) => {
     flex-shrink: 0;
     border-radius: 8px;
     overflow: hidden;
-    background: #0F172A;
-    border: 2px solid rgba(52, 245, 163, 0.2);
+    background: #090909;
+    border: 2px solid rgba(253, 42, 54, 0.2);
   }
 
   &__hero-img {
@@ -219,7 +219,7 @@ const formatGold = (value: number) => {
   &__name {
     font-size: 1rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -247,7 +247,7 @@ const formatGold = (value: number) => {
     }
 
     .stat-separator {
-      color: #64748B;
+      color: #737373;
     }
   }
 
@@ -256,7 +256,7 @@ const formatGold = (value: number) => {
     align-items: center;
     gap: 0.75rem;
     font-size: 0.875rem;
-    color: #94A3B8;
+    color: #A4A4A4;
 
     .meta-item {
       display: flex;

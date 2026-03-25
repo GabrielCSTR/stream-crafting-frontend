@@ -165,7 +165,7 @@ export default defineComponent({
   border-radius: 12px;
   cursor: pointer;
   text-decoration: none;
-  color: #94A3B8;
+  color: #A4A4A4;
   background: transparent;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid transparent;
@@ -177,28 +177,28 @@ export default defineComponent({
     top: 0;
     width: 3px;
     height: 100%;
-    background: #34F5A3;
+    background: #FD2A36;
     border-radius: 0 2px 2px 0;
     transform: scaleY(0);
     transition: transform 0.2s;
   }
 
   &:hover {
-    background: rgba(52, 245, 163, 0.08);
-    color: #34F5A3;
-    border-color: rgba(52, 245, 163, 0.2);
+    background: rgba(253, 42, 54, 0.08);
+    color: #FD2A36;
+    border-color: rgba(253, 42, 54, 0.2);
     transform: translateX(4px);
 
     .stream-crafter-sidebar-item__icon {
       transform: scale(1.1);
-      color: #34F5A3;
+      color: #FD2A36;
     }
   }
 
   &--active {
-    background: rgba(52, 245, 163, 0.12);
-    color: #34F5A3;
-    border-color: rgba(52, 245, 163, 0.3);
+    background: rgba(253, 42, 54, 0.12);
+    color: #FD2A36;
+    border-color: rgba(253, 42, 54, 0.25);
     font-weight: 600;
 
     &::before {
@@ -206,8 +206,8 @@ export default defineComponent({
     }
 
     .stream-crafter-sidebar-item__icon {
-      color: #34F5A3;
-      filter: drop-shadow(0 0 8px rgba(52, 245, 163, 0.5));
+      color: #FD2A36;
+      filter: drop-shadow(0 0 8px rgba(253, 42, 54, 0.35));
     }
   }
 
@@ -224,8 +224,8 @@ export default defineComponent({
 
   &--parent {
     &.stream-crafter-sidebar-item--open {
-      background: rgba(52, 245, 163, 0.08);
-      color: #34F5A3;
+      background: rgba(253, 42, 54, 0.08);
+      color: #FD2A36;
 
       .stream-crafter-sidebar-item__arrow {
         transform: rotate(180deg);
@@ -273,8 +273,8 @@ export default defineComponent({
     left: calc(100% + 12px);
     top: 50%;
     transform: translateY(-50%) translateX(-8px);
-    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-    color: #F9FAFB;
+    background: linear-gradient(135deg, #090909 0%, #121212 100%);
+    color: #FFFFFF;
     padding: 0.5rem 0.75rem;
     border-radius: 8px;
     font-size: 0.875rem;
@@ -285,7 +285,7 @@ export default defineComponent({
     transition: all 0.2s;
     pointer-events: none;
     z-index: 1000;
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    border: 1px solid rgba(253, 42, 54, 0.2);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 
     &::before {
@@ -295,7 +295,7 @@ export default defineComponent({
       top: 50%;
       transform: translateY(-50%);
       border: 6px solid transparent;
-      border-right-color: rgba(52, 245, 163, 0.2);
+      border-right-color: rgba(253, 42, 54, 0.2);
     }
 
     &::after {
@@ -305,13 +305,13 @@ export default defineComponent({
       top: 50%;
       transform: translateY(-50%) translateX(1px);
       border: 5px solid transparent;
-      border-right-color: #0F172A;
+      border-right-color: #090909;
     }
   }
 
   // Animação de ripple do PrimeVue
   :deep(.p-ink) {
-    background: rgba(52, 245, 163, 0.3);
+    background: rgba(253, 42, 54, 0.3);
   }
 }
 </style>

@@ -12,9 +12,9 @@ export default {
     extend: {
       colors: {
         // Brand Colors
-        'brand-primary': '#34F5A3',
-        'brand-secondary': '#6D5DF6',
-        'brand-accent': '#3AF2E9',
+        'brand-primary': '#FD2A36',
+        'brand-secondary': '#FFAF0E',
+        'brand-accent': '#2671F4',
         // Radiant (Green Team)
         'radiant': {
           base: '#4ADE80',
@@ -30,17 +30,17 @@ export default {
           glow: 'rgba(248, 113, 113, 0.25)'
         },
         // Backgrounds
-        'bg-base': '#020617',
-        'bg-panel': '#0B1220',
-        'bg-card': '#0F172A',
-        'bg-hover': '#111A2F',
-        'border-stroke': '#1E293B',
-        'divider': '#273247',
+        'bg-base': '#000000',
+        'bg-panel': '#121212',
+        'bg-card': '#090909',
+        'bg-hover': '#1d1d1d',
+        'border-stroke': '#242424',
+        'divider': '#333333',
         // Typography
-        'text-heading': '#F9FAFB',
-        'text-body': '#CBD5E1',
-        'text-muted': '#94A3B8',
-        'text-disabled': '#64748B'
+        'text-heading': '#FFFFFF',
+        'text-body': '#D4D4D4',
+        'text-muted': '#A4A4A4',
+        'text-disabled': '#737373'
       }
     }
   },

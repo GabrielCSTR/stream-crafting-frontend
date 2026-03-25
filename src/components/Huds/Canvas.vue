@@ -664,10 +664,10 @@ watch(
 
 <style lang="scss">
 .stream-crafter-hud-canvas {
-  background-color: #0F172A;
+  background-color: #090909;
   background-image: 
-    linear-gradient(rgba(52, 245, 163, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(253, 42, 54, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(253, 42, 54, 0.03) 1px, transparent 1px);
   background-size: 30px 30px;
   height: 100vh;
 
@@ -686,7 +686,7 @@ watch(
     padding: 1rem;
     background: rgba(15, 23, 42, 0.95);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    border: 1px solid rgba(253, 42, 54, 0.2);
     border-radius: 12px;
     width: fit-content;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -695,8 +695,8 @@ watch(
 }
 
 .selection-area {
-  background: rgba(52, 245, 163, 0.05);
-  border: 2px dashed rgba(52, 245, 163, 0.6);
+  background: rgba(253, 42, 54, 0.05);
+  border: 2px dashed rgba(253, 42, 54, 0.6);
   border-radius: 0.25rem;
 }
 
@@ -705,7 +705,7 @@ watch(
   .p-menu {
     background: rgba(15, 23, 42, 0.98);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(52, 245, 163, 0.3);
+    border: 1px solid rgba(253, 42, 54, 0.3);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     
     .p-menuitem {
@@ -713,18 +713,18 @@ watch(
         transition: all 0.2s;
         
         &:hover {
-          background: rgba(52, 245, 163, 0.1);
+          background: rgba(253, 42, 54, 0.1);
         }
         
         .p-menuitem-link {
-          color: #CBD5E1;
+          color: #D4D4D4;
           
           .p-menuitem-icon {
-            color: #34F5A3;
+            color: #FD2A36;
           }
           
           &:hover {
-            color: #F9FAFB;
+            color: #FFFFFF;
           }
         }
       }

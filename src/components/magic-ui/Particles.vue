@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
   ease: 50,
   size: 0.4,
   refresh: false,
-  color: '#34F5A3',
+  color: '#FD2A36',
   vx: 0,
   vy: 0
 })

@@ -10,7 +10,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   className: '',
-  gradientColor: '#34F5A3',
+  gradientColor: '#FD2A36',
   gradientOpacity: 0.1
 })
 
@@ -49,7 +49,7 @@ const gradientStyle = computed(() => {
 <template>
   <div
     ref="cardRef"
-    :class="cn('group relative flex size-full overflow-hidden rounded-xl border border-[#1E293B] bg-gradient-to-br from-[#0F172A] to-[#111A2F]', className)"
+    :class="cn('group relative flex size-full overflow-hidden rounded-xl border border-[#242424] bg-gradient-to-br from-[#090909] to-[#121212]', className)"
   >
     <div class="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100" :style="gradientStyle" />
     <div class="relative z-10 w-full h-full">

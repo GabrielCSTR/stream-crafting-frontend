@@ -60,27 +60,27 @@ for (const k of Object.keys(props.fields)) {
     // InputText styling
     :deep(.p-inputtext) {
       width: 100%;
-      background: rgba(15, 23, 42, 0.6) !important;
-      border: 1px solid #1E293B !important;
-      color: #CBD5E1 !important;
+      background: rgba(18, 18, 18, 0.9) !important;
+      border: 1px solid #242424 !important;
+      color: #D4D4D4 !important;
       border-radius: 12px;
       padding: 0.875rem 1rem;
       font-size: 1rem;
       transition: all 0.3s ease;
 
       &:focus {
-        border-color: #34F5A3 !important;
-        box-shadow: 0 0 0 3px rgba(52, 245, 163, 0.1) !important;
-        background: rgba(15, 23, 42, 0.8) !important;
+        border-color: #FD2A36 !important;
+        box-shadow: 0 0 0 3px rgba(253, 42, 54, 0.12) !important;
+        background: rgba(18, 18, 18, 1) !important;
         outline: none;
       }
 
       &:hover:not(:disabled):not(:focus) {
-        border-color: rgba(52, 245, 163, 0.5) !important;
+        border-color: rgba(253, 42, 54, 0.35) !important;
       }
 
       &::placeholder {
-        color: #64748B;
+        color: #737373;
       }
 
       &:disabled {
@@ -101,9 +101,9 @@ for (const k of Object.keys(props.fields)) {
       .p-inputtext,
       .p-password-input {
         width: 100%;
-        background: rgba(15, 23, 42, 0.6) !important;
-        border: 1px solid #1E293B !important;
-        color: #CBD5E1 !important;
+        background: rgba(18, 18, 18, 0.9) !important;
+        border: 1px solid #242424 !important;
+        color: #D4D4D4 !important;
         border-radius: 12px;
         padding: 0.875rem 1rem;
         padding-right: 3rem !important;
@@ -111,18 +111,18 @@ for (const k of Object.keys(props.fields)) {
         transition: all 0.3s ease;
 
         &:focus {
-          border-color: #34F5A3 !important;
-          box-shadow: 0 0 0 3px rgba(52, 245, 163, 0.1) !important;
-          background: rgba(15, 23, 42, 0.8) !important;
+          border-color: #FD2A36 !important;
+          box-shadow: 0 0 0 3px rgba(253, 42, 54, 0.12) !important;
+          background: rgba(18, 18, 18, 1) !important;
           outline: none;
         }
 
         &:hover:not(:disabled):not(:focus) {
-          border-color: rgba(52, 245, 163, 0.5) !important;
+          border-color: rgba(253, 42, 54, 0.35) !important;
         }
 
         &::placeholder {
-          color: #64748B;
+          color: #737373;
         }
 
         &:disabled {
@@ -143,12 +143,12 @@ for (const k of Object.keys(props.fields)) {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #94A3B8;
+        color: #A4A4A4;
         transition: color 0.2s ease;
         z-index: 10;
 
         &:hover {
-          color: #34F5A3;
+          color: #FD2A36;
         }
 
         .p-password-toggle-icon {
@@ -160,14 +160,14 @@ for (const k of Object.keys(props.fields)) {
   }
 
   &__label {
-    color: #94A3B8 !important;
+    color: #A4A4A4 !important;
     font-weight: 500;
     font-size: 0.875rem;
     transition: color 0.3s ease;
 
     &[data-p-filled='true'],
     &[data-p-inputwrapper-focus='true'] {
-      color: #34F5A3 !important;
+      color: #FD2A36 !important;
     }
   }
 

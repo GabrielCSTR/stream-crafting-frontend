@@ -157,7 +157,7 @@ const formatGameState = (state?: string) => {
   padding: 1rem 2rem;
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.98) 100%);
   border-radius: 12px;
-  border: 2px solid rgba(52, 245, 163, 0.2);
+  border: 2px solid rgba(253, 42, 54, 0.2);
   backdrop-filter: blur(10px);
   min-width: 600px;
 
@@ -188,8 +188,8 @@ const formatGameState = (state?: string) => {
     width: 48px;
     height: 48px;
     border-radius: 8px;
-    background: rgba(52, 245, 163, 0.1);
-    border: 2px solid rgba(52, 245, 163, 0.3);
+    background: rgba(253, 42, 54, 0.1);
+    border: 2px solid rgba(253, 42, 54, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,14 +203,14 @@ const formatGameState = (state?: string) => {
 
     i {
       font-size: 1.5rem;
-      color: #34F5A3;
+      color: #FD2A36;
     }
   }
 
   .team-name {
     font-size: 1.125rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
@@ -233,14 +233,14 @@ const formatGameState = (state?: string) => {
     font-size: 2rem;
     font-weight: 700;
     font-family: 'Rajdhani', sans-serif;
-    color: #F9FAFB;
+    color: #FFFFFF;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   }
 
   .game-state {
     font-size: 0.75rem;
     font-weight: 600;
-    color: #94A3B8;
+    color: #A4A4A4;
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }

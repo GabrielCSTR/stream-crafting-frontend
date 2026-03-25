@@ -33,7 +33,7 @@ import Logo from '@/components/Logo.vue'
 <style lang="scss" scoped>
 .radiantcast-layout-auth {
   position: relative;
-  background: linear-gradient(180deg, #020617 0%, #0B1220 100%);
+  background: linear-gradient(180deg, #000000 0%, #121212 100%);
   min-height: 100vh;
 
   &__background {
@@ -43,8 +43,8 @@ import Logo from '@/components/Logo.vue'
     right: 0;
     bottom: 0;
     background: 
-      radial-gradient(circle at 20% 30%, rgba(52, 245, 163, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(109, 93, 246, 0.08) 0%, transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(253, 42, 54, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 175, 14, 0.08) 0%, transparent 50%);
     z-index: 0;
   }
 
@@ -55,8 +55,8 @@ import Logo from '@/components/Logo.vue'
     right: 0;
     bottom: 0;
     background-image: 
-      linear-gradient(rgba(52, 245, 163, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(52, 245, 163, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(253, 42, 54, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(253, 42, 54, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     z-index: 0;
     opacity: 0.5;
@@ -68,14 +68,14 @@ import Logo from '@/components/Logo.vue'
   }
 
   &__card {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(17, 26, 47, 0.9) 100%);
-    border: 1px solid rgba(52, 245, 163, 0.2);
+    background: linear-gradient(135deg, rgba(9, 9, 9, 0.94) 0%, rgba(18, 18, 18, 0.94) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 24px;
     padding: 3rem;
     backdrop-filter: blur(20px);
     box-shadow: 
       0 20px 60px rgba(0, 0, 0, 0.5),
-      0 0 40px rgba(52, 245, 163, 0.1),
+      0 0 40px rgba(253, 42, 54, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     max-width: 500px;
     margin: 0 auto;
@@ -89,7 +89,7 @@ import Logo from '@/components/Logo.vue'
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, #34F5A3, transparent);
+      background: linear-gradient(90deg, transparent, #FD2A36, transparent);
       opacity: 0.6;
     }
   }
@@ -110,7 +110,7 @@ import Logo from '@/components/Logo.vue'
   }
 
   &__subtitle {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.05em;

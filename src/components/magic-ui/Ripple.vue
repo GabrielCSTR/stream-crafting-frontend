@@ -19,8 +19,8 @@ const props = withDefaults(defineProps<Props>(), {
 const containerRef = ref<HTMLElement | null>(null)
 let animationFrameId: number | null = null
 
-const createRipple = () => {
-  if (!containerRef.value) return
+const createRipple = (): (() => void) | null => {
+  if (!containerRef.value) return null
 
   const circles = Array.from({ length: props.numCircles }, (_, i) => {
     const circle = document.createElement('div')
@@ -35,7 +35,7 @@ const createRipple = () => {
     circle.style.left = '50%'
     circle.style.top = '50%'
     circle.style.transform = 'translate(-50%, -50%) scale(0)'
-    circle.style.border = `1px solid rgba(52, 245, 163, ${opacity})`
+    circle.style.border = `1px solid rgba(253, 42, 54, ${opacity})`
     circle.style.borderRadius = '9999px'
     circle.style.animation = `ripple ${duration}s ease-out ${delay}s infinite`
     circle.style.animationFillMode = 'forwards'
@@ -61,7 +61,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (cleanupFn) cleanupFn()
+  cleanupFn?.()
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
   }

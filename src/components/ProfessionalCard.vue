@@ -43,8 +43,8 @@ defineProps<{
 
 <style lang="scss" scoped>
 .professional-card {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-  border: 1px solid rgba(52, 245, 163, 0.1);
+  background: linear-gradient(135deg, #090909 0%, #121212 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -54,7 +54,7 @@ defineProps<{
     cursor: pointer;
 
     &:hover {
-      border-color: rgba(52, 245, 163, 0.3);
+      border-color: rgba(253, 42, 54, 0.25);
       transform: translateY(-4px);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
     }
@@ -69,7 +69,7 @@ defineProps<{
       inset: 0;
       border-radius: 16px;
       padding: 1px;
-      background: linear-gradient(135deg, #34F5A3, #3AF2E9);
+      background: linear-gradient(135deg, #FD2A36, #FFAF0E);
       -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
@@ -89,7 +89,7 @@ defineProps<{
     align-items: flex-start;
     justify-content: space-between;
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(52, 245, 163, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     gap: 1rem;
   }
 
@@ -101,9 +101,9 @@ defineProps<{
   &__title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     margin: 0 0 0.25rem 0;
-    background: linear-gradient(135deg, #F9FAFB 0%, #CBD5E1 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #D4D4D4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -111,7 +111,7 @@ defineProps<{
 
   &__subtitle {
     font-size: 0.875rem;
-    color: #94A3B8;
+    color: #A4A4A4;
     margin: 0;
   }
 
@@ -131,8 +131,8 @@ defineProps<{
 
   &__footer {
     padding: 1rem 1.5rem;
-    border-top: 1px solid rgba(52, 245, 163, 0.1);
-    background: rgba(11, 18, 32, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(18, 18, 18, 0.8);
   }
 }
 </style>

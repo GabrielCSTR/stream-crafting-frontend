@@ -240,7 +240,7 @@ watch(() => route.params.hudId, (newId) => {
             gap: 6px;
 
             &--connected {
-                color: #34F5A3;
+                color: #FD2A36;
             }
 
             &--connecting {

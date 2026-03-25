@@ -96,9 +96,9 @@ const toggleSearch = () => {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 18, 32, 0.8);
+  background: rgba(18, 18, 18, 0.88);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(52, 245, 163, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
 
   &__container {
@@ -128,9 +128,9 @@ const toggleSearch = () => {
   &__title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     margin: 0;
-    background: linear-gradient(135deg, #F9FAFB 0%, #CBD5E1 100%);
+    background: linear-gradient(135deg, #FFFFFF 0%, #D4D4D4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -152,16 +152,16 @@ const toggleSearch = () => {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.875rem;
-    color: #94A3B8;
+    color: #A4A4A4;
     text-decoration: none;
     transition: color 0.2s;
 
     &:hover {
-      color: #34F5A3;
+      color: #FD2A36;
     }
 
     &--active {
-      color: #34F5A3;
+      color: #FD2A36;
       font-weight: 600;
     }
 
@@ -184,8 +184,8 @@ const toggleSearch = () => {
 
     &--active {
       .app-header__search-btn {
-        background: rgba(52, 245, 163, 0.2);
-        color: #34F5A3;
+        background: rgba(253, 42, 54, 0.12);
+        color: #FD2A36;
       }
     }
   }
@@ -195,21 +195,21 @@ const toggleSearch = () => {
     right: 48px;
     width: 200px;
     padding: 0.5rem 1rem;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(52, 245, 163, 0.3);
+    background: rgba(9, 9, 9, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    color: #F9FAFB;
+    color: #FFFFFF;
     font-size: 0.875rem;
     outline: none;
     transition: all 0.2s;
 
     &::placeholder {
-      color: #64748B;
+      color: #737373;
     }
 
     &:focus {
-      border-color: #34F5A3;
-      box-shadow: 0 0 0 3px rgba(52, 245, 163, 0.1);
+      border-color: #FD2A36;
+      box-shadow: 0 0 0 3px rgba(253, 42, 54, 0.12);
     }
 
     @media (max-width: 768px) {
@@ -225,16 +225,16 @@ const toggleSearch = () => {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(52, 245, 163, 0.1);
-    color: #CBD5E1;
+    background: rgba(9, 9, 9, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: #D4D4D4;
     cursor: pointer;
     transition: all 0.2s;
 
     &:hover {
-      background: rgba(52, 245, 163, 0.1);
-      border-color: rgba(52, 245, 163, 0.3);
-      color: #34F5A3;
+      background: rgba(253, 42, 54, 0.1);
+      border-color: rgba(253, 42, 54, 0.25);
+      color: #FD2A36;
       transform: translateY(-2px);
     }
 
@@ -254,7 +254,7 @@ const toggleSearch = () => {
     height: 18px;
     padding: 0 4px;
     background: linear-gradient(135deg, #F87171 0%, #DC2626 100%);
-    border: 2px solid #0B1220;
+    border: 2px solid #121212;
     border-radius: 9px;
     font-size: 0.625rem;
     font-weight: 700;

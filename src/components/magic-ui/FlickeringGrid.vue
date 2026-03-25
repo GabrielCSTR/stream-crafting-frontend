@@ -30,7 +30,7 @@ const squaresArray = computed(() => {
     <div
       v-for="square in squaresArray"
       :key="square.id"
-      class="absolute w-1 h-1 bg-[#34F5A3] opacity-0 animate-flicker"
+      class="absolute w-1 h-1 bg-[#FD2A36] opacity-0 animate-flicker"
       :style="{
         left: `${square.x}%`,
         top: `${square.y}%`,

@@ -53,7 +53,7 @@ const onSubmit = props.dynamicFormProps.formContext.handleSubmit((form: GenericO
     text-align: center;
     font-size: 2rem;
     font-weight: 700;
-    color: #F9FAFB;
+    color: #FFFFFF;
     margin: 0 0 2rem 0;
     letter-spacing: -0.02em;
   }
@@ -65,17 +65,17 @@ const onSubmit = props.dynamicFormProps.formContext.handleSubmit((form: GenericO
   }
 
   &__submit-btn {
-    background: linear-gradient(135deg, #34F5A3 0%, #2ae693 100%) !important;
+    background: linear-gradient(135deg, #FD2A36 0%, #e60011 100%) !important;
     border: none !important;
-    color: #020617 !important;
+    color: #FFFFFF !important;
     font-weight: 600;
     padding: 0.875rem 1.5rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(52, 245, 163, 0.3);
+    box-shadow: 0 4px 15px rgba(253, 42, 54, 0.25);
 
     &:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(52, 245, 163, 0.4);
+      box-shadow: 0 6px 20px rgba(253, 42, 54, 0.35);
     }
 
     &:active:not(:disabled) {

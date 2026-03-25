@@ -221,14 +221,14 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.75rem 0;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #2671F4 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     i {
-      color: #34F5A3;
-      -webkit-text-fill-color: #34F5A3;
+      color: #FD2A36;
+      -webkit-text-fill-color: #FD2A36;
     }
   }
 
@@ -237,7 +237,7 @@ const canSave = computed(() => hudName.value.trim() !== '' && list.value.length 
   }
 
   &__subtitle {
-    color: #94A3B8;
+    color: #A4A4A4;
     font-size: 0.9375rem;
     margin: 0;
   }

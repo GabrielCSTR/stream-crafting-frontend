@@ -5,43 +5,43 @@ const D2Cast = definePreset(Aura, {
   semantic: {
     // Brand Colors
     primary: {
-      50: '#e6fef5',
-      100: '#ccfdeb',
-      200: '#99fbd7',
-      300: '#66f9c3',
-      400: '#34F5A3', // Brand Primary
-      500: '#2ae693',
-      600: '#22b673',
-      700: '#1a8653',
-      800: '#115632',
-      900: '#092b19',
-      950: '#04150c'
+      50: '#fff1f2',
+      100: '#ffe4e6',
+      200: '#fecdd3',
+      300: '#fda4af',
+      400: '#fd6b75',
+      500: '#FD2A36', // CSWatch primary
+      600: '#e60011',
+      700: '#c1000e',
+      800: '#9f0712',
+      900: '#881337',
+      950: '#4c0519'
     },
     secondary: {
-      50: '#ede9ff',
-      100: '#dbd3ff',
-      200: '#b7a7ff',
-      300: '#937bff',
-      400: '#6D5DF6', // Brand Secondary
-      500: '#5a4dc5',
-      600: '#473e94',
-      700: '#352e63',
-      800: '#231f32',
-      900: '#120f19',
-      950: '#09070c'
+      50: '#fff7e6',
+      100: '#ffefcc',
+      200: '#ffdf99',
+      300: '#ffcf66',
+      400: '#ffbf33',
+      500: '#FFAF0E', // CSWatch secondary
+      600: '#d88f00',
+      700: '#a66e00',
+      800: '#734d00',
+      900: '#402b00',
+      950: '#211600'
     },
     accent: {
-      50: '#e6fffe',
-      100: '#ccfffd',
-      200: '#99fffb',
-      300: '#66fff9',
-      400: '#3AF2E9', // Accent
-      500: '#2ec2ba',
-      600: '#24928b',
-      700: '#1b625c',
-      800: '#12312e',
-      900: '#091917',
-      950: '#040c0b'
+      50: '#eff6ff',
+      100: '#dbeafe',
+      200: '#bfdbfe',
+      300: '#93c5fd',
+      400: '#60a5fa',
+      500: '#2671F4', // CSWatch accent
+      600: '#1d5fd6',
+      700: '#1d4ed8',
+      800: '#1e40af',
+      900: '#1e3a8a',
+      950: '#172554'
     },
     // Semantic Colors
     success: {
@@ -99,30 +99,30 @@ const D2Cast = definePreset(Aura, {
     colorScheme: {
       dark: {
         surface: {
-          0: '#020617', // Background base
-          50: '#0B1220', // Background 2 (painéis)
-          100: '#0F172A', // Card / Section
-          200: '#111A2F', // Hover BG subtle
-          300: '#1E293B', // Stroke / Border
-          400: '#273247', // Divider suave
-          500: '#334155',
-          600: '#475569',
-          700: '#64748B',
-          800: '#94A3B8',
-          900: '#CBD5E1',
-          950: '#F9FAFB'
+          0: '#000000', // Background base
+          50: '#090909', // Cards
+          100: '#121212', // Panels
+          200: '#1d1d1d', // Hover BG subtle
+          300: '#242424', // Stroke / Border
+          400: '#333333', // Divider
+          500: '#525252',
+          600: '#737373',
+          700: '#a4a4a4',
+          800: '#d4d4d4',
+          900: '#f5f5f5',
+          950: '#ffffff'
         },
         primary: {
-          color: '{primary.400}',
-          contrastColor: '{surface.0}',
-          hoverColor: '{primary.500}',
-          activeColor: '{primary.600}'
+          color: '{primary.500}',
+          contrastColor: '{surface.950}',
+          hoverColor: '{primary.600}',
+          activeColor: '{primary.700}'
         },
         highlight: {
-          background: '{primary.400}',
-          focusBackground: '{primary.500}',
-          color: '{surface.0}',
-          focusColor: '{surface.0}'
+          background: '{primary.500}',
+          focusBackground: '{primary.600}',
+          color: '{surface.950}',
+          focusColor: '{surface.950}'
         }
       }
     }

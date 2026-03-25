@@ -11,7 +11,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   className: '',
-  color: '#34F5A3',
+  color: '#FD2A36',
   borderRadius: 16,
   duration: 14
 })
@@ -28,7 +28,7 @@ const borderStyle = computed(() => ({
     :class="cn('relative flex w-full items-center justify-center overflow-hidden rounded-[var(--border-radius)] border border-transparent bg-background p-[1px]', className)"
     :style="borderStyle"
   >
-    <div class="relative z-10 w-full rounded-[var(--border-radius)] bg-[#0F172A] p-6">
+    <div class="relative z-10 w-full rounded-[var(--border-radius)] bg-[#090909] p-6">
       <slot />
     </div>
     <div

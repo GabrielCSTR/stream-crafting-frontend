@@ -122,8 +122,8 @@ const profileBind = computed<PanelMenuProps>(() => ({
   width: 280px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #0B1220 0%, #0F172A 100%);
-  border-right: 1px solid rgba(52, 245, 163, 0.1);
+  background: linear-gradient(180deg, #121212 0%, #090909 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 100;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
@@ -161,7 +161,7 @@ const profileBind = computed<PanelMenuProps>(() => ({
   &__brand {
     font-size: 1.25rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #34F5A3 0%, #3AF2E9 100%);
+    background: linear-gradient(135deg, #FD2A36 0%, #FFAF0E 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -176,14 +176,14 @@ const profileBind = computed<PanelMenuProps>(() => ({
     width: 32px;
     height: 32px;
     border-radius: 8px;
-    background: rgba(52, 245, 163, 0.1);
-    border: 1px solid rgba(52, 245, 163, 0.2);
-    color: #34F5A3;
+    background: rgba(253, 42, 54, 0.1);
+    border: 1px solid rgba(253, 42, 54, 0.2);
+    color: #FD2A36;
     cursor: pointer;
     transition: all 0.2s;
 
     &:hover {
-      background: rgba(52, 245, 163, 0.2);
+      background: rgba(253, 42, 54, 0.16);
       transform: scale(1.1);
     }
 
@@ -196,9 +196,9 @@ const profileBind = computed<PanelMenuProps>(() => ({
     height: 1px;
     background: linear-gradient(
       90deg,
-      rgba(52, 245, 163, 0) 0%,
-      rgba(52, 245, 163, 0.2) 50%,
-      rgba(52, 245, 163, 0) 100%
+      rgba(253, 42, 54, 0) 0%,
+      rgba(253, 42, 54, 0.2) 50%,
+      rgba(253, 42, 54, 0) 100%
     );
     margin: 0 1rem;
   }
@@ -219,11 +219,11 @@ const profileBind = computed<PanelMenuProps>(() => ({
     }
 
     &::-webkit-scrollbar-thumb {
-      background: rgba(52, 245, 163, 0.2);
+      background: rgba(253, 42, 54, 0.2);
       border-radius: 2px;
       
       &:hover {
-        background: rgba(52, 245, 163, 0.3);
+        background: rgba(253, 42, 54, 0.3);
       }
     }
   }
@@ -251,7 +251,7 @@ const profileBind = computed<PanelMenuProps>(() => ({
       border: none;
       padding: 0;
       margin-left: 0.5rem;
-      border-left: 2px solid rgba(52, 245, 163, 0.1);
+      border-left: 2px solid rgba(253, 42, 54, 0.12);
       
       .stream-crafter-sidebar-item {
         font-size: 0.875rem;

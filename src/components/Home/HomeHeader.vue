@@ -40,8 +40,8 @@ const { t } = useI18n()
 .d2cast-header {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  background-color: rgba(11, 18, 32, 0.9);
-  border-bottom: 1px solid #1E293B;
+  background-color: rgba(18, 18, 18, 0.92);
+  border-bottom: 1px solid #242424;
   transition: all 0.3s ease;
 
   &__nav {
@@ -65,7 +65,7 @@ const { t } = useI18n()
   }
 
   &__link {
-    color: #CBD5E1;
+    color: #D4D4D4;
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 1rem;
@@ -73,8 +73,8 @@ const { t } = useI18n()
     transition: all 0.2s ease;
 
     &:hover {
-      background-color: #111A2F;
-      color: #34F5A3;
+      background-color: rgba(253, 42, 54, 0.08);
+      color: #FD2A36;
     }
   }
 
@@ -83,13 +83,13 @@ const { t } = useI18n()
   }
 
   &__button-text {
-    color: #CBD5E1;
+    color: #D4D4D4;
   }
 
   &__button-primary {
-    background: #34F5A3;
+    background: #FD2A36;
     border: none;
-    color: #020617;
+    color: #FFFFFF;
   }
 }
 </style>
